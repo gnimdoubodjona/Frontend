@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.authService.currentUser$.subscribe(user => {
       this.currentUserSubject$.next(user);
       if (user) {
-        this.router.navigate(['/accueil']);
+        this.router.navigate(['/app/accueil']);
       }
     });
   }
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
           // Redirection après connexion réussie
-          this.router.navigate(['/accueil']);
+          this.router.navigate(['/app/accueil']);
         },
         error: (error) => {
           if (error.status === 401) {

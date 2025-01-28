@@ -1,0 +1,1724 @@
+<section >
+<div *ngIf="error" class="alert alert-danger m-3">
+    {{ error }}
+</div>
+  <!-- Page-title -->
+  <div class="page-title page-portfolio-details">
+    <div class="rellax" data-rellax-speed="5" style="transform: translate3d(0px, 0px, 0px);">
+        <img alt="" src="/images/page-title/portfolio.jpg" />
+    </div>
+    <div class="content-wrap">
+        <div class="tf-container w-1290">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="content">
+                        <p class="sub-title">
+                            Voir votre profil détaillé
+                        </p>
+                        <h1 class="title" *ngIf="utilisateur">
+                            {{utilisateur.nom}} {{ utilisateur.prenoms }}
+                        </h1>
+                        <div class="icon-img">
+                            <img alt="" src="/images/item/line-throw-title.png" />
+                        </div>
+                        <div class="breadcrumb">
+                            <a routerLink="/app/accueil">Accueil</a>
+                            <div class="icon">
+                                <i class="icon-arrow-right1"></i>
+                            </div>
+                            <a href="javascript:void(0)"> Profil</a>
+                        </div>
+                        <div class="mt-3">
+                            <a [routerLink]="['/app/utilisateur', utilisateur.id, 'detail']" class="tf-btn" *ngIf="utilisateur" (click)="navigateToDetails()">
+                                <span>Voir les détails</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="img-item item-2">
+        <img alt="" src="/images/item/grass.png" />
+    </div>
+</div><!-- /.Page-title -->
+<!-- Main-content -->
+<div class="main-content page-portfolio-1">
+    <div class="tf-container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-12 mb-40">
+                    <div class="wg-tabs" *ngIf="!loading && !error && utilisateur">
+                        <ul class="overflow-x-auto menu-tab mb-65">
+                            <li [class.active]="isTabActive('all')" class="item">
+                                <a class="btn-tab" href="javascript:void(0)" (click)="setActiveTab('all')">All Projects</a>
+                            </li>
+                            <li [class.active]="isTabActive('organic')" class="item">
+                                <a class="btn-tab" href="javascript:void(0)" (click)="setActiveTab('organic')">Organic</a>
+                            </li>
+                            <li [class.active]="isTabActive('farms')" class="item">
+                                <a class="btn-tab" href="javascript:void(0)" (click)="setActiveTab('farms')">Farms</a>
+                            </li>
+                            <li [class.active]="isTabActive('harvest')" class="item">
+                                <a class="btn-tab" href="javascript:void(0)" (click)="setActiveTab('harvest')">Harvest</a>
+                            </li>
+                            <li [class.active]="isTabActive('vegetable')" class="item">
+                                <a class="btn-tab" href="javascript:void(0)" (click)="setActiveTab('vegetable')">Vegetable</a>
+                            </li>
+                            <li [class.active]="isTabActive('fruit')" class="item">
+                                <a class="btn-tab" href="javascript:void(0)" (click)="setActiveTab('fruit')">Fruit</a>
+                            </li>
+                            <li [class.active]="isTabActive('cattle')" class="item">
+                                <a class="btn-tab" href="javascript:void(0)" (click)="setActiveTab('cattle')">Cattle</a>
+                            </li>
+                        </ul>
+                        <div class="widget-content-tab">
+                            <div class="widget-content-inner container-loadmore" [class.active]="isTabActive('all')" >
+                                <div class="grid-layout-3 grid-portfolio">
+                                    <div class="box-portfolio wow fadeInUp animated" data-wow-delay="0s"
+                                        style="visibility: visible; animation-delay: 0s; animation-name: fadeInUp;">
+                                        <div class="image">
+                                            <img alt="" class="ls-is-cached lazyloaded"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio wow fadeInUp animated" data-wow-delay="0.1s"
+                                        style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                                        <div class="image">
+                                            <img alt="" class="ls-is-cached lazyloaded"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio wow fadeInUp animated" data-wow-delay="0.2s"
+                                        style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                                        <div class="image">
+                                            <img alt="" class="ls-is-cached lazyloaded"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio wow fadeInUp" data-wow-delay="0s"
+                                        style="visibility: hidden; animation-delay: 0s; animation-name: none;">
+                                        <div class="image">
+                                            <img alt="" class="ls-is-cached lazyloaded"
+                                                data-src=".//images/widget/portfolio-4.jpg"
+                                                src="/images/widget/portfolio-4.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Wheat</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Harvest
+                                                Wheat At The End
+                                                Of The Season</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio wow fadeInUp" data-wow-delay="0.1s"
+                                        style="visibility: hidden; animation-delay: 0.1s; animation-name: none;">
+                                        <div class="image">
+                                            <img alt="" class="ls-is-cached lazyloaded"
+                                                data-src=".//images/widget/portfolio-5.jpg"
+                                                src="/images/widget/portfolio-5.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">vegetables - fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Grow
+                                                Vegetables In The Dry
+                                                Season
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio wow fadeInUp" data-wow-delay="0.2s"
+                                        style="visibility: hidden; animation-delay: 0.2s; animation-name: none;">
+                                        <div class="image">
+                                            <img alt="" class="ls-is-cached lazyloaded"
+                                                data-src=".//images/widget/portfolio-6.jpg"
+                                                src="/images/widget/portfolio-6.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">farm - animals</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">We
+                                                Farm Cattle</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid-layout-3 grid-portfolio item hidden">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center">
+                                    <a class="tf-btn btn-loadMore mt-50 scale-40" href="javascript:void(0)">
+                                        <span class="text-style text-anime-style-1">
+                                            <div
+                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 50% 50%; transform: scale(1.5, 1.5); opacity: 0;">
+                                                Load</div>
+                                            <div
+                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 50% 50%; transform: scale(0.8, 0.8); opacity: 0;">
+                                                More</div>
+                                            <div
+                                                style="position: relative; display: inline-block; translate: none; rotate: none; scale: none; transform-origin: 50% 50%; transform: scale(1.5, 1.5); opacity: 0;">
+                                                Projects</div>
+                                        </span>
+                                        <div class="icon">
+                                            <i class="icon-arrow_right"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-content-inner container-loadmore" style="display: none;">
+                                <div class="grid-layout-3 grid-portfolio">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-4.jpg"
+                                                src="/images/widget/portfolio-4.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Wheat</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Harvest
+                                                Wheat At The End
+                                                Of The Season</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-5.jpg"
+                                                src="/images/widget/portfolio-5.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">vegetables - fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Grow
+                                                Vegetables In The Dry
+                                                Season
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-6.jpg"
+                                                src="/images/widget/portfolio-6.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">farm - animals</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">We
+                                                Farm Cattle</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid-layout-3 grid-portfolio item hidden">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center">
+                                    <a class="tf-btn btn-loadMore mt-50 scale-40" href="javascript:void(0)">
+                                        <span class="text-style">Load More Projects</span>
+                                        <div class="icon">
+                                            <i class="icon-arrow_right"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-content-inner container-loadmore" style="display: none;">
+                                <div class="grid-layout-3 grid-portfolio">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-4.jpg"
+                                                src="/images/widget/portfolio-4.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Wheat</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Harvest
+                                                Wheat At The End
+                                                Of The Season</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-5.jpg"
+                                                src="/images/widget/portfolio-5.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">vegetables - fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Grow
+                                                Vegetables In The Dry
+                                                Season
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-6.jpg"
+                                                src="/images/widget/portfolio-6.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">farm - animals</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">We
+                                                Farm Cattle</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid-layout-3 grid-portfolio item hidden">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center">
+                                    <a class="tf-btn btn-loadMore mt-50 scale-40" href="javascript:void(0)">
+                                        <span class="text-style">Load More Projects</span>
+                                        <div class="icon">
+                                            <i class="icon-arrow_right"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-content-inner container-loadmore" style="display: none;">
+                                <div class="grid-layout-3 grid-portfolio">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-4.jpg"
+                                                src="/images/widget/portfolio-4.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Wheat</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Harvest
+                                                Wheat At The End
+                                                Of The Season</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-5.jpg"
+                                                src="/images/widget/portfolio-5.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">vegetables - fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Grow
+                                                Vegetables In The Dry
+                                                Season
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-6.jpg"
+                                                src="/images/widget/portfolio-6.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">farm - animals</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">We
+                                                Farm Cattle</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid-layout-3 grid-portfolio item hidden">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center">
+                                    <a class="tf-btn btn-loadMore mt-50 scale-40" href="javascript:void(0)">
+                                        <span class="text-style">Load More Projects</span>
+                                        <div class="icon">
+                                            <i class="icon-arrow_right"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-content-inner container-loadmore" style="display: none;">
+                                <div class="grid-layout-3 grid-portfolio">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-4.jpg"
+                                                src="/images/widget/portfolio-4.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Wheat</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Harvest
+                                                Wheat At The End
+                                                Of The Season</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-5.jpg"
+                                                src="/images/widget/portfolio-5.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">vegetables - fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Grow
+                                                Vegetables In The Dry
+                                                Season
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-6.jpg"
+                                                src="/images/widget/portfolio-6.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">farm - animals</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">We
+                                                Farm Cattle</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid-layout-3 grid-portfolio item hidden">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center">
+                                    <a class="tf-btn btn-loadMore mt-50 scale-40" href="javascript:void(0)">
+                                        <span class="text-style">Load More Projects</span>
+                                        <div class="icon">
+                                            <i class="icon-arrow_right"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-content-inner container-loadmore" style="display: none;">
+                                <div class="grid-layout-3 grid-portfolio">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-4.jpg"
+                                                src="/images/widget/portfolio-4.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Wheat</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Harvest
+                                                Wheat At The End
+                                                Of The Season</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-5.jpg"
+                                                src="/images/widget/portfolio-5.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">vegetables - fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Grow
+                                                Vegetables In The Dry
+                                                Season
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-6.jpg"
+                                                src="/images/widget/portfolio-6.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">farm - animals</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">We
+                                                Farm Cattle</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid-layout-3 grid-portfolio item hidden">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center">
+                                    <a class="tf-btn btn-loadMore mt-50 scale-40" href="javascript:void(0)">
+                                        <span class="text-style">Load More Projects</span>
+                                        <div class="icon">
+                                            <i class="icon-arrow_right"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-content-inner container-loadmore" style="display: none;">
+                                <div class="grid-layout-3 grid-portfolio">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-4.jpg"
+                                                src="/images/widget/portfolio-4.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Wheat</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Harvest
+                                                Wheat At The End
+                                                Of The Season</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-5.jpg"
+                                                src="/images/widget/portfolio-5.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">vegetables - fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">Grow
+                                                Vegetables In The Dry
+                                                Season
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-6.jpg"
+                                                src="/images/widget/portfolio-6.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">farm - animals</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">We
+                                                Farm Cattle</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid-layout-3 grid-portfolio item hidden">
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-1.jpg"
+                                                src="/images/widget/portfolio-1.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">The
+                                                Joy Of Sheep
+                                                Farming</a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-2.jpg"
+                                                src="/images/widget/portfolio-2.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">Agriculture - Fruit</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                The Succulence Of Oranges
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-portfolio">
+                                        <div class="image">
+                                            <img alt="" class="lazyload"
+                                                data-src=".//images/widget/portfolio-3.jpg"
+                                                src="/images/widget/portfolio-3.jpg" />
+                                        </div>
+                                        <div class="content">
+                                            <p class="sub font-farmhouse text-upper">cow - farm</p>
+                                            <a class="title fs-23 font-worksans fw-6 hover-text-secondary"
+                                                href="#">
+                                                Provides The Best Grass
+                                                For Cows
+                                            </a>
+                                            <p class="text font-nunito">Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed a
+                                                cursus massa.
+                                                Cras ut dui nec nibhvehicula fermentum.
+                                                natoque penatibus.</p>
+                                            <div class="bot">
+                                                <a class="btn-read icon style-circle" href="#">
+                                                    <i class="icon-arrow_right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center">
+                                    <a class="tf-btn btn-loadMore mt-50 scale-40" href="javascript:void(0)">
+                                        <span class="text-style">Load More Projects</span>
+                                        <div class="icon">
+                                            <i class="icon-arrow_right"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /.Main-content -->
+
+</section>

@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   roles: any[] = [];
+  disponibilites: any[] = [];
   showAgriculteurFields = false;
   showElevageFields = false;
   showPrestataireFields = false;
@@ -81,6 +82,16 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = 'Erreur lors du chargement des rôles. Veuillez réessayer.';
       }
     });
+    this.authService.getDisponibilite().subscribe({
+      next: (disponibilites) => {
+        this.disponibilites = disponibilites;
+        console.log('Disponibilités chargées:', this.disponibilites);
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des disponibilités:', error);
+        this.errorMessage = 'Erreur lors du chargement des disponibilités. Veuillez réessayer.';
+      }
+    });
   }
 
   // Méthode pour gérer l'ajout d'un chip
@@ -127,6 +138,8 @@ export class RegisterComponent implements OnInit {
     this.showVeterinaireFields = role === 'veterinaire';
   }
 
+
+
   // Validateur de mot de passe
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('password');
@@ -140,131 +153,8 @@ export class RegisterComponent implements OnInit {
     return null;
   }
 
-  // onSubmit() {
-  //   console.log('Début de la soumission du formulaire');
-  //   console.log('État du formulaire:', this.registerForm.valid);
-  //   console.log('Erreurs du formulaire:', this.registerForm.errors);
-    
-  //   // Vérifier chaque contrôle du formulaire
-  //   Object.keys(this.registerForm.controls).forEach(key => {
-  //     const control = this.registerForm.get(key);
-  //     console.log(`Contrôle ${key}:`, {
-  //       value: control?.value,
-  //       valid: control?.valid,
-  //       errors: control?.errors,
-  //       touched: control?.touched
-  //     });
-  //   });
 
-  //   if (this.registerForm.valid) {
-  //     this.isLoading = true;
-  //     this.errorMessage = '';
-  //     this.successMessage = '';
-      
-  //     const formValue = this.registerForm.value;
-      
-  //     // Préparer les données de base
-  //     const baseData: Partial<RegisterCredentials> = {
-  //       nom: formValue.nom,
-  //       prenoms: formValue.prenoms,
-  //       email: formValue.email,
-  //       password: formValue.password,
-  //       password2: formValue.password2,
-  //       emplacement: formValue.emplacement || '',
-  //       role: formValue.role,
-  //       bio: formValue.bio || '',
-  //       numero_telephone: formValue.numero_telephone,
-  //       disponibilite: formValue.disponibilite,
-  //       photo_de_profile: formValue.photo_de_profile || null
-  //     };
 
-  //     console.log('Données de base:', baseData);
-
-  //     // Sélectionner uniquement les champs spécifiques au rôle choisi
-  //     let roleSpecificData: Partial<RegisterCredentials> = {};
-  //     switch(formValue.role) {
-  //       case 'agriculteur':
-  //         roleSpecificData = {
-  //           type_cultures: formValue.type_cultures || [],
-  //           surface_exploitee: formValue.surface_exploitee || 0,
-  //           certification_bio: formValue.certification_bio || false
-  //         };
-  //         break;
-  //       case 'eleveur':
-  //         roleSpecificData = {
-  //           type_animaux: formValue.type_animaux || [],
-  //           nombre_animaux: formValue.nombre_animaux || 0,
-  //           infrastructure_disponible: formValue.infrastructure_disponible || ''
-  //         };
-  //         break;
-  //       case 'prestataire':
-  //         roleSpecificData = {
-  //           specialites: formValue.specialites || [],
-  //           zone_intervention: formValue.zone_intervention || '',
-  //           tarif_horaire: formValue.tarif_horaire || 0
-  //         };
-  //         break;
-  //       case 'veterinaire':
-  //         roleSpecificData = {
-  //           diplome_veterinaire: formValue.diplome_veterinaire || null,
-  //           annees_experience: formValue.annees_experience || 0,
-  //           zones_de_consultation: formValue.zones_de_consultation || ''
-  //         };
-  //         break;
-  //     }
-
-  //     console.log('Données spécifiques au rôle:', roleSpecificData);
-
-  //     const finalData = {
-  //       ...baseData,
-  //       ...roleSpecificData
-  //     } as RegisterCredentials;
-
-  //     console.log('==== DONNÉES ENVOYÉES ====');
-  //     console.log('Données finales:', finalData);
-      
-  //     this.authService.register(finalData).subscribe({
-  //       next: (response) => {
-  //         console.log('Réponse du serveur:', response);
-  //         this.isLoading = false;
-  //         this.successMessage = 'Inscription réussie ! Redirection vers la page de connexion...';
-          
-  //         setTimeout(() => {
-  //           this.router.navigate(['/login']);
-  //         }, 2000);
-  //       },
-  //       error: (error) => {
-  //         console.error('==== ERREUR DÉTAILLÉE ====');
-  //         console.error('Status:', error.status);
-  //         console.error('Status Text:', error.statusText);
-  //         console.error('Erreur complète:', error);
-          
-  //         this.isLoading = false;
-          
-  //         if (error.error) {
-  //           if (typeof error.error === 'object') {
-  //             const errorMessages = Object.entries(error.error)
-  //               .map(([field, message]) => `${field}: ${message}`)
-  //               .join('\n');
-  //             this.errorMessage = `Erreurs de validation:\n${errorMessages}`;
-  //           } else {
-  //             this.errorMessage = error.error;
-  //           }
-  //         } else {
-  //           this.errorMessage = 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.';
-  //         }
-  //       }
-  //     });
-  //   } else {
-  //     this.errorMessage = 'Veuillez remplir correctement tous les champs obligatoires.';
-      
-  //     // Marquer tous les champs comme touchés pour afficher les erreurs
-  //     Object.keys(this.registerForm.controls).forEach(key => {
-  //       const control = this.registerForm.get(key);
-  //       control?.markAsTouched();
-  //     });
-  //   }
-  //}
 
   onSubmit() {
     if (this.registerForm.valid) {

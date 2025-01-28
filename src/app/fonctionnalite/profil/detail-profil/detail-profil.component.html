@@ -1,0 +1,149 @@
+<!-- Section profil -->
+<div class="profil-utilisateur">
+    <div *ngIf="loading" class="loading">
+        <p>Chargement des informations...</p>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
+    </div>
+    
+    <div *ngIf="utilisateur && !loading">
+        <!-- En-tête du profil avec photo -->
+        <div class="profile-header">
+            <div class="photo-profil" *ngIf="utilisateur.photo_de_profile">
+                <img [src]="getPhotoUrl()" alt="Photo de profil">
+            </div>
+            <div class="profile-info">
+                <h1>{{ utilisateur.prenoms }} {{ utilisateur.nom }}</h1>
+                <div class="info-item">
+                    <strong>Email :</strong>
+                    <span>{{ utilisateur.email }}</span>
+                </div>
+                <div class="info-item">
+                    <strong>Rôle :</strong>
+                    <span>{{ utilisateur.role | titlecase }}</span>
+                </div>
+                <div class="info-item">
+                    <strong>Emplacement :</strong>
+                    <span>{{ utilisateur.emplacement }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informations générales -->
+        <div class="profile-section">
+            <h2>Informations générales</h2>
+            <div class="info-item">
+                <strong>Disponibilité :</strong>
+                <span>{{ hasValue(utilisateur.disponibilite) ? utilisateur.disponibilite : 'Non renseignée' }}</span>
+            </div>
+            <div class="info-item" *ngIf="utilisateur.bio">
+                <strong>Bio :</strong>
+                <span>{{ utilisateur.bio }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Numéro de téléphone :</strong>
+                <span>{{ hasValue(utilisateur.numero_telephone) ? utilisateur.numero_telephone : 'Non renseigné' }}</span>
+            </div>
+        </div>
+        
+        <!-- Champs spécifiques pour les agriculteurs -->
+        <div class="profile-section" *ngIf="utilisateur.role === 'agriculteur'">
+            <h2>Informations Agriculteur</h2>
+            <div class="info-item">
+                <strong>Types de cultures :</strong>
+                <span>{{ utilisateur.type_cultures && utilisateur.type_cultures.length ? utilisateur.type_cultures.join(', ') : 'Non renseignés' }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Surface exploitée :</strong>
+                <span>{{ utilisateur.surface_exploitee ? utilisateur.surface_exploitee + ' hectares' : 'Non renseignée' }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Certification bio :</strong>
+                <span>{{ utilisateur.certification_bio ? 'Oui' : 'Non' }}</span>
+            </div>
+        </div>
+
+        <!-- Champs spécifiques pour les éleveurs -->
+        <div class="profile-section" *ngIf="utilisateur.role === 'eleveur'">
+            <h2>Informations Éleveur</h2>
+            <div class="info-item">
+                <strong>Types d'animaux :</strong>
+                <span>{{ utilisateur.type_animaux && utilisateur.type_animaux.length ? utilisateur.type_animaux.join(', ') : 'Non renseignés' }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Nombre d'animaux :</strong>
+                <span>{{ utilisateur.nombre_animaux || 'Non renseigné' }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Infrastructure disponible :</strong>
+                <span>{{ utilisateur.infrastructure_disponible || 'Non renseignée' }}</span>
+            </div>
+        </div>
+
+        <!-- Champs spécifiques pour les prestataires -->
+        <div class="profile-section" *ngIf="utilisateur.role === 'prestataire'">
+            <h2>Informations Prestataire</h2>
+            <div class="info-item">
+                <strong>Spécialités :</strong>
+                <span>{{ utilisateur.specialites && utilisateur.specialites.length ? utilisateur.specialites.join(', ') : 'Non renseignées' }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Zone d'intervention :</strong>
+                <span>{{ utilisateur.zone_intervention || 'Non renseignée' }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Tarif horaire :</strong>
+                <span>{{ utilisateur.tarif_horaire ? utilisateur.tarif_horaire + ' €/h' : 'Non renseigné' }}</span>
+            </div>
+        </div>
+
+        <!-- Champs spécifiques pour les vétérinaires -->
+        <div class="profile-section" *ngIf="utilisateur.role === 'veterinaire'">
+            <h2>Informations Vétérinaire</h2>
+            <div class="info-item">
+                <strong>Diplôme :</strong>
+                <span>{{ utilisateur.diplome_veterinaire || 'Non renseigné' }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Années d'expérience :</strong>
+                <span>{{ utilisateur.annees_experience || 'Non renseigné' }}</span>
+            </div>
+            <div class="info-item">
+                <strong>Zones de consultation :</strong>
+                <span>{{ utilisateur.zones_de_consultation || 'Non renseignées' }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page-title
+<div class="page-title page-portfolio-details" *ngIf="utilisateur">
+    <!-- <div class="content-wrap">
+        <div class="tf-container w-1290">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="content">
+                        <h1 class="title">
+                          {{utilisateur.nom}} {{ utilisateur.prenoms }}
+                        </h1>
+                        <div class="breadcrumb">
+                            <a [routerLink]="['/']">Accueil</a>
+                            <div class="icon">
+                                <i class="icon-arrow-right1"></i>
+                            </div>
+                            <a [routerLink]="['/app/profil']">Profil</a>
+                            <div class="icon">
+                                <i class="icon-arrow-right1"></i>
+                            </div>
+                            <span>Détail Profil</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div> 
+
+
+    </div> -->

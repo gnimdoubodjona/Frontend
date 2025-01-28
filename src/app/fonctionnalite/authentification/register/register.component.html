@@ -56,6 +56,8 @@
 
     <br><br><br><br>
 
+
+
     <!-- Champs pour Agriculteur -->
     <div *ngIf="showAgriculteurFields">
       <div>
@@ -220,18 +222,23 @@
     <br><br><br><br>
 
     <div>
-      <label for="disponibilite">Disponibilité</label>
-      <input type="text" id="disponibilite" formControlName="disponibilite">
-      <div *ngIf="registerForm.get('disponibilite')?.invalid && registerForm.get('disponibilite')?.touched">
-        Ce champ est requis
-      </div>
+      <label for="photo_de_profile">Photo de profil</label>
+      <input type="file" id="photo_de_profile" (change)="onFileSelected($event, 'photo_de_profile')">
     </div>
 
     <br><br><br><br>
 
+
     <div>
-      <label for="photo_de_profile">Photo de profil</label>
-      <input type="file" id="photo_de_profile" (change)="onFileSelected($event, 'photo_de_profile')">
+      <label for="disponibilite">Disponibilité</label>
+      <select id="disponibilite" formControlName="disponibilite">
+        <option value="">Sélectionnez votre disponibilité</option>
+        <option *ngFor="let disponibilite of disponibilites" [value]="disponibilite.value">{{disponibilite.label}}</option>
+        
+      </select>
+      <div *ngIf="registerForm.get('disponibilite')?.invalid && registerForm.get('disponibilite')?.touched">
+        Ce champ est requis
+      </div>
     </div>
 
     <br><br><br><br>
@@ -245,6 +252,8 @@
     </div>
 
     <br><br><br><br>
+
+
 
     <div>
       <label for="password2">Confirmer le mot de passe</label>

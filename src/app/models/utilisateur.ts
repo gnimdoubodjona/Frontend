@@ -1,4 +1,5 @@
 export interface Utilisateur {
+    id: number;
     email: string;
     prenoms: string;
     nom: string;
@@ -13,8 +14,8 @@ export interface Utilisateur {
     password: string;
     password2: string;
     
-    types_cultures: string[];
-    surface_explotee: number;
+    type_cultures: string[];
+    surface_exploitee: number;
     certification_bio: boolean;
     type_animaux: string[];
     nombre_animaux: number;
