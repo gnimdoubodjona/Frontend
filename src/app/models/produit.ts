@@ -1,4 +1,5 @@
 export interface Produit {
+    value(id: number | undefined, value: any): unknown;
     id?: number;
     nom_produit: string;
     description: string;

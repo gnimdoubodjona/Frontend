@@ -24,6 +24,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { DetailProfilComponent } from './fonctionnalite/profil/detail-profil/detail-profil.component';
 import { ListeUtilisateursComponent } from './fonctionnalite/liste-utilisateurs/liste-utilisateurs.component';
+import { ForumComponent } from './fonctionnalite/forum/forum.component';
+import { GestionProduitsComponent } from './fonctionnalite/gestion-produits/gestion-produits.component';
+import { ListeProduitsComponent } from './fonctionnalite/gestion-produits/liste-produits/liste-produits.component';
+import { MiseAJourProduitsComponent } from './fonctionnalite/gestion-produits/mise-ajour-produits/mise-ajour-produits.component';
+import { SupprimerProduitsComponent } from './fonctionnalite/gestion-produits/supprimer-produits/supprimer-produits.component';
+import { BoutiqueProduitComponent } from './fonctionnalite/gestion-produits/boutique-produit/boutique-produit.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +46,12 @@ import { ListeUtilisateursComponent } from './fonctionnalite/liste-utilisateurs/
     CreationProduitComponent,
     DetailProfilComponent,
     ListeUtilisateursComponent,
-    
+    ForumComponent,
+    GestionProduitsComponent,
+    ListeProduitsComponent,
+    MiseAJourProduitsComponent,
+    SupprimerProduitsComponent,
+    BoutiqueProduitComponent
   ],
   imports: [
     BrowserModule,

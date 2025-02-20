@@ -2,5 +2,5 @@ export interface Categorie {
     id: number;
     nom_categorie: string;
     description: string;
+    unitee: string;
 }
-

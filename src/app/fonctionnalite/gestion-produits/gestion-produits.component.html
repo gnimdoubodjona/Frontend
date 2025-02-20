@@ -1,0 +1,103 @@
+    <!-- Page principale -->
+    <div class="container-fluid py-5 bg-light">
+        <div class="row justify-content-center">
+            <!-- Bouton d'ajout avec animation hover -->
+            <div class="col-md-4 text-center mb-4">
+                <button class="btn-add-product shadow-sm" (click)="openModal()">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+    
+            <!-- Liste des produits -->
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <app-liste-produits></app-liste-produits>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal amélioré -->
+    <div class="modal fade" id="produitModal" tabindex="-1" aria-labelledby="produitModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white py-3">
+                    <h5 class="modal-title fs-4" id="produitModalLabel">
+                        <i class="fas fa-box-open me-2"></i>Ajouter un produit
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" (click)="closeModal()"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form [formGroup]="produitForm" (ngSubmit)="onSubmit()" class="needs-validation">
+                        <!-- Nom du produit -->
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control form-control-lg" id="nom_produit" formControlName="nom_produit" placeholder="Nom du produit">
+                            <label for="nom_produit">Nom du produit</label>
+                        </div>
+    
+                        <!-- Description -->
+                        <div class="form-floating mb-4">
+                            <textarea class="form-control form-control-lg" id="description" formControlName="description" placeholder="Description" style="height: 120px"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+    
+                        <div class="row mb-4">
+                            <!-- Prix -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <div class="input-group input-group-lg">
+                                        <input type="number" class="form-control" id="prix" formControlName="prix" min="0" step="0.01" placeholder="Prix">
+                                        <!-- <span class="input-group-text bg-light px-4">XOF</span> -->
+                                        <span class="input-group-text">FCFA<span *ngIf="selectedCategoryUnit"> / {{selectedCategoryUnit}}</span></span>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!-- Quantité -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control form-control-lg" id="quantite" formControlName="quantite" min="1" placeholder="Quantité">
+                                    <!-- <span class="input-group-text" *ngIf="selectedCategoryUnit">{{selectedCategoryUnit}}</span> -->
+                                    <label for="quantite">Quantité / <span *ngIf="selectedCategoryUnit">{{selectedCategoryUnit}}</span></label>
+                                </div> 
+                            </div>
+                        </div>
+    
+                        <!-- Catégorie -->
+                        <div class="form-floating mb-4">
+                            <select class="form-select form-select-lg" id="categorie" formControlName="categorie">
+                                <option value="">Sélectionner une catégorie</option>
+                                <option *ngFor="let cat of categories" [value]="cat.id">{{cat.nom_categorie}}</option>
+                            </select>
+                            <label for="categorie">Catégorie</label>
+                        </div>
+    
+                        <!-- Upload de photo -->
+                        <div class="mb-4">
+                            <label for="photo" class="form-label d-block">
+                                <div class="upload-zone p-5 text-center border rounded bg-light">
+                                    <i class="fas fa-cloud-upload-alt fs-2 mb-3"></i>
+                                    <p class="mb-0 fs-5">Glissez votre image ici ou cliquez pour sélectionner</p>
+                                    <input type="file" class="form-control d-none" id="photo" formControlName="photo" accept="image/*">
+                                </div>
+                            </label>
+                        </div>
+    
+                        <!-- Bouton de soumission -->
+                        <button type="submit" class="btn btn-primary btn-lg w-100 py-3 shadow-sm" [disabled]="!produitForm.valid">
+                            <i class="fas fa-save me-2"></i>Créer le produit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+

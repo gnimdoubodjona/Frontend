@@ -4,6 +4,7 @@ import { Categorie } from '../models/categorie';
 import { Observable } from 'rxjs';
 import { Produit } from '../models/produit';
 import { Vente } from '../models/vente';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,13 @@ export class GestionVenteService {
   }
 
   getMesProduits(): Observable<any[]> {
-    return this.http.get<Produit[]>(`${this.apiUrl}/mes-produits/`);
+    console.log('Appel de getMesProduits()');
+    return this.http.get<Produit[]>(`${this.apiUrl}/produits/mes-produits/`).pipe(
+      tap(
+        response => console.log('Réponse de getMesProduits:', response),
+        error => console.error('Erreur dans getMesProduits:', error)
+      )
+    );
   }
     
   // Création d'un produit
@@ -45,8 +52,18 @@ export class GestionVenteService {
     return this.http.post<Produit>(`${this.apiUrl}/produits/`, produitData);
   }
 
-  updateProduit(id: number, produit: Partial<Produit>): Observable<Produit> {
-    return this.http.patch<Produit>(`${this.apiUrl}/produits/${id}/`, produit);
+  updateProduit(id: number, produit: FormData | Partial<Produit>): Observable<Produit> {
+    console.log('Tentative de mise à jour du produit:', {
+      id: id,
+      données: produit instanceof FormData ? 'FormData' : produit,
+      url: `${this.apiUrl}/produits/${id}/`
+    });
+    return this.http.patch<Produit>(`${this.apiUrl}/produits/${id}/`, produit).pipe(
+      tap(
+        response => console.log('Réponse de la mise à jour:', response),
+        error => console.error('Erreur détaillée de la mise à jour:', error)
+      )
+    );
   }
 
   deleteProduit(id: number): Observable<void> {

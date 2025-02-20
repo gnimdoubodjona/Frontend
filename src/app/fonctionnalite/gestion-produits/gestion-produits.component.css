@@ -1,0 +1,83 @@
+.btn-add-product {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #2ecc71, #27ae60);
+    border: none;
+    color: white;
+    font-size: 28px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-add-product:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+/* Styles pour le formulaire */
+.form-floating > .form-control,
+.form-floating > .form-select {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    min-height: 60px;
+    padding: 1rem 0.75rem;
+    font-size: 1.1rem;
+}
+
+.form-floating > label {
+    padding: 1rem 0.75rem;
+    font-size: 1.1rem;
+}
+
+.form-floating > .form-control:focus,
+.form-floating > .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Zone d'upload */
+.upload-zone {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-zone:hover {
+    background-color: #f8f9fa !important;
+    border-color: #80bdff !important;
+}
+
+/* Animation du modal */
+.modal.fade .modal-dialog {
+    transform: scale(0.8);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+}
+
+/* Ajustements pour l'input group */
+.input-group-text {
+    font-size: 1.1rem;
+    min-height: 60px;
+}
+
+.input-group .form-control {
+    min-height: 60px;
+    font-size: 1.1rem;
+}
+
+/* Espacement général */
+.modal-body {
+    padding: 2rem !important;
+}
+
+.form-floating {
+    margin-bottom: 1rem;
+}
