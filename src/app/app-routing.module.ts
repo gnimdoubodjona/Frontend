@@ -13,6 +13,7 @@ import { ForumComponent } from './fonctionnalite/forum/forum.component';
 //import { CreationProduitComponent } from './fonctionnalite/gestion-vente/creation-produit/creation-produit.component';
 import { GestionProduitsComponent } from './fonctionnalite/gestion-produits/gestion-produits.component';
 import { BoutiqueProduitComponent } from './fonctionnalite/gestion-produits/boutique-produit/boutique-produit.component';
+import { PanierComponent } from './fonctionnalite/gestion-produits/panier/panier.component';
 
 const routes: Routes = [
   // Routes avec authentification nécessitant le layout principal
@@ -32,6 +33,7 @@ const routes: Routes = [
       {path: 'forum', component: ForumComponent},
     ]
   },
+  { path: 'panier', component: PanierComponent },
 
   //{path: 'creerProduits', component : GestionProduitsComponent},
   

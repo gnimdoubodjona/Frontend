@@ -45,6 +45,8 @@ export class AuthService {
         this.currentUserSubject.next(response.user);
         if (response.token) {
           this.tokenSubject.next(response.token);
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('user', JSON.stringify(response.user));
         }
       })
     );
@@ -53,6 +55,8 @@ export class AuthService {
   logout(): void {
     this.currentUserSubject.next(null);
     this.tokenSubject.next(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 
   //recupérer disponibilité
@@ -85,5 +89,9 @@ export class AuthService {
         }
       })
     );
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.currentUserSubject.value && !!this.tokenSubject.value;
   }
 }

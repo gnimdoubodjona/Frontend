@@ -33,7 +33,13 @@ export class GestionVenteService {
       }
       url += `?${params.toString()}`;
     }
-    return this.http.get<Produit[]>(url);
+    console.log('Appel API vers:', url);
+    return this.http.get<Produit[]>(url).pipe(
+      tap(
+        response => console.log('Réponse API produits:', response),
+        error => console.error('Erreur API produits:', error)
+      )
+    );
   }
 
   getMesProduits(): Observable<any[]> {
@@ -87,5 +93,53 @@ export class GestionVenteService {
     return this.http.post<any>(`${this.apiUrl}/ventes/${id}/annuler/`, {});
   }
 
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   getProductsByCategory(categoryId: number): Observable<Product[]> {
+//     return this.http.get<Product[]>(`${this.apiUrl}/products?category=${categoryId}`);
+// }
+
+// // Récupérer les produits en promotion
+// getProductsOnSale(): Observable<Product[]> {
+//     return this.http.get<Product[]>(`${this.apiUrl}/products?onSale=true`);
+// }
+
+// // Trier les produits
+// sortProducts(products: Product[], sortBy: string): Product[] {
+//     switch (sortBy) {
+//         case 'price-low':
+//             return [...products].sort((a, b) => a.price - b.price);
+//         case 'price-high':
+//             return [...products].sort((a, b) => b.price - a.price);
+//         case 'rating':
+//             return [...products].sort((a, b) => b.rating - a.rating);
+//         case 'latest':
+//         default:
+//             return [...products].sort((a, b) => 
+//                 new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+//             );
+//     }
+// }
   
 }

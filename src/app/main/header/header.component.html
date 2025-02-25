@@ -210,7 +210,7 @@
                                         <a href="javascript:void(0)">Boutique</a>
                                         <ul class="sub-nav">
                                             <li>
-                                                <a href="shop-products.html">
+                                                <a [routerLink]="['/app/boutiqueProduit/']">
                                                     <span>
                                                         Boutique Produits
                                                     </span>
@@ -318,6 +318,10 @@
                                 </path>
                             </svg></div>
 
+                            
+                            
+                            
+                            
                             <div class="pxl-user-anchor-wrap d-flex-wrap align-items-center ">
                                 <span
                                     class="pxl-anchor side-panel d-inline-flex align-items-center relative"
@@ -342,11 +346,16 @@
 
 
                             <div class="icon-wrap">
+
+                                <!-- recherche -->
                                 <a class="icon header-search" data-bs-toggle="offcanvas" href="#canvasSearch">
                                     <i class="fa-solid fa-magnifying-glass fs-21"></i>
                                 </a>
-                                <a class="icon wg-bag" href="shop-products.html">
+
+                                <!-- panier -->
+                                <a class="icon wg-bag" (click)="openCart($event)">
                                     <i class="fa-solid fa-shopping-basket"></i>
+                                    <span class="cart-count" *ngIf="cartItemsCount > 0">{{cartItemsCount}}</span>
                                 </a>
                             </div>
                             <div class="wg-welcome btn-open-welcome">
@@ -418,10 +427,7 @@
                                             </a>
                                             <ul class="sub-menu-mobile">
                                                 <li class="menu-item">
-                                                    <a href="shop-products.html">Boutique Produits</a>
-                                                </li>
-                                                <li class="menu-item">
-                                                    <a href="shop-details.html">Détails Boutique</a>
+                                                    <a [routerLink]="['/app/boutiqueProduit/']">Boutique Produits</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -636,8 +642,9 @@
                                     <a class="icon header-search" data-bs-toggle="offcanvas" href="#canvasSearch">
                                         <i class="fa-solid fa-magnifying-glass fs-21"></i>
                                     </a>
-                                    <a class="icon wg-bag" href="shop-products.html">
+                                    <a class="icon wg-bag" (click)="openCart($event)">
                                         <i class="fa-solid fa-shopping-basket"></i>
+                                        <span class="cart-count" *ngIf="cartItemsCount > 0">{{cartItemsCount}}</span>
                                     </a>
                                 </div>
                                 <div class="wg-welcome btn-open-welcome">

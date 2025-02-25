@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class ProduitService {
   //private apiUrl = `${environment.apiUrl}/produits`;
-  private apiUrl = 'http://127.0.0.1:8000/api/produits/';
+  
+  private apiUrl = 'http://localhost:8000/api/produits/';
 
   constructor(private http: HttpClient) { }
 

@@ -1,0 +1,42 @@
+<!-- Modal du panier qui s'affiche à droite -->
+<div class="cart-sidebar" [class.active]="isCartOpen">
+    <div class="cart-header">
+        <h3>Mon Panier ({{cartItems.length}})</h3>
+        <button class="close-btn" (click)="closeCart()">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+
+    <div class="cart-items">
+        <div class="cart-item" *ngFor="let item of cartItems">
+            <div class="item-image">
+                <img [src]="item.produit.photo" [alt]="item.produit.nom_produit">
+            </div>
+            <div class="item-details">
+                <h4>{{item.produit.nom_produit}}</h4>
+                <p class="price">{{item.produit.prix}} FCFA</p>
+                <div class="quantity-controls">
+                    <button (click)="updateQuantity(item, item.quantity - 1)">-</button>
+                    <span>{{item.quantity}}</span>
+                    <button (click)="updateQuantity(item, item.quantity + 1)">+</button>
+                </div>
+            </div>
+            <button class="remove-btn" (click)="removeItem(item.produit.id)">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="cart-footer">
+        <div class="total">
+            <span>Total</span>
+            <span class="total-amount">{{calculateTotal()}} FCFA</span>
+        </div>
+        <button class="checkout-btn">
+            Passer la commande
+        </button>
+    </div>
+</div>
+
+<!-- Overlay pour le fond sombre quand le panier est ouvert -->
+<div class="cart-overlay" [class.active]="isCartOpen" (click)="closeCart()"></div>

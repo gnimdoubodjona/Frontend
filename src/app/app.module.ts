@@ -30,6 +30,8 @@ import { ListeProduitsComponent } from './fonctionnalite/gestion-produits/liste-
 import { MiseAJourProduitsComponent } from './fonctionnalite/gestion-produits/mise-ajour-produits/mise-ajour-produits.component';
 import { SupprimerProduitsComponent } from './fonctionnalite/gestion-produits/supprimer-produits/supprimer-produits.component';
 import { BoutiqueProduitComponent } from './fonctionnalite/gestion-produits/boutique-produit/boutique-produit.component';
+import { ToastrModule } from 'ngx-toastr';
+import { PanierComponent } from './fonctionnalite/gestion-produits/panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { BoutiqueProduitComponent } from './fonctionnalite/gestion-produits/bout
     ListeProduitsComponent,
     MiseAJourProduitsComponent,
     SupprimerProduitsComponent,
-    BoutiqueProduitComponent
+    BoutiqueProduitComponent,
+    PanierComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,8 @@ import { BoutiqueProduitComponent } from './fonctionnalite/gestion-produits/bout
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule 
+    FormsModule,
+    ToastrModule.forRoot(), 
   ],
   providers: [
     {

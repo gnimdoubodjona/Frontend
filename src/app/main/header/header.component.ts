@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Utilisateur } from '../../models/utilisateur';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,9 @@ import { Utilisateur } from '../../models/utilisateur';
 export class HeaderComponent implements OnInit {
   currentDate: Date = new Date();
   currentUser: Utilisateur | null = null;
+  cartItemsCount = 0;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private cartService: CartService) {}
 
   ngOnInit() {
     // Mettre à jour la date toutes les minutes
@@ -23,6 +25,20 @@ export class HeaderComponent implements OnInit {
     this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;
     });
+
+    this.loadCartItemsCount();
+  }
+
+  loadCartItemsCount() {
+    this.cartService.getCartItems().subscribe(items => {
+      this.cartItemsCount = items.length;
+    });
+  }
+
+  openCart(event: Event) {
+    event.preventDefault();
+    console.log('Ouverture du panier...');
+    this.cartService.openCart();
   }
 
   // Méthode pour formater la date en français

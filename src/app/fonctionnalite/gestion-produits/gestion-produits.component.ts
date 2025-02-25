@@ -8,7 +8,7 @@ import { GestionVenteService } from '../../services/gestion-vente.service';
 @Component({
   selector: 'app-gestion-produits',
   templateUrl: './gestion-produits.component.html',
-  styleUrl: './gestion-produits.component.css'
+  styleUrls: ['./gestion-produits.component.css']
 })
 export class GestionProduitsComponent implements OnInit{
   produitForm: FormGroup;
@@ -37,23 +37,33 @@ export class GestionProduitsComponent implements OnInit{
 
   ngOnInit(): void {
     console.log('CreationProduitComponent ngOnInit called');
+    
+    // Charger les catégories
+    this.gestionVenteService.getCategories().subscribe({
+      next: (categories) => {
+        console.log('Catégories chargées:', categories);
+        this.categories = categories;
+        
+        // Initialiser l'unité de la catégorie actuelle
+        const categorieId = this.produitForm.get('categorie')?.value;
+        const categorie = this.categories.find(c => c.id === categorieId);
+        this.selectedCategoryUnit = categorie?.unitee || '';
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des catégories:', error);
+      }
+    });
+
     // Vérifier l'état de connexion
     this.authService.currentUser$.subscribe(user => {
       console.log('État de connexion:', !!user);
       this.isAuthenticated = !!user;
-      //initialiser l'unité de la catégorie actuelle
-      const categorieId = this.produitForm.get('categorie')?.value;
-      const categorie = this.categories.find(c => c.id === categorieId);
-      this.selectedCategoryUnit = categorie?.unitee || '';
       
       if (!this.isAuthenticated) {
         console.log('Utilisateur non authentifié, redirection vers la page de connexion');
         this.router.navigate(['/login']);
       }
-
     });
-
-    this.loadCategories();
   }
 
 

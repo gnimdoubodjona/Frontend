@@ -1,0 +1,378 @@
+<div class="container mt-4 full-width-container">
+    <!-- En-tête avec le titre -->
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-center">Nos produits</h2>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
+        <!-- Section principale des produits -->
+        <div class="col-lg-9">
+            <!-- Message de chargement -->
+            <div *ngIf="loading" class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Chargement...</span>
+                </div>
+            </div>
+
+            <!-- Message d'erreur -->
+            <div *ngIf="error" class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+
+            <!-- Grille des produits -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" *ngIf="!loading && produits.length > 0">
+                <div class="col" *ngFor="let produit of produits">
+                    <div class="card h-100 shadow-sm hover-card rounded-4 border-0">
+                        <!-- Image du produit -->
+                        <div class="position-relative overflow-hidden">
+                            <img [src]="produit.photo || 'assets/images/default-produit.png'" 
+                                 class="card-img-top rounded-top-4" 
+                                 alt="{{ produit.nom_produit }}"
+                                 style="height: 250px; object-fit: cover;">
+                            <div class="overlay-gradient position-absolute bottom-0 start-0 w-100 p-3">
+                                <h5 class="card-title text-white mb-0 product-title">{{ produit.nom_produit }}</h5>
+                            </div>
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-bold text-success fs-4 price-tag">
+                                    {{ produit.prix | currency:'XOF':'symbol':'1.0-0' }}
+                                </span>
+                                <span class="badge bg-light text-dark rounded-pill category-badge">
+                                    <i class="bi bi-tag me-1"></i>{{ produit.categorie_nom }}
+                                </span>
+                            </div>
+
+                            <div class="d-flex justify-content-between gap-3 mb-3">
+                                <!-- Description -->
+                                <p class="card-text text-muted description mb-0">
+                                    {{ produit.description }}
+                                </p>
+
+                                <!-- Vendeur -->
+                                <div class="vendor-info d-flex align-items-center flex-shrink-0">
+                                    <div class="vendor-avatar me-2">
+                                        <!-- <img [src]="produit.vendeur_photo || 'assets/images/default-avatar.png'"
+                                             class="rounded-circle"
+                                             alt="{{ produit.vendeur_nom }}"
+                                             width="32"
+                                             height="32"> -->
+                                             <i class="bi bi-person-circle text-muted me-2"></i>
+                                    </div>
+                                    <span class="text-muted vendor-name">{{ produit.vendeur_nom }}</span>
+                                </div>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="mb-3">
+                                <span class="badge bg-success-subtle text-success rounded-pill">
+                                    <i class="bi bi-check-circle me-1"></i>En stock
+                                </span>
+                            </div>
+
+                            <!-- Actions en bas -->
+                            <div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center">
+                                <!-- <button class="btn btn-outline-primary btn-sm" 
+                                        (click)="addToCart(produit)"
+                                        [ngClass]="{'btn-outline-primary': !isAuthenticated, 'btn-primary': isAuthenticated}">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button> -->
+                                <button class="btn btn-outline-success action-btn" 
+                                            title="Ajouter au panier"
+                                            (click)="addToCart(produit)" [ngClass]="{'btn-outline-primary': !isAuthenticated, 'btn-primary': isAuthenticated}">
+                                        <i class="bi bi-cart-plus fs-5"></i>
+                                </button>
+
+                            
+                                <button class="btn btn-outline-success action-btn" 
+                                        title="Ajouter aux favoris"
+                                        (click)="toggleLike(produit.id)">
+                                    <i class="bi bi-heart fs-5" 
+                                       [class.bi-heart-fill]="isProductLiked(produit.id)"></i>
+                                </button>
+                                <button class="btn btn-outline-success action-btn" 
+                                        title="Voir les détails"
+                                        (click)="viewDetails(produit.id)">
+                                    <i class="bi bi-eye fs-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message si aucun produit -->
+            <div *ngIf="!loading && produits.length === 0" class="text-center py-5">
+                <i class="bi bi-inbox fs-1 text-muted"></i>
+                <p class="mt-3">Aucun produit disponible pour le moment</p>
+            </div>
+        </div>
+
+        <!-- Sidebar des catégories -->
+        <div class="col-lg-3">
+            <div class="categories-sidebar">
+                <div class="categories-header">
+                    <h3 class="categories-title">
+                        <i class="bi bi-grid me-2"></i>
+                        Categories
+                    </h3>
+                </div>
+                <div class="categories-list">
+                    <a href="#" class="category-item" *ngFor="let categorie of categories">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-chevron-right category-icon"></i>
+                            <span class="category-name">{{ categorie.nom_categorie }}</span>
+                        </div>
+                        <span class="category-count">{{ categorie.nombre_produits || 0 }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.hover-card {
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.card-img-top {
+    transition: all 0.3s ease;
+}
+
+.hover-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.overlay-gradient {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    transition: all 0.3s ease;
+}
+
+.product-title {
+    font-size: 1.4rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.price-tag {
+    font-size: 1.5rem !important;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+.category-badge {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    flex: 1;
+}
+
+.vendor-info {
+    padding-left: 1rem;
+    border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+.vendor-avatar img {
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.vendor-name {
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+.product-actions {
+    padding: 0.5rem 1rem;
+    margin: 0 -1rem -1rem -1rem;
+    background-color: rgba(25, 135, 84, 0.03);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.action-btn {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex: 1;
+    margin: 0 4px;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    background-color: #198754;
+    color: white;
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.2);
+}
+
+.action-btn:active {
+    transform: translateY(-1px);
+}
+
+.action-btn i {
+    font-size: 1.35rem;
+}
+
+.rounded-4 {
+    border-radius: 1rem !important;
+}
+
+.rounded-top-4 {
+    border-top-left-radius: 1rem !important;
+    border-top-right-radius: 1rem !important;
+}
+
+.categories-sidebar {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.categories-header {
+    background: #198754;
+    padding: 1.25rem 1.5rem;
+    color: white;
+}
+
+.categories-title {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.categories-list {
+    padding: 0.5rem 0;
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.875rem 1.5rem;
+    color: #444;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.category-item:last-child {
+    border-bottom: none;
+}
+
+.category-item:hover {
+    background-color: rgba(25, 135, 84, 0.04);
+    color: #198754;
+    padding-left: 1.75rem;
+}
+
+.category-icon {
+    font-size: 1rem;
+    margin-right: 0.75rem;
+    color: #198754;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.category-item:hover .category-icon {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+.category-name {
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.category-count {
+    background: rgba(25, 135, 84, 0.08);
+    color: #198754;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.category-item:hover .category-count {
+    background: #198754;
+    color: white;
+}
+
+/* Animation pour les boutons */
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+</style>
