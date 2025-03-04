@@ -1,0 +1,141 @@
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content shadow-lg border-0 rounded-3">
+      <div class="modal-header bg-gradient-success text-white">
+        <h5 class="modal-title fw-bold fs-4"><i class="bi bi-briefcase me-2"></i>Modifier l'offre d'emploi</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="emploiModifie.emit()"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div *ngIf="loading" class="text-center my-5">
+          <div class="spinner-grow text-success" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Chargement...</span>
+          </div>
+          <p class="mt-3 text-muted fs-5">Chargement en cours...</p>
+        </div>
+
+        <form *ngIf="!loading" [formGroup]="modifierForm" (ngSubmit)="onSubmit()" class="needs-validation">
+          <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="titre" class="form-label fw-semibold fs-5">Titre</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-type"></i></span>
+                <input type="text" class="form-control border-start-0 fs-5" id="titre" formControlName="titre" placeholder="Intitulé du poste">
+              </div>
+            </div>
+            
+            <div class="col-md-4 mb-3">
+              <label for="type_emploi" class="form-label fw-semibold fs-5">Type d'emploi</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-briefcase"></i></span>
+                <input type="text" class="form-control border-start-0 fs-5" id="type_emploi" formControlName="type_emploi" placeholder="Ex: CDI, CDD, Stage...">
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label fw-semibold fs-5">Description</label>
+            <textarea class="form-control fs-5" id="description" rows="4" formControlName="description" placeholder="Décrivez le poste en détail..."></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="region" class="form-label fw-semibold fs-5">Région</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-geo-alt"></i></span>
+                <input type="text" class="form-control border-start-0 fs-5" id="region" formControlName="region" placeholder="Localisation du poste">
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="salaire" class="form-label fw-semibold fs-5">Salaire</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light"><i class="bi bi-currency-euro"></i></span>
+                <input type="number" class="form-control border-start-0 fs-5" id="salaire" formControlName="salaire" placeholder="Montant annuel brut">
+                <span class="input-group-text bg-light">€</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="competences_requises" class="form-label fw-semibold fs-5">Compétences requises</label>
+            <textarea class="form-control fs-5" id="competences_requises" rows="3" formControlName="competences_requises" placeholder="Listez les compétences principales..."></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="date_expiration" class="form-label fw-semibold fs-5">Date d'expiration</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="bi bi-calendar-event"></i></span>
+              <input type="date" class="form-control border-start-0 fs-5" id="date_expiration" formControlName="date_expiration">
+            </div>
+          </div>
+
+          <div class="alert alert-success p-2 ps-3 fs-6">
+            <i class="bi bi-info-circle me-2"></i>Tous les champs sont obligatoires
+          </div>
+
+          <div class="modal-footer border-top-0 pt-2">
+            <button type="button" class="btn btn-outline-secondary fs-5" (click)="emploiModifie.emit()">
+              <i class="bi bi-x-circle me-1"></i>Annuler
+            </button>
+            <button type="submit" class="btn btn-success fs-5" [disabled]="!modifierForm.valid">
+              <i class="bi bi-check-circle me-1"></i>Enregistrer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show"></div>
+
+<!-- Ajouter dans votre CSS ou styles -->
+<style>
+.bg-gradient-success {
+  background: linear-gradient(135deg, #28a745 0%, #20883a 100%);
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.spinner-grow {
+  animation-duration: 1s;
+}
+
+.input-group-text {
+  border-right: 0;
+}
+
+.form-control::placeholder {
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
+
+.form-label {
+  margin-bottom: 0.25rem;
+}
+
+/* Amélioration de la lisibilité des champs */
+.form-control, .input-group-text {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+</style>
+
+<!-- Assurez-vous d'inclure Bootstrap Icons dans votre projet -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"> -->

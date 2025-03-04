@@ -14,6 +14,10 @@ import { ForumComponent } from './fonctionnalite/forum/forum.component';
 import { GestionProduitsComponent } from './fonctionnalite/gestion-produits/gestion-produits.component';
 import { BoutiqueProduitComponent } from './fonctionnalite/gestion-produits/boutique-produit/boutique-produit.component';
 import { PanierComponent } from './fonctionnalite/gestion-produits/panier/panier.component';
+import { OffreDEmploiComponent } from './fonctionnalite/offre-d-emploi/offre-d-emploi.component';
+import { ListerEmploiComponent } from './fonctionnalite/offre-d-emploi/lister-emploi/lister-emploi.component';
+import { ListeOffreComponent } from './fonctionnalite/offre-d-emploi/liste-offre/liste-offre.component';
+//import { PostulerComponent } from './fonctionnalite/gestion-candidature/postuler/postuler.component';
 
 const routes: Routes = [
   // Routes avec authentification nécessitant le layout principal
@@ -25,12 +29,18 @@ const routes: Routes = [
       { path: 'utilisateur/:id/detail', component: DetailProfilComponent },
       { path: 'recherche', component: RechercheComponent },
       { path: 'accueil', component: BodyComponent },
-      { path: '', redirectTo: 'accueil', pathMatch: 'full' },
+      //{ path: '', redirectTo: 'accueil', pathMatch: 'full' },
       { path: 'utilisateurs', component: ListeUtilisateursComponent },
       //{ path: 'nouveauxProduits', component: CreationProduitComponent },
       {path: 'creerProduits', component : GestionProduitsComponent},
       {path: 'boutiqueProduit', component: BoutiqueProduitComponent},
       {path: 'forum', component: ForumComponent},
+      {path: 'offreEmploi', component: OffreDEmploiComponent},
+      {path: 'liste-offre', component: ListerEmploiComponent},
+      {path: 'offres-disponible', component: ListeOffreComponent},
+      //{path: 'postuler', component: PostulerComponent},
+      
+      
     ]
   },
   { path: 'panier', component: PanierComponent },

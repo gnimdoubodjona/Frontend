@@ -1,0 +1,340 @@
+/* Variables pour faciliter les modifications */
+:root {
+    --primary-color: #56a846;
+    --primary-hover: #478a39;
+    --secondary-color: #f5f9f5;
+    --border-color: #dbe9d9;
+    --text-color: #2e3e2d;
+    --text-light: #5a6b59;
+    --text-muted: #889987;
+    --error-color: #e53935;
+    --delete-color: #e74c3c;
+    --edit-color: #3498db;
+    --success-color: #43a047;
+    --radius: 12px;
+    --card-radius: 14px;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+    --section-spacing: 40px;
+  }
+  
+  /* Conteneur principal */
+  .jobs-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  /* En-tête de section */
+  .section-header {
+    margin-bottom: var(--section-spacing);
+    text-align: center;
+    position: relative;
+  }
+  
+  .section-header h2 {
+    color: var(--text-color);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  
+  .section-divider {
+    height: 4px;
+    width: 60px;
+    background-color: var(--primary-color);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+  
+  /* Grille des offres */
+  .jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  
+  /* Carte d'offre d'emploi */
+  .job-card {
+    background: white;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+  }
+  
+  .job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    border-color: var(--primary-color);
+  }
+  
+  /* En-tête de la carte */
+  .job-card-header {
+    padding: 20px 20px 10px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+  }
+  
+  .job-title {
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    line-height: 1.3;
+    padding-right: 70px; /* Espace pour les boutons d'action */
+  }
+  
+  .job-type {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 50px;
+    border: 1px solid #e0eedf;
+  }
+  
+  /* Boutons d'action en haut à droite */
+  .job-card-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+  }
+  
+  .action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+  
+  .edit-btn {
+    border: 1px solid #d1efff;
+  }
+  
+  .edit-btn:hover {
+    background-color: var(--edit-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  }
+  
+  .delete-btn {
+    border: 1px solid #ffe5e5;
+  }
+  
+  .delete-btn:hover {
+    background-color: var(--delete-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+  }
+  
+  .action-btn:hover .action-icon {
+    filter: brightness(10);
+  }
+  
+  .action-icon {
+    font-size: 16px;
+    transition: all 0.2s ease;
+  }
+  
+  /* Description */
+  .job-description {
+    padding: 15px 20px;
+    flex-grow: 1;
+  }
+  
+  .job-description p {
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  /* Détails de l'offre */
+  .job-details {
+    padding: 5px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .detail-icon {
+    font-size: 16px;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+  }
+  
+  .detail-text {
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+  
+  /* Indicateur de chargement */
+  .loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+  }
+  
+  .custom-spinner {
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .spinner-leaf {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: var(--primary-color);
+    border-right-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .spinner-leaf:before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #8bc57e;
+    animation: spin 1.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loading-text {
+    margin-top: 15px;
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+  
+  /* Message d'erreur */
+  .error-message {
+    background-color: #fff5f5;
+    border: 1px solid #ffebeb;
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .error-icon {
+    font-size: 24px;
+  }
+  
+  .error-content h4 {
+    margin: 0 0 5px;
+    color: var(--error-color);
+    font-size: 18px;
+  }
+  
+  .error-content p {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+  }
+  
+  /* État vide */
+  .empty-state {
+    text-align: center;
+    padding: 60px 0;
+  }
+  
+  .empty-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .empty-state h3 {
+    font-size: 22px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+  }
+  
+  .empty-state p {
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .jobs-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-header h2 {
+      font-size: 26px;
+    }
+    
+    .job-card-header {
+      padding: 15px 15px 8px;
+    }
+    
+    .job-description,
+    .job-details {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+  
+  /* Animation d'apparition */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .job-card {
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: calc(var(--animation-order) * 0.1s);
+  }

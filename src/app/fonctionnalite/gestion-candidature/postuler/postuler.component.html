@@ -1,0 +1,84 @@
+<div *ngIf="offreId" class="modal fade show d-block" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow border-0">
+        <!-- En-tête du modal -->
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">
+            <i class="bi bi-briefcase me-2"></i>Postuler à l'offre {{ offreId }}
+          </h5>
+          <button type="button" class="btn-close btn-close-white" (click)="fermer.emit()" aria-label="Fermer"></button>
+        </div>
+  
+        <div class="modal-body bg-light">
+          <form [formGroup]="postulerForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <input type="hidden" formControlName="offre_id">
+  
+            <div class="card mb-3 border-0 shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted mb-3">Informations personnelles</h6>
+                
+                <div class="mb-3">
+                  <label for="nom" class="form-label fw-bold">Nom :</label>
+                  <input type="text" id="nom" formControlName="nom" 
+                      class="form-control border-0 shadow-sm" required>
+                </div>
+  
+                <div class="mb-3">
+                  <label for="prenoms" class="form-label fw-bold">Prénoms :</label>
+                  <input type="text" id="prenoms" formControlName="prenoms" 
+                      class="form-control border-0 shadow-sm" required>
+                </div>
+  
+                <div class="mb-3">
+                  <label for="email" class="form-label fw-bold">Email :</label>
+                  <input type="email" id="email" formControlName="email" 
+                      class="form-control border-0 shadow-sm" required>
+                </div>
+  
+                <div class="mb-3">
+                  <label for="adresse" class="form-label fw-bold">Adresse :</label>
+                  <input type="text" id="adresse" formControlName="adresse" 
+                      class="form-control border-0 shadow-sm" required>
+                </div>
+  
+                <div class="mb-3">
+                  <label for="numero_telephone" class="form-label fw-bold">Numéro de téléphone :</label>
+                  <input type="text" id="numero_telephone" formControlName="numero_telephone" 
+                      class="form-control border-0 shadow-sm" required>
+                </div>
+              </div>
+            </div>
+  
+            <div class="card mb-3 border-0 shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted mb-3">Documents de candidature</h6>
+                
+                <div class="mb-3">
+                  <label for="cv" class="form-label fw-bold">CV :</label>
+                  <input type="file" id="cv" (change)="onFileSelected($event)" 
+                      class="form-control border-0 shadow-sm" required>
+                </div>
+  
+                <div class="mb-3">
+                  <label for="lettre_motivation" class="form-label fw-bold">Lettre de Motivation :</label>
+                  <textarea id="lettre_motivation" formControlName="lettre_motivation" 
+                      class="form-control border-0 shadow-sm" rows="4" required></textarea>
+                </div>
+              </div>
+            </div>
+  
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" class="btn btn-outline-secondary" (click)="fermer.emit()">
+                Annuler
+              </button>
+
+              
+              <button type="submit" class="btn btn-primary px-4" [disabled]="postulerForm.invalid">
+                <i class="bi bi-send me-2"></i>Envoyer
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

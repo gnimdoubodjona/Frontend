@@ -32,6 +32,19 @@ import { SupprimerProduitsComponent } from './fonctionnalite/gestion-produits/su
 import { BoutiqueProduitComponent } from './fonctionnalite/gestion-produits/boutique-produit/boutique-produit.component';
 import { ToastrModule } from 'ngx-toastr';
 import { PanierComponent } from './fonctionnalite/gestion-produits/panier/panier.component';
+import { OffreDEmploiComponent } from './fonctionnalite/offre-d-emploi/offre-d-emploi.component';
+import { CreerEmploiComponent } from './fonctionnalite/offre-d-emploi/creer-emploi/creer-emploi.component';
+import { ListerEmploiComponent } from './fonctionnalite/offre-d-emploi/lister-emploi/lister-emploi.component';
+import { ModifierEmploiComponent } from './fonctionnalite/offre-d-emploi/modifier-emploi/modifier-emploi.component';
+import { SupprimerEmploiComponent } from './fonctionnalite/offre-d-emploi/supprimer-emploi/supprimer-emploi.component';
+import { PostulerEmploiComponent } from './fonctionnalite/offre-d-emploi/postuler-emploi/postuler-emploi.component';
+import { ListeOffreComponent } from './fonctionnalite/offre-d-emploi/liste-offre/liste-offre.component';
+import { GestionCandidatureComponent } from './fonctionnalite/gestion-candidature/gestion-candidature.component';
+import { PostulerComponent } from './fonctionnalite/gestion-candidature/postuler/postuler.component';
+import { VoirCandidatureComponent } from './fonctionnalite/gestion-candidature/voir-candidature/voir-candidature.component';
+import { ModifierCandidatureComponent } from './fonctionnalite/gestion-candidature/modifier-candidature/modifier-candidature.component';
+import { SupprimerCandidatureComponent } from './fonctionnalite/gestion-candidature/supprimer-candidature/supprimer-candidature.component';
+import { ListeCandidaturesComponent } from './fonctionnalite/gestion-candidature/liste-candidatures/liste-candidatures.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +68,20 @@ import { PanierComponent } from './fonctionnalite/gestion-produits/panier/panier
     SupprimerProduitsComponent,
     BoutiqueProduitComponent,
     PanierComponent,
-    PanierComponent
+    PanierComponent,
+    OffreDEmploiComponent,
+    CreerEmploiComponent,
+    ListerEmploiComponent,
+    ModifierEmploiComponent,
+    SupprimerEmploiComponent,
+    PostulerEmploiComponent,
+    ListeOffreComponent,
+    GestionCandidatureComponent,
+    PostulerComponent,
+    VoirCandidatureComponent,
+    ModifierCandidatureComponent,
+    SupprimerCandidatureComponent,
+    ListeCandidaturesComponent
   ],
   imports: [
     BrowserModule,

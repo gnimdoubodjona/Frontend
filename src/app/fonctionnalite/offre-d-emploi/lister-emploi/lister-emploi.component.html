@@ -1,0 +1,136 @@
+
+    <!-- Page-title -->
+    <div class="page-title page-portfolio-details">
+      <div class="rellax" data-rellax-speed="5" style="transform: translate3d(0px, 0px, 0px);">
+          <img alt="" src="/images/page-title/portfolio.jpg" />
+      </div>
+      <div class="content-wrap">
+          <div class="tf-container w-1290">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="content">
+                          <p class="sub-title">
+                              Voir votre profil détaillé
+                          </p>
+                          <h1 class="title" >
+                              Les offres disponibles
+                          </h1>
+                          <div class="icon-img">
+                              <img alt="" src="/images/item/line-throw-title.png" />
+                          </div>
+                          <div class="breadcrumb">
+                              <a >Accueil</a>
+                              <div class="icon">
+                                  <i class="icon-arrow-right1"></i>
+                              </div>
+                              <a href="javascript:void(0)"> Profil</a>
+                          </div>
+                          <div class="mt-3">
+                              <a  class="tf-btn">
+                                  <span>Voir les détails</span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="img-item item-2">
+          <img alt="" src="/images/item/grass.png" />
+      </div>
+  </div><!-- /.Page-title -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="jobs-list-container">
+    <div class="section-header">
+      <h2>Liste des offres d'emploi</h2>
+      <div class="section-divider"></div>
+    </div>
+    
+    <!-- Indicateur de chargement -->
+    <div *ngIf="loading" class="loader-container">
+      <div class="custom-spinner">
+        <div class="spinner-leaf"></div>
+      </div>
+      <p class="loading-text">Chargement des offres...</p>
+    </div>
+    
+    <!-- Message d'erreur -->
+    <div *ngIf="error" class="error-message">
+      <div class="error-icon">⚠️</div>
+      <div class="error-content">
+        <h4>Une erreur est survenue</h4>
+        <p>{{ error }}</p>
+      </div>
+    </div>
+    
+    <!-- Contenu principal - Liste des offres -->
+    <div *ngIf="!loading && !error" class="jobs-grid">
+      <div *ngFor="let offre of offres" class="job-card">
+        <div class="job-card-header">
+          <div class="job-card-actions">
+            <!-- <button class="action-btn edit-btn" (click)="editOffre(offre.id)"> -->
+            <button class="action-btn edit-btn" (click)="editerEmploi(offre)">
+              <span class="action-icon">✏️</span>
+            </button>
+            <!-- <button class="action-btn delete-btn" (click)="deleteOffre(offre.id)"> -->
+            <button class="action-btn delete-btn" (click)="supprimerEmploi(offre.id)">
+              <span class="action-icon">🗑️</span>
+            </button>
+          </div>
+          <h3 class="job-title">{{ offre.titre }}</h3>
+          <span class="job-type">{{ offre.type_emploi }}</span>
+        </div>
+        
+        <div class="job-description">
+          <p>{{ offre.description | slice:0:150 }}{{ offre.description.length > 150 ? '...' : '' }}</p>
+        </div>
+        
+        <div class="job-details">
+          <div class="detail-item">
+            <div class="detail-icon">📍</div>
+            <div class="detail-text">{{ offre.region }}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon">💰</div>
+            <div class="detail-text">{{ offre.salaire | currency:'EUR':'symbol':'1.0-0' }} /an</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon">📅</div>
+            <div class="detail-text">Expire le {{ offre.date_expiration | date:'dd MMM yyyy' }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Message si aucune offre disponible -->
+    <div *ngIf="!loading && !error && offres.length === 0" class="empty-state">
+      <div class="empty-icon">🌱</div>
+      <h3>Aucune offre disponible</h3>
+      <p>Revenez bientôt pour découvrir de nouvelles opportunités dans le secteur agricole.</p>
+    </div>
+  </div>
+
+
+  <!-- Composant de modification -->
+<app-modifier-emploi 
+*ngIf="emploiAEditer"
+[emploiId]="emploiAEditer.id"
+(emploiModifie)="onEmploiModifie()">
+</app-modifier-emploi>
+
+<!-- Composant de suppression -->
+<app-supprimer-emploi
+*ngIf="emploiASupprimer"
+[emploiId]="emploiASupprimer"
+(emploiSupprime)="onEmploiSupprime()">
+</app-supprimer-emploi>

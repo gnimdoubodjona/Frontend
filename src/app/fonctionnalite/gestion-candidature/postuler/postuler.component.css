@@ -1,0 +1,11 @@
+.modal {
+    background: rgba(0, 0, 0, 0.5); /* Assombrit le fond */
+}
+
+.modal-dialog {
+    max-width: 600px; /* Taille du modal */
+}
+
+textarea {
+    resize: none; /* Empêche le redimensionnement du textarea */
+}

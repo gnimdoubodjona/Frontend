@@ -1,0 +1,271 @@
+/* Variables pour faciliter les modifications */
+:root {
+    --primary-color: #56a846;
+    --primary-hover: #478a39;
+    --secondary-color: #f5f9f5;
+    --border-color: #dbe9d9;
+    --text-color: #2e3e2d;
+    --text-light: #5a6b59;
+    --error-color: #e53935;
+    --success-color: #43a047;
+    --radius: 10px;
+    --shadow: 0 10px 30px rgba(86, 168, 70, 0.1);
+    --transition: all 0.3s ease;
+    --form-bg: linear-gradient(to bottom right, #ffffff, #f8fbf7);
+  }
+  
+  /* Styles globaux */
+  .job-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 35px;
+    background: var(--form-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--primary-color);
+  }
+  
+  .form-header {
+    margin-bottom: 35px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .form-header:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 2px;
+  }
+  
+  .form-header h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: 700;
+  }
+  
+  .form-subtitle {
+    color: var(--text-light);
+    margin-top: 0;
+    font-size: 16px;
+  }
+  
+  .job-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  /* Groupes de formulaire */
+  .form-group {
+    margin-bottom: 5px;
+    position: relative;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+  }
+  
+  .half-width {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 250px;
+  }
+  
+  /* Labels et champs */
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: var(--transition);
+  }
+  
+  .required {
+    color: var(--error-color);
+    margin-left: 3px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: #fff;
+    font-size: 16px;
+    transition: var(--transition);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.01);
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(86, 168, 70, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .form-group:focus-within label {
+    color: var(--primary-color);
+  }
+  
+  .form-control::placeholder {
+    color: #b5c6b4;
+  }
+  
+  /* Aide visuelle */
+  .form-hint {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-light);
+    font-size: 13px;
+    font-style: italic;
+  }
+  
+  /* Input avec icône */
+  .input-with-icon {
+    position: relative;
+  }
+  
+  .currency-symbol {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-weight: 600;
+  }
+  
+  /* Animation des inputs */
+  .form-control:hover {
+    border-color: #a8c9a0;
+  }
+  
+  .form-control:focus ~ .form-hint {
+    color: var(--primary-color);
+  }
+  
+  /* Boutons */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), #68be57);
+    color: white;
+    box-shadow: 0 4px 12px rgba(86, 168, 70, 0.3);
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(45deg, var(--primary-hover), #5aad4a);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(86, 168, 70, 0.4);
+  }
+  
+  .btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+  }
+  
+  .btn-secondary:hover {
+    background-color: #e8f1e7;
+    transform: translateY(-2px);
+  }
+  
+  .btn-icon {
+    font-size: 18px;
+  }
+  
+  /* Textarea stylisé */
+  textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+  }
+  
+  /* Effets sur focus du formulaire */
+  .job-form:focus-within {
+    box-shadow: var(--shadow);
+  }
+  
+  /* Date input styling */
+  input[type="date"].form-control {
+    color: var(--text-color);
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .job-form-container {
+      padding: 25px 20px;
+      margin: 0 15px;
+    }
+    
+    .form-row {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .half-width {
+      width: 100%;
+    }
+    
+    .form-header h2 {
+      font-size: 26px;
+    }
+    
+    .form-actions {
+      flex-direction: column-reverse;
+    }
+    
+    .btn {
+      width: 100%;
+    }
+  }
+  
+  /* Animation d'entrée */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .job-form-container {
+    animation: fadeInUp 0.5s ease forwards;
+  }

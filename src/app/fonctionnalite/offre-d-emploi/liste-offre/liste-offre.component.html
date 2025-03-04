@@ -1,0 +1,128 @@
+
+      <!-- Page-title -->
+      <div class="page-title page-portfolio-details">
+        <div class="rellax" data-rellax-speed="5" style="transform: translate3d(0px, 0px, 0px);">
+            <img alt="" src="/images/page-title/portfolio.jpg" />
+        </div>
+        <div class="content-wrap">
+            <div class="tf-container w-1290">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="content">
+                            <p class="sub-title">
+                                Voir votre profil détaillé
+                            </p>
+                            <h1 class="title" >
+                                Les offres disponibles
+                            </h1>
+                            <div class="icon-img">
+                                <img alt="" src="/images/item/line-throw-title.png" />
+                            </div>
+                            <div class="breadcrumb">
+                                <a >Accueil</a>
+                                <div class="icon">
+                                    <i class="icon-arrow-right1"></i>
+                                </div>
+                                <a href="javascript:void(0)"> Profil</a>
+                            </div>
+                            <div class="mt-3">
+                                <a  class="tf-btn">
+                                    <span>Voir les détails</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="img-item item-2">
+            <img alt="" src="/images/item/grass.png" />
+        </div>
+    </div><!-- /.Page-title -->
+
+
+
+
+
+
+
+    <div class="container py-4">
+        <!-- Message de chargement -->
+        <div *ngIf="loading" class="text-center my-5">
+          <div class="spinner-border text-success" role="status">
+            <span class="visually-hidden">Chargement des offres...</span>
+          </div>
+          <p class="mt-2 text-dark">Chargement des offres...</p>
+        </div>
+      
+        <!-- Message d'erreur -->
+        <div *ngIf="error" class="alert alert-danger d-flex align-items-center my-4 animate__animated animate__headShake" role="alert">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          <div>{{ error }}</div>
+        </div>
+      
+        <!-- Liste des offres -->
+        <div *ngIf="!loading && offres.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div *ngFor="let offre of offres; let i = index" class="col animate__animated animate__fadeIn" [style.animation-delay]="i * 0.1 + 's'">
+            <div class="card h-100 shadow border-success hover-card">
+              <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0 fw-bold">{{ offre.titre }}</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text text-dark">{{ offre.description }}</p>
+                
+                <ul class="list-group list-group-flush mb-3">
+                  <li class="list-group-item d-flex align-items-center border-success-subtle">
+                    <i class="bi bi-briefcase me-2 text-success"></i>
+                    <span class="fw-bold text-dark">Type: </span>
+                    <span class="ms-1">{{ offre.type_emploi }}</span>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center border-success-subtle">
+                    <i class="bi bi-geo-alt me-2 text-success"></i>
+                    <span class="fw-bold text-dark">Région: </span>
+                    <span class="ms-1">{{ offre.region }}</span>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center border-success-subtle">
+                    <i class="bi bi-cash-coin me-2 text-success"></i>
+                    <span class="fw-bold text-dark">Salaire: </span>
+                    <span class="ms-1">{{ offre.salaire }}</span>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center border-success-subtle">
+                    <i class="bi bi-calendar-event me-2 text-success"></i>
+                    <span class="fw-bold text-dark">Expire le: </span>
+                    <span class="ms-1">{{ offre.date_expiration }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer bg-white border-top-0 text-center">
+
+
+
+
+
+                 <button (click)="ouvrirModal(offre.id)"  class="btn btn-success w-100 fw-bold btn-animate"> 
+                <!-- <button class="btn btn-success w-100 fw-bold btn-animate">
+                  <a [routerLink]=" "></a> -->
+                  Postuler 
+                  <i class="bi bi-arrow-right-short ms-1"></i>
+                </button>
+
+
+
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Message si aucune offre n'est disponible -->
+        <div *ngIf="!loading && offres.length === 0" class="alert alert-light text-center my-5 py-5 shadow-sm animate__animated animate__fadeIn">
+          <i class="bi bi-search fs-1 text-success mb-3 d-block"></i>
+          <h4 class="text-dark mb-2">Aucune offre d'emploi disponible</h4>
+          <p class="text-muted">Revenez plus tard pour consulter nos nouvelles opportunités.</p>
+        </div>
+      </div>
+
+      <app-postuler *ngIf="selectedOffreId" [offreId]="selectedOffreId" (fermer)="fermerModal()"></app-postuler> -->
+      
+      

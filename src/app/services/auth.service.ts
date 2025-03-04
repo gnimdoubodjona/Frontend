@@ -13,10 +13,23 @@ export class AuthService {
   public currentUser$ = this.currentUserSubject.asObservable();
   public token$ = this.tokenSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    //this.initializeAuth();
+   }
 
-  getToken(): string | null {
-    return this.tokenSubject.value;
+
+   //recupérer le token dans le localstorage
+   getToken(): string | null {
+    const token = this.tokenSubject.value || localStorage.getItem('token');
+    if (token && !this.tokenSubject.value) {
+      this.tokenSubject.next(token);
+    }
+    return token;
+  }
+
+  getCurrentUserId(): number {
+    const user = this.currentUserSubject.value;
+    return user ? user.id : 0;
   }
 
   register(data: FormData): Observable<any> {
@@ -75,6 +88,19 @@ export class AuthService {
     );
   }
 
+
+  //une des méthodes que j'ai utiliser pour stocker les cookies de login dans le localstorage
+  initializeAuth() {
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    if (token) {
+      this.tokenSubject.next(token);
+    }
+    if (user) {
+      this.currentUserSubject.next(JSON.parse(user));
+    }
+  }
+
   // Méthode pour récupérer les rôles disponibles
   getRoles(): Observable<any[]> {
     const rolesUrl = `${this.apiUrl}/auth/roles/`;
@@ -92,6 +118,8 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.currentUserSubject.value && !!this.tokenSubject.value;
+    //return !!this.currentUserSubject.value && !!this.tokenSubject.value;
+    return !!this.getToken();
+
   }
 }
