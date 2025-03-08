@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OffreDEmploi } from '../../../models/offre-d-emploi';
 import { OffreEmploiService } from '../../../services/offre-emploi.service';
+import { CandidaterService } from '../../../services/candidater.service';
 
 @Component({
   selector: 'app-liste-offre',
@@ -13,10 +14,14 @@ export class ListeOffreComponent {
   error: string | null = null;
   modalOuvert = false;
   selectedOffreId: number | null = null;
- 
+  hasApplied: boolean = false;
+  candidaturesSoumises: { [offreId: number]: boolean } = {}; 
 
 
-  constructor(private offreEmploiService: OffreEmploiService) { }
+
+  constructor(private offreEmploiService: OffreEmploiService, private candidaterService : CandidaterService) { }
+
+
 
   ouvrirModal(id: number) {
     console.log("ID de l'offre sélectionnée:", id);
@@ -33,6 +38,7 @@ export class ListeOffreComponent {
     this.offreEmploiService.getOffres().subscribe(
       (offres: OffreDEmploi[]) => {
         this.offres = offres;
+        this.verifierCandidatures();
         this.loading = false;
       },
       (error) => {
@@ -42,8 +48,24 @@ export class ListeOffreComponent {
     )
   }
 
+  verifierCandidatures() {
+    this.offres.forEach(offre => {
+      this.candidaterService.checkCandidature(offre.id).subscribe(
+        (existe: boolean) => {
+          this.candidaturesSoumises[offre.id] = existe;
+        },
+        error => {
+          console.error(`Erreur lors de la vérification de la candidature pour l'offre ${offre.id}:`, error);
+        }
+      );
+    });
+  }
+
+
   ngOnInit(): void {
     this.loadOffres();
+
+    
     
   }
   

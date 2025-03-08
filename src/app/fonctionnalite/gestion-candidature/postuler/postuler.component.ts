@@ -17,7 +17,9 @@ export class PostulerComponent implements OnInit {
   isModalOpen: boolean = false;
   @Input() offreId! : number |null;
   @Output() fermer = new EventEmitter<void>();
-  candidatureEnvoyee: boolean = false;
+  hasAlreadyApplied: boolean = false;
+  @Output() candidatureSuccess = new EventEmitter<number>();
+  
   
   constructor(private fb: FormBuilder, private candidaterService: CandidaterService, private authService: AuthService, private toastr: ToastrService, private router : Router) { 
     this.postulerForm = this.fb.group({
@@ -34,36 +36,45 @@ export class PostulerComponent implements OnInit {
     
   }
 
+
   ngOnInit(): void {
     console.log("Offre sélectionnée:", this.offreId);
+    
     if (this.offreId) {
-      this.postulerForm.patchValue({ offre_id: this.offreId, candidat : this.authService.getCurrentUserId() });
-      this.verifierCandidature(); 
+      // Vérifier d'abord si l'utilisateur a déjà postulé
+      this.candidaterService.checkCandidature(this.offreId).subscribe(
+        (exists) => {
+          console.log('Statut de la candidature:', exists);
+          if (exists) {
+            this.toastr.warning('Vous avez déjà postulé à cette offre');
+            this.fermer.emit();
+          } else {
+            this.postulerForm.patchValue({ 
+              offre_id: this.offreId, 
+              candidat: this.authService.getCurrentUserId() 
+            });
+          }
+        },
+        error => {
+          console.error('Erreur lors de la vérification de la candidature:', error);
+        }
+      );
     }
-
+  
     this.authService.currentUser$.subscribe(user => {
       this.isAuthenticated = !!user;
-
-      if(!this.isAuthenticated) {
+  
+      if (!this.isAuthenticated) {
         console.log('Utilisateur non authentifié, redirection vers la page de connexion');
         this.router.navigate(['/login']);
-      }else{
-        const userId = user ? user.id : null; // Récupérer l'ID de l'utilisateur
+      } else {
+        const userId = user ? user.id : null;
         console.log("ID de l'utilisateur:", userId);
       }
     });
   }
 
-  verifierCandidature() {
-    this.candidaterService.verifierCandidature(this.offreId, this.authService.getCurrentUserId()).subscribe(
-      (existe: boolean) => {
-        this.candidatureEnvoyee = existe;
-      },
-      error => {
-        console.error('Erreur lors de la vérification de la candidature', error);
-      }
-    );
-  }
+
   
   onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -82,6 +93,10 @@ export class PostulerComponent implements OnInit {
   }
   
   onSubmit() {
+    if (this.hasAlreadyApplied) {
+      this.toastr.warning('Vous avez déjà postulé à cette offre');
+      return;
+    } 
     if (this.postulerForm.valid) {
       const formData = new FormData();
       
@@ -106,7 +121,7 @@ export class PostulerComponent implements OnInit {
         response => {
           console.log('Succès:', response);
           this.toastr.success('Postulation envoyée avec succès');
-          this.candidatureEnvoyee = true;
+          this.candidatureSuccess.emit(this.offreId!); 
           this.fermer.emit();
         },
         error => {

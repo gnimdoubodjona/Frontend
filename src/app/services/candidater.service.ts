@@ -1,20 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { Candidature } from '../models/candidature';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CandidaterService {
   private apiUrl = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) { }
 
-
-
   createCandidature(formData: FormData): Observable<any> {
-    // Ne pas définir Content-Type, le navigateur le fera automatiquement
     const headers = new HttpHeaders({
       'Accept': 'application/json'
     });
@@ -24,29 +22,48 @@ export class CandidaterService {
     });
   }
 
- 
-  verifierCandidature(offreId: number | null, candidatId: number) {
-    return this.http.get<boolean>(`/api/candidature/existe?offre=${offreId}&candidat=${candidatId}`);
-  }
-  
-  //modifier candidatures
-  updateCandidature(id: number, candidature: Candidature | Partial<Candidature>): Observable<Candidature> {
-    return this.http.put<Candidature>(`${this.apiUrl}/candidature/${id}`, candidature);
+
+  checkCandidature(offreId: number): Observable<boolean> {
+    console.log(`Vérification de candidature pour offre ${offreId}`);
+    return this.http.get<{exists: boolean}>(
+      `${this.apiUrl}/candidature/check_status/`,  // Notez le underscore au lieu du tiret
+      { 
+        params: new HttpParams().set('offre_id', offreId.toString())
+      }
+    ).pipe(
+      map(response => {
+        console.log('Réponse de vérification:', response);
+        return response.exists;
+      }),
+      catchError(error => {
+        console.error('Erreur vérification candidature:', error);
+        return of(false);
+      })
+    );
   }
 
-  //supprimer candidatures
+  updateCandidature(id: number, data: FormData | Partial<Candidature>): Observable<Candidature> {
+    return this.http.patch<Candidature>(`${this.apiUrl}/candidature/${id}/`, data);
+  }
+
   deleteCandidature(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/candidature/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/candidature/${id}/`);
   }
 
-  //liste des candidatures
   getCandidatures(): Observable<Candidature[]> {
-    return this.http.get<Candidature[]>(`${this.apiUrl}/candidature`);
+    return this.http.get<Candidature[]>(`${this.apiUrl}/candidature/`);
   }
 
-  //recupérer une candidature par son ID
   getCandidatureById(id: number): Observable<Candidature> {
-    return this.http.get<Candidature>(`${this.apiUrl}/candidature/${id}`);
+    return this.http.get<Candidature>(`${this.apiUrl}/candidature/${id}/`);
   }
   
+  getCandidatureByOffre(offreId: number): Observable<Candidature> {
+    return this.http.get<Candidature>(`${this.apiUrl}/candidature/by-offre/${offreId}/`).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la récupération de la candidature:', error);
+        throw error;
+      })
+    );
+  }
 }

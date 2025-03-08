@@ -17,6 +17,7 @@ import { PanierComponent } from './fonctionnalite/gestion-produits/panier/panier
 import { OffreDEmploiComponent } from './fonctionnalite/offre-d-emploi/offre-d-emploi.component';
 import { ListerEmploiComponent } from './fonctionnalite/offre-d-emploi/lister-emploi/lister-emploi.component';
 import { ListeOffreComponent } from './fonctionnalite/offre-d-emploi/liste-offre/liste-offre.component';
+import { VoirCandidatureComponent } from './fonctionnalite/gestion-candidature/voir-candidature/voir-candidature.component';
 //import { PostulerComponent } from './fonctionnalite/gestion-candidature/postuler/postuler.component';
 
 const routes: Routes = [
@@ -38,10 +39,15 @@ const routes: Routes = [
       {path: 'offreEmploi', component: OffreDEmploiComponent},
       {path: 'liste-offre', component: ListerEmploiComponent},
       {path: 'offres-disponible', component: ListeOffreComponent},
+      {path: 'candidature/:id', component: VoirCandidatureComponent},
       //{path: 'postuler', component: PostulerComponent},
       
       
     ]
+  },
+  { 
+    path: 'voir-candidature/:offreId', 
+    component: VoirCandidatureComponent 
   },
   { path: 'panier', component: PanierComponent },
 
