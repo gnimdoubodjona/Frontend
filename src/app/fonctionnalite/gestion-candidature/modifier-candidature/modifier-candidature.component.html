@@ -1,1 +1,54 @@
-<p>modifier-candidature works!</p>
+<div class="modal-content p-4 shadow">
+    <div class="modal-header border-0 pb-0">
+      <h2 class="modal-title fw-bold">Modifier votre candidature</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+  
+    <div class="modal-body">
+      <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom :</label>
+          <input type="text" id="nom" formControlName="nom" class="form-control" />
+        </div>
+  
+        <div class="mb-3">
+          <label for="prenoms" class="form-label">Prénoms :</label>
+          <input type="text" id="prenoms" formControlName="prenoms" class="form-control" />
+        </div>
+  
+        <div class="mb-3">
+          <label for="email" class="form-label">Email :</label>
+          <input type="email" id="email" formControlName="email" class="form-control" />
+        </div>
+  
+        <div class="mb-3">
+          <label for="adresse" class="form-label">Adresse :</label>
+          <input type="text" id="adresse" formControlName="adresse" class="form-control" />
+        </div>
+  
+        <div class="mb-3">
+          <label for="telephone" class="form-label">Numéro de téléphone :</label>
+          <input type="text" id="telephone" formControlName="numero_telephone" class="form-control" />
+        </div>
+  
+        <div class="mb-3">
+          <label for="motivation" class="form-label">Lettre de motivation :</label>
+          <textarea id="motivation" formControlName="lettre_motivation" class="form-control" rows="5"></textarea>
+        </div>
+  
+        <div class="mb-3">
+          <label for="cv" class="form-label">CV :</label>
+          <input type="file" id="cv" (change)="onFileSelected($event)" class="form-control" />
+        </div>
+  
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-success px-4 py-2">
+            <i class="bi bi-check-circle me-2"></i>Mettre à jour
+          </button>
+          <button type="button" class="btn btn-outline-secondary px-4 py-2 ms-2" data-bs-dismiss="modal">
+            Annuler
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

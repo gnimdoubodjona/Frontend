@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { OffreDEmploi } from '../../../models/offre-d-emploi';
 import { OffreEmploiService } from '../../../services/offre-emploi.service';
 import { CandidaterService } from '../../../services/candidater.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-liste-offre',
@@ -19,7 +20,7 @@ export class ListeOffreComponent {
 
 
 
-  constructor(private offreEmploiService: OffreEmploiService, private candidaterService : CandidaterService) { }
+  constructor(private offreEmploiService: OffreEmploiService, private candidaterService : CandidaterService, private router: Router) { }
 
 
 
@@ -64,9 +65,10 @@ export class ListeOffreComponent {
 
   ngOnInit(): void {
     this.loadOffres();
+  }
 
-    
-    
+  voirCandidature(id: number){
+    this.router.navigate(['app/voir-candidature', id]);
   }
   
 

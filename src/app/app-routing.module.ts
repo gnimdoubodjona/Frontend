@@ -41,14 +41,15 @@ const routes: Routes = [
       {path: 'offres-disponible', component: ListeOffreComponent},
       {path: 'candidature/:id', component: VoirCandidatureComponent},
       //{path: 'postuler', component: PostulerComponent},
+      { 
+        path: 'voir-candidature/:offreId', 
+        component: VoirCandidatureComponent 
+      },
       
       
     ]
   },
-  { 
-    path: 'voir-candidature/:offreId', 
-    component: VoirCandidatureComponent 
-  },
+  
   { path: 'panier', component: PanierComponent },
 
   //{path: 'creerProduits', component : GestionProduitsComponent},
