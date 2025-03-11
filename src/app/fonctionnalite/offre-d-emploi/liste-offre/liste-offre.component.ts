@@ -70,6 +70,11 @@ export class ListeOffreComponent {
   voirCandidature(id: number){
     this.router.navigate(['app/voir-candidature', id]);
   }
+
+  mettreAJourCandidature(offreId: number) {
+    // Mettre à jour l'état de la candidature pour cette offre
+    this.candidaturesSoumises[offreId] = false;
+  }
   
 
 }

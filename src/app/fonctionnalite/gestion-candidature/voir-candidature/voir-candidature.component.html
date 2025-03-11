@@ -1,4 +1,8 @@
+
+
 <div class="container py-5">
+  <app-modifier-candidature *ngIf="showUpdateForm" [candidatureId]="selectedCandidatureId" (candidatureUpdated)="onCandidatureUpdated()"></app-modifier-candidature>
+  
     <!-- État de chargement -->
     <div *ngIf="loading" class="text-center my-5">
       <div class="spinner-border text-success" style="width: 2.5rem; height: 2.5rem;" role="status">
@@ -28,10 +32,18 @@
 
            
 
-            <button class="btn btn-outline-danger px-4 py-2 shadow-sm">
+            <button class="btn btn-outline-danger px-4 py-2 shadow-sm" (click) =" candidatureSupprimer = candidature.id">
               <i class="bi bi-trash me-2"></i>Supprimer
             </button>
+
+            <app-supprimer-candidature
+              *ngIf="candidatureSupprimer"
+              [candidatureId]="candidatureSupprimer"
+              (candidatureSupprimer) = "onSupprimerCandidature()">
+            </app-supprimer-candidature>
+
           </div>
+
           
           <!-- Informations personnelles -->
           <div class="row mb-4 gx-4">
@@ -90,6 +102,8 @@
 
         </div>
       </div>
+
+      
       
       <!-- Footer avec date de mise à jour -->
       <div class="card-footer bg-light text-center py-3">
@@ -98,6 +112,6 @@
         </p>
       </div>
     </div>
-    <app-modifier-candidature *ngIf="showUpdateForm" [candidatureId]="selectedCandidatureId" (candidatureUpdated)="onCandidatureUpdated()">
-    </app-modifier-candidature>
-  </div>
+ </div>
+
+ 

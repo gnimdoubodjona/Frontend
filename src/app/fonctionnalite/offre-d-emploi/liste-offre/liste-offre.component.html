@@ -90,17 +90,7 @@
               </div>
               <div class="card-footer bg-white border-top-0 text-center">
 
-                 <!-- <button (click)="ouvrirModal(offre.id)"  class="btn btn-success w-100 fw-bold btn-animate"> 
-                 <button class="btn btn-success w-100 fw-bold btn-animate">
-                  <a [routerLink]=" "></a> 
-                  Postuler 
-                  <i class="bi bi-arrow-right-short ms-1"></i>
-                </button> -->
 
-                <!-- <button (click)="ouvrirModal(offre.id)" class="btn btn-success w-100 fw-bold btn-animate">
-                  {{ candidaturesSoumises[offre.id] ? 'Voir candidature' : 'Postuler' }}
-                  <i class="bi bi-arrow-right-short ms-1"></i>
-                </button> -->
                 <button 
                 (click)="candidaturesSoumises[offre.id] ? voirCandidature(offre.id) : ouvrirModal(offre.id)" 
                 class="btn btn-success w-100 fw-bold btn-animate">

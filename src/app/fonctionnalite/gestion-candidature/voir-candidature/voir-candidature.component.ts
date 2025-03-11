@@ -18,6 +18,7 @@ export class VoirCandidatureComponent implements OnInit {
   //loading: boolean = false; // Pour afficher un état de chargement
   showUpdateForm = false;
   selectedCandidatureId!: number;
+  candidatureSupprimer: number| null = null;
   
 
   constructor(
@@ -38,7 +39,8 @@ export class VoirCandidatureComponent implements OnInit {
   
   onCandidatureUpdated() {
     this.showUpdateForm = false;
-    this.toastr.success('Candidature mise à jour avec succès');
+    //this.toastr.success('Candidature mise à jour avec succès');
+    this.MaCandidature();
   }
 
 
@@ -61,11 +63,17 @@ export class VoirCandidatureComponent implements OnInit {
       },
       (error: any) =>{
         
-        this.error = "Une erreur s\'est produite lors du chargment des offre pour lesquels vous avez postulé";
+        //this.error = "Une erreur s\'est produite lors du chargment des offre pour lesquels vous avez postulé";
+        this.error = "Aucune candidature disponible pour cette offre";
         this.loading = false;
         
       }
     )
+  }
+
+  onSupprimerCandidature(){
+    this.candidatureSupprimer = null;
+    this.MaCandidature();
   }
 
   
