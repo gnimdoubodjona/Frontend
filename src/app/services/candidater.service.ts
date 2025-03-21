@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, Subject } from 'rxjs';
 import { Candidature } from '../models/candidature';
 
 @Injectable({
@@ -9,8 +9,16 @@ import { Candidature } from '../models/candidature';
 
 export class CandidaterService {
   private apiUrl = 'http://localhost:8000/api';
+  private candidatureSupprimeeSource = new Subject<number>();
+  candidatureSupprimee$ = this.candidatureSupprimeeSource.asObservable();
+
 
   constructor(private http: HttpClient) { }
+
+  notifierSuppression(offreId: number){
+    this.candidatureSupprimeeSource.next(offreId);
+  }
+
 
   createCandidature(formData: FormData): Observable<any> {
     const headers = new HttpHeaders({

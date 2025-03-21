@@ -3,6 +3,7 @@ import { OffreDEmploi } from '../../../models/offre-d-emploi';
 import { OffreEmploiService } from '../../../services/offre-emploi.service';
 import { CandidaterService } from '../../../services/candidater.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-liste-offre',
@@ -17,12 +18,13 @@ export class ListeOffreComponent {
   selectedOffreId: number | null = null;
   hasApplied: boolean = false;
   candidaturesSoumises: { [offreId: number]: boolean } = {}; 
-
+  //candidatureExiste: boolean = false;
+  estCree:boolean = false;
+  estSupprime: boolean = false;
+  private subscription! : Subscription;
 
 
   constructor(private offreEmploiService: OffreEmploiService, private candidaterService : CandidaterService, private router: Router) { }
-
-
 
   ouvrirModal(id: number) {
     console.log("ID de l'offre sélectionnée:", id);
@@ -62,14 +64,87 @@ export class ListeOffreComponent {
     });
   }
 
+  afficherBoutonApproprie(offreId : number): string {
+    return this.candidaturesSoumises[offreId]? 'Voir candidature': 'postuler';
+  }
+
+  onCandidatureCreated(event: boolean) {
+    console.log('Candidature créée, événement reçu:', event);
+    this.estCree = event;
+    
+    // Si une candidature a été créée, mettre à jour la liste des candidatures soumises
+    if (this.selectedOffreId && event) {
+      this.candidaturesSoumises[this.selectedOffreId] = true;
+    }
+    
+    // Fermer le modal après la création
+    this.fermerModal();
+    
+    // Rafraîchir la liste des offres pour refléter le nouvel état
+    this.verifierCandidatures();
+  }
+
+  onCandidatureSupprimee(event: boolean) {
+    console.log('Candidature supprimée, événement reçu:', event);
+    this.estSupprime = event;
+    
+    // Si l'offre est connue, mettre à jour son état
+    if (this.selectedOffreId && event) {
+      this.candidaturesSoumises[this.selectedOffreId] = false;
+    }
+    
+    // Rafraîchir la liste pour refléter le nouvel état
+    this.verifierCandidatures();
+  }
+
+    // Dans la méthode pour afficher le bouton correct (à ajouter ou modifier)
+    afficherBoutonApproprié(offreId: number): string {
+      // Si une candidature a été créée pour cette offre et n'a pas été supprimée
+      if (this.candidaturesSoumises[offreId]) {
+        return 'Voir candidature';
+      } else {
+        return 'Postuler';
+      }
+    }
+
+
+   // Méthode pour gérer le clic sur le bouton
+   onBoutonClick(offreId: number) {
+    this.selectedOffreId = offreId;
+    
+    if (this.candidaturesSoumises[offreId]) {
+      // Si l'utilisateur a déjà postulé, naviguer vers la page de détails
+      this.voirCandidature(offreId);
+    } else {
+      // Sinon, ouvrir le modal de candidature
+      this.ouvrirModal(offreId);
+    }
+  }
+
 
   ngOnInit(): void {
     this.loadOffres();
+
+    //écouter l'évènement de suppression de candidature
+    this.subscription = this.candidaterService.candidatureSupprimee$.subscribe(offreId =>{
+      console.log(`Mise à jour après suppression de candidature pour l'offre ${offreId}`);
+      this.candidaturesSoumises[offreId]= false;
+    })
+  }
+
+  ngOnDestroy():void{
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 
   voirCandidature(id: number){
+    if (!id || id === 0) {
+        console.error("Erreur: ID de la candidature invalide !");
+        return;
+    }
     this.router.navigate(['app/voir-candidature', id]);
-  }
+}
 
   mettreAJourCandidature(offreId: number) {
     // Mettre à jour l'état de la candidature pour cette offre

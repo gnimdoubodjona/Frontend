@@ -366,8 +366,10 @@
 
                                 <!-- panier -->
                                 <a class="icon wg-bag" (click)="openCart($event)">
-                                    <i class="fa-solid fa-shopping-basket"></i>
-                                    <span class="cart-count" *ngIf="cartItemsCount > 0">{{cartItemsCount}}</span>
+                                    <i class="fa-solid fa-shopping-basket">
+                                        <span class="cart-count" *ngIf="cartItemsCount > 0">{{cartItemsCount}}</span>
+                                    </i>
+                                    
                                 </a>
                             </div>
                             <div class="wg-welcome btn-open-welcome">

@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class SupprimerCandidatureComponent {
   @Input() candidatureId!: number;
-  @Output() candidatureSupprimer = new EventEmitter<void>();
+  @Input() offreId!:number;
+  @Output() candidatureSupprimee = new EventEmitter<void>();
   
 
   constructor(private candidaterService: CandidaterService, toastr: ToastrService,private router: Router){}
@@ -20,7 +21,8 @@ export class SupprimerCandidatureComponent {
       this.candidaterService.deleteCandidature(this.candidatureId).subscribe(
         () =>{
           console.log('Candidature retirée avec succès');
-          this.candidatureSupprimer.emit();
+          this.candidaterService.notifierSuppression(this.offreId);
+          //this.candidatureSupprimee.emit();
           this.router.navigate(['app/offres-disponible']);
           
 

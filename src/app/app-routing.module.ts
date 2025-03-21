@@ -42,7 +42,7 @@ const routes: Routes = [
       {path: 'candidature/:id', component: VoirCandidatureComponent},
       //{path: 'postuler', component: PostulerComponent},
       { 
-        path: 'voir-candidature/:offreId', 
+        path: 'voir-candidature/:id', 
         component: VoirCandidatureComponent 
       },
       

@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
   styleUrl: './postuler.component.css'
 })
 export class PostulerComponent implements OnInit {
-
   postulerForm: FormGroup;
   isAuthenticated: boolean = false;
   isModalOpen: boolean = false;
   @Input() offreId! : number |null;
   @Output() fermer = new EventEmitter<void>();
   hasAlreadyApplied: boolean = false;
-  @Output() candidatureSuccess = new EventEmitter<number>();
+  //@Output() candidatureSuccess = new EventEmitter<number>();
+  @Output() candidatureSuccess = new EventEmitter<boolean>();
   
   
   constructor(private fb: FormBuilder, private candidaterService: CandidaterService, private authService: AuthService, private toastr: ToastrService, private router : Router) { 
@@ -75,7 +75,6 @@ export class PostulerComponent implements OnInit {
   }
 
 
-  
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -121,7 +120,7 @@ export class PostulerComponent implements OnInit {
         response => {
           console.log('Succès:', response);
           this.toastr.success('Postulation envoyée avec succès');
-          this.candidatureSuccess.emit(this.offreId!); 
+          this.candidatureSuccess.emit(true); 
           this.fermer.emit();
         },
         error => {

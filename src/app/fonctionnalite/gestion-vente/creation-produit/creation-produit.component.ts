@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GestionVenteService } from '../../../services/gestion-vente.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-creation-produit',
@@ -19,7 +20,8 @@ export class CreationProduitComponent implements OnInit {
     private fb: FormBuilder,
     private gestionVenteService: GestionVenteService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     console.log('CreationProduitComponent constructor called');
     this.produitForm = this.fb.group({
@@ -92,6 +94,7 @@ export class CreationProduitComponent implements OnInit {
       this.gestionVenteService.createProduit(formData).subscribe(
         (response) => {
           console.log('Produit créé avec succès', response);
+          this.toastr.success('Produit créer avec succès!')
           // Redirection après création réussie
           this.router.navigate(['/mes-produits']);
         },

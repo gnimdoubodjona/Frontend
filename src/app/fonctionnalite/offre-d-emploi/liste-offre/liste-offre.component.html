@@ -91,12 +91,16 @@
               <div class="card-footer bg-white border-top-0 text-center">
 
 
-                <button 
+                <!-- <button 
                 (click)="candidaturesSoumises[offre.id] ? voirCandidature(offre.id) : ouvrirModal(offre.id)" 
                 class="btn btn-success w-100 fw-bold btn-animate">
                 {{ candidaturesSoumises[offre.id] ? 'Voir candidature' : 'Postuler' }}
                 <i class="bi bi-arrow-right-short ms-1"></i>
+              </button> -->
+              <button (click)="onBoutonClick(offre.id)">
+                {{afficherBoutonApproprie(offre.id)}}
               </button>
+              
               
                 
                 
@@ -115,4 +119,7 @@
 
       <app-postuler *ngIf="selectedOffreId" [offreId]="selectedOffreId" (fermer)="fermerModal()"></app-postuler> -->
       
+      <!-- <app-voir-candidature 
       
+      (candidatureSupprimee)="onCandidatureSupprimee($event)">
+    </app-voir-candidature> -->

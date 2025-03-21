@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Candidature } from '../../../models/candidature';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -19,6 +19,8 @@ export class VoirCandidatureComponent implements OnInit {
   showUpdateForm = false;
   selectedCandidatureId!: number;
   candidatureSupprimer: number| null = null;
+  //@Output() candidatureSupprimee = new EventEmitter<boolean>();
+  candidatureId!: number;
   
 
   constructor(
@@ -29,6 +31,8 @@ export class VoirCandidatureComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.candidatureId = Number(this.route.snapshot.paramMap.get('id'));
+    console.log("ID de la candidature récupéré:", this.candidatureId);
     this.MaCandidature();
   }
 
@@ -39,8 +43,8 @@ export class VoirCandidatureComponent implements OnInit {
   
   onCandidatureUpdated() {
     this.showUpdateForm = false;
-    //this.toastr.success('Candidature mise à jour avec succès');
-    this.MaCandidature();
+    this.toastr.success('Candidature mise à jour avec succès');
+    this.MaCandidature(); // Recharge les candidatures
   }
 
 
@@ -51,38 +55,32 @@ export class VoirCandidatureComponent implements OnInit {
 
 
   MaCandidature(){
-    const candidatureId = +this.route.snapshot.paramMap.get('offreId')!;
-    this.candidaterService.getCandidatureById(candidatureId).subscribe(
-      (candidature: Candidature) =>{
-        console.log("reponse api: ", candidature);
-        console.log("CV URL:", candidature.cv); 
-        this.candidatures = [candidature];
+    const offreId = Number(this.route.snapshot.paramMap.get('id'));  // Récupérer l'ID de l'offre
+    console.log("ID de l'offre récupéré:", offreId);
+    
+    this.candidaterService.getCandidatureByOffre(offreId).subscribe(
+      (candidature: Candidature) => {
+        console.log("Réponse API:", candidature);
+        this.candidatures = [candidature]; // Stocker la candidature
         this.loading = false;
         this.modalOpen = true;
-        
       },
-      (error: any) =>{
-        
-        //this.error = "Une erreur s\'est produite lors du chargment des offre pour lesquels vous avez postulé";
+      (error: any) => {
+        console.error("Erreur API:", error);
         this.error = "Aucune candidature disponible pour cette offre";
         this.loading = false;
-        
       }
-    )
+    );
+    
   }
 
   onSupprimerCandidature(){
-    this.candidatureSupprimer = null;
-    this.MaCandidature();
+    this.toastr.success('Candidature supprimée avec succès');
+    this.candidatureSupprimer = null;  // Réinitialisation après la suppression effective
+    //this.candidatureSupprimee.emit(true);
+    this.MaCandidature();  // Recharge la liste des candidatures
   }
 
-  
-
-  // Pour télécharger le CV
-  // downloadCV(): void {
-  //   if (this.candidature?.cv) {
-  //     window.open(this.candidature.cv, '_blank');
-  //   }
-  // }
-
 }
+
+

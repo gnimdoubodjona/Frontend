@@ -37,10 +37,11 @@
             </button>
 
             <app-supprimer-candidature
-              *ngIf="candidatureSupprimer"
-              [candidatureId]="candidatureSupprimer"
-              (candidatureSupprimer) = "onSupprimerCandidature()">
-            </app-supprimer-candidature>
+            *ngIf="candidatureSupprimer"
+            [candidatureId]="candidatureSupprimer"
+            (candidatureSupprimee)="onSupprimerCandidature()">
+          </app-supprimer-candidature>
+          
 
           </div>
 
