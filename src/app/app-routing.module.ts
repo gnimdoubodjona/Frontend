@@ -18,6 +18,7 @@ import { OffreDEmploiComponent } from './fonctionnalite/offre-d-emploi/offre-d-e
 import { ListerEmploiComponent } from './fonctionnalite/offre-d-emploi/lister-emploi/lister-emploi.component';
 import { ListeOffreComponent } from './fonctionnalite/offre-d-emploi/liste-offre/liste-offre.component';
 import { VoirCandidatureComponent } from './fonctionnalite/gestion-candidature/voir-candidature/voir-candidature.component';
+import { ListeCandidaturesComponent } from './fonctionnalite/gestion-candidature/liste-candidatures/liste-candidatures.component';
 //import { PostulerComponent } from './fonctionnalite/gestion-candidature/postuler/postuler.component';
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
       {path: 'liste-offre', component: ListerEmploiComponent},
       {path: 'offres-disponible', component: ListeOffreComponent},
       {path: 'candidature/:id', component: VoirCandidatureComponent},
+      {path: 'liste-candidatures', component: ListeCandidaturesComponent},
       //{path: 'postuler', component: PostulerComponent},
       { 
         path: 'voir-candidature/:id', 
@@ -57,7 +59,8 @@ const routes: Routes = [
   // Routes d'authentification sans le layout principal
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'app/accueil', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];
 

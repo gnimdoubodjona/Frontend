@@ -1,279 +1,401 @@
-<div>
-  <h2>Inscription</h2>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="prenoms">Prénom</label>
-      <input type="text" id="prenoms" formControlName="prenoms">
-      <div *ngIf="registerForm.get('prenoms')?.invalid && registerForm.get('prenoms')?.touched">
-        Ce champ est requis
+<div id="wrapper">
+  <!-- Main-content -->
+  <div class="d-flex justify-content-center align-items-center vh-150">
+    <div class="pxl-hidden-template-wrap  col-md-17 col-lg-7 justify-content-center">
+      <div class="pxl-panel-content custom_scroll">
+        <span class="pxl-close" title="Close"></span>
+        <div data-elementor-type="wp-post" data-elementor-id="10968" class="elementor elementor-10968">
+          <section
+            class="elementor-section elementor-top-section elementor-element elementor-element-4a8f690 elementor-section-boxed elementor-section-height-default elementor-section-height-default pxl-section-static-pos-no pxl-section-overflow-hidden-no pxl-container-margin-auto-no"
+            data-id="4a8f690" data-element_type="section"
+            data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+
+
+            <div class="elementor-container elementor-column-gap-default ">
+              <div
+                class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a9076e5 pxl-column-element-default pxl-column-overflow-hidden-no"
+                data-id="a9076e5" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                  <div class="elementor-element elementor-element-1164e61 elementor-widget elementor-widget-pxl_login"
+                    data-id="1164e61" data-element_type="widget" data-widget_type="pxl_login.default">
+                    <div class="elementor-widget-container">
+                      <div class="pxl-login-wrap login-reg-form">
+                        <div class="pxl-login-reg-form pxl-frontend-form">
+
+                          <div class="pxl-register-form pxl-frontend-form active">
+                            <form class="pu-reg-form register" method="post" data-enable-strength-password="1"
+                              data-minimum-password-strength="0" data-captcha-enabled="0" novalidate="novalidate" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                              <div class="pu-form-heading">
+                                <h2 class="form-title">Inscription</h2>
+                                
+                              </div>
+                              <div class="pu-form-items">
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Prénoms <span
+                                          class="required">*</span></label>
+                                      <input type="text" id="prenoms" formControlName="prenoms">
+                                      <div
+                                        *ngIf="registerForm.get('prenoms')?.invalid && registerForm.get('prenoms')?.touched">
+                                        Ce champ est requis
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Nom <span class="required">*</span></label>
+                                      <input type="text" id="nom" formControlName="nom">
+                                      <div *ngIf="registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched">
+                                        Ce champ est requis
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required validate-email user_email_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_email" class="lbl">Email
+                                        <span class="required">*</span></label>
+                                      <input type="email" id="email" formControlName="email">
+                                      <div
+                                        *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                                        Veuillez entrer une adresse email valide
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Emplacement <span
+                                          class="required">*</span></label>
+                                      <div>
+
+                                        <input type="text" id="emplacement" formControlName="emplacement">
+                                        <div
+                                          *ngIf="registerForm.get('emplacement')?.invalid && registerForm.get('emplacement')?.touched">
+                                          Ce champ est requis
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Rôle <span class="required">*</span></label>
+
+                                      <select id="role" formControlName="role">
+                                        <option value="">Sélectionnez un rôle</option>
+                                        <option *ngFor="let role of roles" [value]="role.value">
+                                          {{role.label}}
+                                        </option>
+                                      </select>
+                                      <div
+                                        *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched">
+                                        Ce champ est requis
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div *ngIf="showAgriculteurFields">
+                                    <div>
+                                      <label for="user_login" class="lbl">Rôle <span class="required">*</span></label>
+                                      <br><br><br>
+                                      <mat-form-field>
+                                        <mat-chip-grid #typesCulturesList>
+                                          <mat-chip-row *ngFor="let culture of registerForm.get('type_cultures')?.value"
+                                            (removed)="removeChip(culture, 'type_cultures')">
+                                            {{culture}}
+                                            <button matChipRemove>
+                                              <mat-icon>cancel</mat-icon>
+                                            </button>
+                                          </mat-chip-row>
+                                          <input placeholder="Ajouter une culture..."
+                                            [matChipInputFor]="typesCulturesList"
+                                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                            (matChipInputTokenEnd)="addChip($event, 'type_cultures')">
+                                        </mat-chip-grid>
+                                        <mat-hint>Entrée ou virgule pour ajouter</mat-hint>
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Surface exploitée<span
+                                          class="required">*</span></label>
+
+                                      <input type="number" id="surface_exploitee" formControlName="surface_exploitee">
+
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Certification Bio <span
+                                          class="required">*</span></label>
+                                      <input type="checkbox" id="certification_bio" formControlName="certification_bio">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div *ngIf="showElevageFields">
+                                    <div>
+                                      <label for="user_login" class="lbl">Types d'animaux <span
+                                          class="required">*</span></label>
+                                      <br><br><br>
+                                      <mat-form-field>
+                                        <mat-chip-grid #typeAnimauxList>
+                                          <mat-chip-row *ngFor="let animal of registerForm.get('type_animaux')?.value"
+                                            (removed)="removeChip(animal, 'type_animaux')">
+                                            {{animal}}
+                                            <button matChipRemove>
+                                              <mat-icon>cancel</mat-icon>
+                                            </button>
+                                          </mat-chip-row>
+                                          <input placeholder="Ajouter un type d'animal..."
+                                            [matChipInputFor]="typeAnimauxList"
+                                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                            (matChipInputTokenEnd)="addChip($event, 'type_animaux')">
+                                        </mat-chip-grid>
+                                        <mat-hint>Entrée ou virgule pour ajouter</mat-hint>
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Nombre d'animaux <span
+                                          class="required">*</span></label>
+                                      <input type="number" id="nombre_animaux" formControlName="nombre_animaux">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Infrastructure disponible <span
+                                          class="required">*</span></label>
+                                      <input type="text" id="infrastructure_disponible"
+                                        formControlName="infrastructure_disponible">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div *ngIf="showPrestataireFields">
+                                    <div>
+                                      <label for="user_login" class="lbl">Spécialités <span
+                                          class="required">*</span></label>
+
+                                      <br><br><br>
+                                      <mat-form-field>
+                                        <mat-chip-grid #specialitesList>
+                                          <mat-chip-row
+                                            *ngFor="let specialite of registerForm.get('specialites')?.value"
+                                            (removed)="removeChip(specialite, 'specialites')">
+                                            {{specialite}}
+                                            <button matChipRemove>
+                                              <mat-icon>cancel</mat-icon>
+                                            </button>
+                                          </mat-chip-row>
+                                          <input placeholder="Ajouter une spécialité..."
+                                            [matChipInputFor]="specialitesList"
+                                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                            (matChipInputTokenEnd)="addChip($event, 'specialites')">
+                                        </mat-chip-grid>
+                                        <mat-hint>Entrée ou virgule pour ajouter</mat-hint>
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Zone d'intervention <span
+                                          class="required">*</span></label>
+
+                                      <input type="text" id="zone_intervention" formControlName="zone_intervention">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Tarif horaire <span
+                                          class="required">*</span></label>
+
+                                      <input type="number" id="tarif_horaire" formControlName="tarif_horaire">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Diplôme vétérinaire <span
+                                          class="required">*</span></label>
+
+                                      <input type="file" id="diplome_veterinaire"
+                                        (change)="onFileSelected($event, 'diplome_veterinaire')">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Années d'expérience <span
+                                          class="required">*</span></label>
+
+                                      <input type="number" id="annees_experience" formControlName="annees_experience">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Zones de consultation <span
+                                          class="required">*</span></label>
+
+                                      <input type="text" id="zones_de_consultation"
+                                        formControlName="zones_de_consultation">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Numéro de téléphone <span
+                                          class="required">*</span></label>
+
+                                      <input type="tel" id="numero_telephone" formControlName="numero_telephone">
+                                      <div
+                                        *ngIf="registerForm.get('numero_telephone')?.invalid && registerForm.get('numero_telephone')?.touched">
+                                        Ce champ est requis
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Photo de profil<span
+                                          class="required">*</span></label>
+
+                                      <input type="file" id="photo_de_profile"
+                                        (change)="onFileSelected($event, 'photo_de_profile')">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div class="pu-form-row validate-required pu-validated user_login_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_login" class="lbl">Disponibilité<span
+                                          class="required">*</span></label>
+
+                                      <select id="disponibilite" formControlName="disponibilite">
+                                        <option value="">Sélectionnez votre disponibilité</option>
+                                        <option *ngFor="let disponibilite of disponibilites"
+                                          [value]="disponibilite.value">{{disponibilite.label}}</option>
+
+                                      </select>
+                                      <div
+                                        *ngIf="registerForm.get('disponibilite')?.invalid && registerForm.get('disponibilite')?.touched">
+                                        Ce champ est requis
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div
+                                    class="pu-form-row validate-required hide_show_password pu-validated user_pass_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_pass" class="lbl">Mot de passe
+                                        <span class="required">*</span></label>
+                                      <span class="password-input-group password-input">
+                                        <input data-id="user_pass" type="password"
+                                          class="input-text input-password pu-reg-field user_pass" name="user_pass"
+                                          placeholder="Password" value="" formControlName="password">
+                                        <a href="javaScript:void(0)" class="password_preview dashicons dashicons-hidden"
+                                          title="Show password"></a>
+                                        <span class="show-password-input"></span></span>
+                                      <div
+                                        *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                                        Le mot de passe doit contenir au moins 6 caractères
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="pu-form-item">
+                                  <div
+                                    class="pu-form-row validate-required hide_show_password user_confirm_password_field">
+                                    <div class="input-wrapper">
+                                      <label for="user_confirm_password" class="lbl">Confirmer le mot de passe <span
+                                          class="required">*</span></label>
+                                      <span class="password-input-group password-input">
+                                        <input data-id="user_confirm_password" type="password"
+                                          class="input-text input-password pu-reg-field user_confirm_password"
+                                          name="user_confirm_password" placeholder="Confirm Password" value=""
+                                          required="required" id="password2" formControlName="password2">
+                                        <a href="javaScript:void(0)" class="password_preview dashicons dashicons-hidden"
+                                          title="Show password"></a>
+                                        <span class="show-password-input"></span></span>
+                                      <div
+                                        *ngIf="registerForm.hasError('mismatch') && registerForm.get('password2')?.touched">
+                                        Les mots de passe ne correspondent pas
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+
+
+                              <!-- Messages de succès et d'erreur -->
+                              <div *ngIf="successMessage" class="alert alert-success">
+                                {{ successMessage }}
+                              </div>
+                              <div *ngIf="errorMessage" class="alert alert-danger">
+                                {{ errorMessage }}
+                              </div>
+                              <div class="pu-button-action">
+                                <button type="submit" class="btn pxl-btn button pu-submit-button relative ajax-reg"
+                                  [disabled]="!registerForm.valid || isLoading">
+
+                                  <span class="btn-text">M'inscrire</span>
+                                  <span class="btn-icon pxli-spinner pxl-invisible absolute"></span>
+                                </button>
+                              </div>
+
+
+
+                              <p class="pu-link-form log-link-form">Vous avez deja un compte? <a routerLink="/login"
+                                  data-target=".pxl-login-form">Connexion</a></p>
+
+                              <input type="hidden" name="pu_reg" value="pu-reg">
+                              <input type="hidden" name="pu-redirect-url"
+                                value="https://demo.7iquid.com/donalfarm/product/haagen-dazs-salted/">
+                              <input type="hidden" id="pu-reg-form-nonce" name="pu-reg-form-nonce"
+                                value="e3a604721e"><input type="hidden" name="_wp_http_referer"
+                                value="/donalfarm/?s&amp;post_type=product">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
+  </div>
 
-    <br><br><br><br>
-
-    <div>
-      <label for="nom">Nom</label>
-      <input type="text" id="nom" formControlName="nom">
-      <div *ngIf="registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched">
-        Ce champ est requis
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email">
-      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-        Veuillez entrer une adresse email valide
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <div>
-      <label for="emplacement">Emplacement</label>
-      <input type="text" id="emplacement" formControlName="emplacement">
-      <div *ngIf="registerForm.get('emplacement')?.invalid && registerForm.get('emplacement')?.touched">
-        Ce champ est requis
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <div>
-      <label for="role">Rôle</label>
-      <select id="role" formControlName="role">
-        <option value="">Sélectionnez un rôle</option>
-        <option *ngFor="let role of roles" [value]="role.value">
-          {{role.label}}
-        </option>
-      </select>
-      <div *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched">
-        Ce champ est requis
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-
-
-    <!-- Champs pour Agriculteur -->
-    <div *ngIf="showAgriculteurFields">
-      <div>
-        <label for="type_cultures">Types de cultures</label>
-        <br><br><br>
-        <mat-form-field>
-          <mat-chip-grid #typesCulturesList>
-            <mat-chip-row *ngFor="let culture of registerForm.get('type_cultures')?.value"
-                     (removed)="removeChip(culture, 'type_cultures')">
-              {{culture}}
-              <button matChipRemove>
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
-            <input placeholder="Ajouter une culture..."
-                   [matChipInputFor]="typesCulturesList"
-                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                   (matChipInputTokenEnd)="addChip($event, 'type_cultures')">
-          </mat-chip-grid>
-          <mat-hint>Entrée ou virgule pour ajouter</mat-hint>
-        </mat-form-field>
-      </div>
-
-      <br><br><br><br>
-
-      <div>
-        <label for="surface_exploitee">Surface exploitée</label>
-        <br><br><br>
-        <input type="number" id="surface_exploitee" formControlName="surface_exploitee">
-      </div>
-
-      <br><br><br><br>
-
-      <div>
-        <label for="certification_bio">Certification bio</label>
-        <br><br><br>
-        <input type="checkbox" id="certification_bio" formControlName="certification_bio">
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <!-- Champs pour Éleveur -->
-    <div *ngIf="showElevageFields">
-      <div>
-        <label for="type_animaux">Types d'animaux</label>
-        <br><br><br>
-        <mat-form-field>
-          <mat-chip-grid #typeAnimauxList>
-            <mat-chip-row *ngFor="let animal of registerForm.get('type_animaux')?.value"
-                     (removed)="removeChip(animal, 'type_animaux')">
-              {{animal}}
-              <button matChipRemove>
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
-            <input placeholder="Ajouter un type d'animal..."
-                   [matChipInputFor]="typeAnimauxList"
-                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                   (matChipInputTokenEnd)="addChip($event, 'type_animaux')">
-          </mat-chip-grid>
-          <mat-hint>Entrée ou virgule pour ajouter</mat-hint>
-        </mat-form-field>
-      </div>
-
-      <br><br><br><br>
-
-      <div>
-        <label for="nombre_animaux">Nombre d'animaux</label>
-        <br><br><br>
-        <input type="number" id="nombre_animaux" formControlName="nombre_animaux">
-      </div>
-
-      <br><br><br><br>
-
-      <div>
-        <label for="infrastructure_disponible">Infrastructure disponible</label>
-        <br><br><br>
-        <input type="text" id="infrastructure_disponible" formControlName="infrastructure_disponible">
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <!-- Champs pour Prestataire -->
-    <div *ngIf="showPrestataireFields">
-      <div>
-        <label for="specialites">Spécialités</label>
-        <br><br><br>
-        <mat-form-field>
-          <mat-chip-grid #specialitesList>
-            <mat-chip-row *ngFor="let specialite of registerForm.get('specialites')?.value"
-                     (removed)="removeChip(specialite, 'specialites')">
-              {{specialite}}
-              <button matChipRemove>
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
-            <input placeholder="Ajouter une spécialité..."
-                   [matChipInputFor]="specialitesList"
-                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                   (matChipInputTokenEnd)="addChip($event, 'specialites')">
-          </mat-chip-grid>
-          <mat-hint>Entrée ou virgule pour ajouter</mat-hint>
-        </mat-form-field>
-      </div>
-
-      <br><br><br><br>
-
-      <div>
-        <label for="zone_intervention">Zone d'intervention</label>
-        <br><br><br>
-        <input type="text" id="zone_intervention" formControlName="zone_intervention">
-      </div>
-
-      <br><br><br><br>
-
-      <div>
-        <label for="tarif_horaire">Tarif horaire</label>
-        <br><br><br>
-        <input type="number" id="tarif_horaire" formControlName="tarif_horaire">
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <!-- Champs pour Vétérinaire -->
-    <div *ngIf="showVeterinaireFields">
-      <div>
-        <label for="diplome_veterinaire">Diplôme vétérinaire</label>
-        <br><br><br>
-        <input type="file" id="diplome_veterinaire" (change)="onFileSelected($event, 'diplome_veterinaire')">
-      </div>
-
-      <br><br><br><br>
-
-      <div>
-        <label for="annees_experience">Années d'expérience</label>
-        <br><br><br>
-        <input type="number" id="annees_experience" formControlName="annees_experience">
-      </div>
-
-      <br><br><br><br>
-
-      <div>
-        <label for="zones_de_consultation">Zones de consultation</label>
-        <br><br><br>
-        <input type="text" id="zones_de_consultation" formControlName="zones_de_consultation">
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <div>
-      <label for="numero_telephone">Numéro de téléphone</label>
-      <input type="tel" id="numero_telephone" formControlName="numero_telephone">
-      <div *ngIf="registerForm.get('numero_telephone')?.invalid && registerForm.get('numero_telephone')?.touched">
-        Ce champ est requis
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <div>
-      <label for="photo_de_profile">Photo de profil</label>
-      <input type="file" id="photo_de_profile" (change)="onFileSelected($event, 'photo_de_profile')">
-    </div>
-
-    <br><br><br><br>
-
-
-    <div>
-      <label for="disponibilite">Disponibilité</label>
-      <select id="disponibilite" formControlName="disponibilite">
-        <option value="">Sélectionnez votre disponibilité</option>
-        <option *ngFor="let disponibilite of disponibilites" [value]="disponibilite.value">{{disponibilite.label}}</option>
-        
-      </select>
-      <div *ngIf="registerForm.get('disponibilite')?.invalid && registerForm.get('disponibilite')?.touched">
-        Ce champ est requis
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-    <div>
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" formControlName="password">
-      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-        Le mot de passe doit contenir au moins 6 caractères
-      </div>
-    </div>
-
-    <br><br><br><br>
-
-
-
-    <div>
-      <label for="password2">Confirmer le mot de passe</label>
-      <input type="password" id="password2" formControlName="password2">
-      <div *ngIf="registerForm.hasError('mismatch') && registerForm.get('password2')?.touched">
-        Les mots de passe ne correspondent pas
-      </div>
-    </div>
-    <br>
-
-    <button type="submit" [disabled]="!registerForm.valid || isLoading">
-      {{ isLoading ? 'Inscription en cours...' : "M'inscrire" }}
-    </button>
-
-    <!-- Messages de succès et d'erreur -->
-    <div *ngIf="successMessage" class="alert alert-success">
-      {{ successMessage }}
-    </div>
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
-    </div>
-  </form>
-</div>

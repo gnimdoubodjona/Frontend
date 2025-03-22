@@ -1,0 +1,327 @@
+<div id="wrapper">
+    <!-- Preloader -->
+    <!-- /.Preloader -->
+    <!-- Top-bar -->
+
+    <!-- Welcome -->
+
+
+        <!-- hhhhh -->
+        <div class="fixed-header style-absolute">
+            <div class="tf-container w-1780">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header-inner">
+                            <div class="header-left">
+                                <div class="logo-site">
+                                    <a href="index.html">
+                                        <img alt="" src="images/logo/logo.png" />
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-item children">
+                <img alt="" src="images/item/page-title-top.png" />
+            </div>
+        </div>
+        <div class="header-item">
+            <img alt="" src="images/item/page-title-top.png" />
+        </div>
+    </header><!-- /.Header -->
+    <!-- Page-title -->
+    <div class="page-title page-about-us">
+        <div class="rellax" data-rellax-speed="5" style="transform: translate3d(0px, 0px, 0px);">
+            <img alt="" src="images/page-title/about-us.jpg" />
+        </div>
+        <div class="content-wrap">
+            <div class="tf-container w-1290">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="content">
+                            <p class="sub-title">
+                                L'équipe Agriconnect vous souhaite la
+                            </p>
+                            <h1 class="title">
+                                Bienvenue
+                            </h1>
+                            <div class="icon-img">
+                                <img alt="" src="images/item/line-throw-title.png" />
+                            </div>
+                            <div class="breadcrumb">
+                                <a href="#">Login</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="img-item item-2">
+            <img alt="" src="images/item/grass.png" />
+        </div>
+    </div><!-- /.Page-title -->
+    <!-- Main-content -->
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="pxl-hidden-template-wrap  col-md-17 col-lg-7 justify-content-center">
+            <div class="pxl-panel-content custom_scroll">
+                <span class="pxl-close" title="Close"></span>
+                <div data-elementor-type="wp-post" data-elementor-id="10968" class="elementor elementor-10968">
+                    <section
+                        class="elementor-section elementor-top-section elementor-element elementor-element-4a8f690 elementor-section-boxed elementor-section-height-default elementor-section-height-default pxl-section-static-pos-no pxl-section-overflow-hidden-no pxl-container-margin-auto-no"
+                        data-id="4a8f690" data-element_type="section"
+                        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+
+
+                        <div class="elementor-container elementor-column-gap-default ">
+                            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a9076e5 pxl-column-element-default pxl-column-overflow-hidden-no"
+                                data-id="a9076e5" data-element_type="column">
+                                <div class="elementor-widget-wrap elementor-element-populated">
+                                    <div class="elementor-element elementor-element-1164e61 elementor-widget elementor-widget-pxl_login"
+                                        data-id="1164e61" data-element_type="widget"
+                                        data-widget_type="pxl_login.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="pxl-login-wrap login-reg-form">
+                                                <div class="pxl-login-reg-form pxl-frontend-form">
+                                                    <div class="pxl-login-form active">
+                                                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                                                            <input type="hidden" id="pu-login-nonce"
+                                                                name="pu-login-nonce" value="a334b1f7bc"><input
+                                                                type="hidden" name="_wp_http_referer"
+                                                                value="/donalfarm/?s&amp;post_type=product">
+                                                            <div class="pu-form-heading">
+                                                                <h2 class="form-title">Connexion</h2>
+                                                                <p class="form-desc">Connectez-vous!</p>
+                                                            </div>
+                                                            
+                                                            <p class="pu-form-item pu-login-username">
+                                                                <label for="email" class="lbl">Email <span
+                                                                        class="required">*</span></label>
+                                                                    <input
+                                                                        type="email" id="email" class="form-control"
+                                                                        formControlName="email"
+                                                                        [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)"
+                                                                        value="">
+
+                                                            </p>
+                                                            <div class="error-message"
+                                                                *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+                                                                <span *ngIf="email?.errors?.['required']">L'Email est
+                                                                    requis</span>
+                                                                <span *ngIf="email?.errors?.['email']">Veuillez entrer
+                                                                    un email valide</span>
+                                                            </div>
+                                                            <p class="pu-form-item pu-login-pass hide_show_password">
+                                                                <label for="password" class="lbl">Mot de passe <span
+                                                                        class="required">*</span></label> <span
+                                                                    class="password-input-group relative password-input">
+                                                                    <input type="password" id="password"
+                                                                        class="form-control" formControlName="password"
+                                                                        [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)">
+                                                                    <a href="javaScript:void(0)"
+                                                                        class="password_preview dashicons dashicons-hidden absolute"
+                                                                        title="Show password"></a>
+                                                                    <span class="show-password-input"></span></span>
+                                                            </p>
+                                                            <div class="error-message"
+                                                                *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+                                                                <span *ngIf="password?.errors?.['required']">Le mot de
+                                                                    passe est requis</span>
+                                                                <span *ngIf="password?.errors?.['minlength']">Le mot de
+                                                                    passe doit contenir au moins 6 caractères</span>
+                                                            </div>
+                                                            <div class="text-danger text-center mb-3"
+                                                                *ngIf="errorMessage">
+                                                                {{ errorMessage }}
+                                                            </div>
+                                                            <p class="remember-wrap">
+                                                                <label class="label-for-checkbox">
+                                                                    <input type="checkbox" name="rememberme"
+                                                                        value="forever"><span>Se souvenir de moi!</span>
+                                                                </label>
+                                                                <a routerLink="/register">Mot de passe oublié?</a>
+                                                                    
+                                                            </p>
+                                                            <p class="pu-button-action">
+                                                                <button
+                                                                    class="pxl-btn button ajax-login relative rounded col-md-6 col-lg-4"
+                                                                    name="login" type="submit"
+                                                                    [disabled]="loginForm.invalid">
+                                                                    <span class="btn-text">Connexion</span>
+                                                                    <span
+                                                                        class="btn-icon pxli-spinner pxl-invisible absolute"></span>
+                                                                </button>
+                                                            </p>
+
+
+                                                            <p class="pu-link-form reg-link-form">Vous n'avez pas de compte? <a
+                                                                    routerLink="/register"
+                                                                    data-target=".pxl-register-form">Inscrivez-vous</a></p>
+
+
+                                                            <input type="hidden" name="pu_login" value="pu-login">
+                                                            <input type="hidden" name="action" value="login">
+                                                            <input type="hidden" name="redirect"
+                                                                value="https://demo.7iquid.com/donalfarm/product/haagen-dazs-salted/">
+                                                        </form>
+
+                                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    <div class="pxl-register-form pxl-frontend-form">
+                                                        <form class="pu-reg-form register" method="post"
+                                                            data-enable-strength-password="1"
+                                                            data-minimum-password-strength="0" data-captcha-enabled="0"
+                                                            novalidate="novalidate">
+                                                            <div class="pu-form-heading">
+                                                                <h2 class="form-title">Inscrivez-vous</h2>
+                                                                <!-- <p class="form-desc">Register for a farm account to
+                                                                    enjoy exclusive privileges</p> -->
+                                                            </div>
+                                                            <div class="pu-form-items">
+                                                                <div class="pu-form-item">
+                                                                    <div
+                                                                        class="pu-form-row validate-required pu-validated user_login_field">
+                                                                        <div class="input-wrapper">
+                                                                            <label for="user_login" class="lbl">User
+                                                                                Name <span
+                                                                                    class="required">*</span></label>
+                                                                            <input data-id="user_login" type="text"
+                                                                                class="input-text pu-reg-field user_login"
+                                                                                name="user_login" placeholder="Username"
+                                                                                value="" required="required"
+                                                                                data-label="Username"
+                                                                                data-username-length="0"
+                                                                                data-username-character="1">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pu-form-item">
+                                                                    <div
+                                                                        class="pu-form-row validate-required validate-email user_email_field">
+                                                                        <div class="input-wrapper">
+                                                                            <label for="user_email" class="lbl">Email
+                                                                                <span class="required">*</span></label>
+                                                                            <input data-id="user_email" type="email"
+                                                                                class="input-text input-email pu-reg-field user_email"
+                                                                                name="user_email" placeholder="Email"
+                                                                                value="" required="required">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pu-form-item">
+                                                                    <div
+                                                                        class="pu-form-row validate-required hide_show_password pu-validated user_pass_field">
+                                                                        <div class="input-wrapper">
+                                                                            <label for="user_pass" class="lbl">Password
+                                                                                <span class="required">*</span></label>
+                                                                            <span
+                                                                                class="password-input-group password-input">
+                                                                                <input data-id="user_pass"
+                                                                                    type="password"
+                                                                                    class="input-text input-password pu-reg-field user_pass"
+                                                                                    name="user_pass"
+                                                                                    placeholder="Password" value=""
+                                                                                    required="required">
+                                                                                <a href="javaScript:void(0)"
+                                                                                    class="password_preview dashicons dashicons-hidden"
+                                                                                    title="Show password"></a>
+                                                                                <span
+                                                                                    class="show-password-input"></span></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pu-form-item">
+                                                                    <div
+                                                                        class="pu-form-row validate-required hide_show_password user_confirm_password_field">
+                                                                        <div class="input-wrapper">
+                                                                            <label for="user_confirm_password"
+                                                                                class="lbl">Repeat Password <span
+                                                                                    class="required">*</span></label>
+                                                                            <span
+                                                                                class="password-input-group password-input">
+                                                                                <input data-id="user_confirm_password"
+                                                                                    type="password"
+                                                                                    class="input-text input-password pu-reg-field user_confirm_password"
+                                                                                    name="user_confirm_password"
+                                                                                    placeholder="Confirm Password"
+                                                                                    value="" required="required">
+                                                                                <a href="javaScript:void(0)"
+                                                                                    class="password_preview dashicons dashicons-hidden"
+                                                                                    title="Show password"></a>
+                                                                                <span
+                                                                                    class="show-password-input"></span></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="pu-button-action">
+                                                                <button type="submit"
+                                                                    class="btn pxl-btn button pu-submit-button relative ajax-reg">
+                                                                    <span class="btn-text">Register Account</span>
+                                                                    <span
+                                                                        class="btn-icon pxli-spinner pxl-invisible absolute"></span>
+                                                                </button>
+                                                            </div>
+
+
+
+                                                            <p class="pu-link-form log-link-form">Do you already have an
+                                                                account? <a href="javascript:void(0);"
+                                                                    data-target=".pxl-login-form">Login</a></p>
+
+                                                            <input type="hidden" name="pu_reg" value="pu-reg">
+                                                            <input type="hidden" name="pu-redirect-url"
+                                                                value="https://demo.7iquid.com/donalfarm/product/haagen-dazs-salted/">
+                                                            <input type="hidden" id="pu-reg-form-nonce"
+                                                                name="pu-reg-form-nonce" value="e3a604721e"><input
+                                                                type="hidden" name="_wp_http_referer"
+                                                                value="/donalfarm/?s&amp;post_type=product">
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+ 
