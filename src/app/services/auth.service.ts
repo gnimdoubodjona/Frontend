@@ -6,6 +6,7 @@ import { AuthResponse, LoginCredentials, RegisterCredentials, Utilisateur } from
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private apiUrl = 'http://localhost:8000/api';
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);

@@ -108,6 +108,8 @@
             <div class="detail-icon">📅</div>
             <div class="detail-text">Expire le {{ offre.date_expiration | date:'dd MMM yyyy' }}</div>
           </div>
+          <button class="candidature" (click)="candidature(offre.id)" >candidature()</button>
+
         </div>
       </div>
     </div>

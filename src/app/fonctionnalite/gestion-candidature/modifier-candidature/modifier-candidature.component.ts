@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Candidature } from '../../../models/candidature';
 import { CandidaterService } from '../../../services/candidater.service';
@@ -8,7 +8,8 @@ import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-modifier-candidature',
   templateUrl: './modifier-candidature.component.html',
-  styleUrls: ['./modifier-candidature.component.css']
+  styleUrls: ['./modifier-candidature.component.css'] ,
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class ModifierCandidatureComponent implements OnInit {

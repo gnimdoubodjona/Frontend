@@ -74,4 +74,13 @@ export class CandidaterService {
       })
     );
   }
+
+  getCandidaturesByOffre(offreId: number):Observable<Candidature[]>{
+    return this.http.get<Candidature[]>(`${this.apiUrl}/candidature/all-by-offre/${offreId}/`).pipe(
+      catchError(error => {
+        console.error('Erreur lors de la récupération des candidatures:', error);
+        throw error;
+      })
+    );
+  }
 }

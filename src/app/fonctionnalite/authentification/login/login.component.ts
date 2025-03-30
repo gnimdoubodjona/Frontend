@@ -10,9 +10,13 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+togglePasswordVisibility() {
+throw new Error('Method not implemented.');
+}
   loginForm: FormGroup;
   errorMessage: string = '';
   private currentUserSubject$: BehaviorSubject<any>;
+showPassword: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,6 +54,7 @@ export class LoginComponent implements OnInit {
             this.errorMessage = 'Une erreur est survenue lors de la connexion';
           }
           console.error('Erreur de connexion:', error);
+          // error: (err) => console.error('Erreur de connexion:', err.error),
         }
       });
     } else {

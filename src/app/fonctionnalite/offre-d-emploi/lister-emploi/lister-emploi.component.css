@@ -338,3 +338,22 @@
     animation: fadeInUp 0.5s ease forwards;
     animation-delay: calc(var(--animation-order) * 0.1s);
   }
+
+/* From Uiverse.io by levxyca */ 
+.candidature {
+  font-size: 1.5rem;
+  color: #fafafa;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #fafafa;
+  background: #252525;
+  box-shadow: 3px 3px #fafafa;
+  cursor: pointer;
+  margin: 35px 0;
+}
+
+.candidature:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}

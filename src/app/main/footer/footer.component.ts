@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component , ViewEncapsulation} from '@angular/core';
 import { Utilisateur } from '../../models/utilisateur';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  styleUrl: './footer.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class FooterComponent {
 

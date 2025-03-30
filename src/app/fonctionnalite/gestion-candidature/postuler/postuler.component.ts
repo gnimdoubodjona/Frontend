@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-postuler',
   templateUrl: './postuler.component.html',
-  styleUrl: './postuler.component.css'
+  styleUrl: './postuler.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class PostulerComponent implements OnInit {
   postulerForm: FormGroup;

@@ -45,6 +45,7 @@ import { VoirCandidatureComponent } from './fonctionnalite/gestion-candidature/v
 import { ModifierCandidatureComponent } from './fonctionnalite/gestion-candidature/modifier-candidature/modifier-candidature.component';
 import { SupprimerCandidatureComponent } from './fonctionnalite/gestion-candidature/supprimer-candidature/supprimer-candidature.component';
 import { ListeCandidaturesComponent } from './fonctionnalite/gestion-candidature/liste-candidatures/liste-candidatures.component';
+import { ReponseComponent } from './fonctionnalite/gestion-candidature/reponse/reponse.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { ListeCandidaturesComponent } from './fonctionnalite/gestion-candidature
     VoirCandidatureComponent,
     ModifierCandidatureComponent,
     SupprimerCandidatureComponent,
-    ListeCandidaturesComponent
+    ListeCandidaturesComponent,
+    ReponseComponent
   ],
   imports: [
     BrowserModule,

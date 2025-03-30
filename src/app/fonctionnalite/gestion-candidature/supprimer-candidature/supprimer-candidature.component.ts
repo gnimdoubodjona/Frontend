@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { CandidaterService } from '../../../services/candidater.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-supprimer-candidature',
   templateUrl: './supprimer-candidature.component.html',
-  styleUrl: './supprimer-candidature.component.css'
+  styleUrl: './supprimer-candidature.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class SupprimerCandidatureComponent {
   @Input() candidatureId!: number;

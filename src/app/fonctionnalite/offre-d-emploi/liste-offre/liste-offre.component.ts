@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { OffreDEmploi } from '../../../models/offre-d-emploi';
 import { OffreEmploiService } from '../../../services/offre-emploi.service';
 import { CandidaterService } from '../../../services/candidater.service';
@@ -8,7 +8,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-liste-offre',
   templateUrl: './liste-offre.component.html',
-  styleUrl: './liste-offre.component.css'
+  styleUrl: './liste-offre.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class ListeOffreComponent {
   offres: OffreDEmploi[] = [];

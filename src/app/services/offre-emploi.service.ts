@@ -1,16 +1,24 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OffreDEmploi } from '../models/offre-d-emploi';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OffreEmploiService {
+  private apiUrl = 'http://localhost:8000/api';
+  private offreSelectedSource = new BehaviorSubject<number | null>(null);  // émettre l'id
+  offreSelected$ = this.offreSelectedSource.asObservable(); //écouter l'évenement
 
-  private apiUrl = 'http://localhost:8000/api'
 
   constructor(private http: HttpClient) { }
+
+  //méthode pour émettre l'id
+  emitOffreId(offreId : number){
+    console.log("🔄 Emission de l'ID de l'offre :", offreId);
+    this.offreSelectedSource.next(offreId);
+  }
 
   //créer des offres
   createOffre(offreData: OffreDEmploi): Observable<OffreDEmploi> {
@@ -38,10 +46,18 @@ export class OffreEmploiService {
     return this.http.get<OffreDEmploi[]>(`${this.apiUrl}/offreEmploi/`);
   }
 
+  getOffresByUser(): Observable<OffreDEmploi[]> {
+    const url = `${this.apiUrl}/offreEmploi/mes_offres/`;
+    console.log("Appel api :" ,url);
+    return this.http.get<OffreDEmploi[]>(url);
+    //return this.http.get<OffreDEmploi[]>(`${this.apiUrl}/offreEmploi/mes-offres/`);
+  }
+
   getOffreById(id: number): Observable<OffreDEmploi> {
     return this.http.get<OffreDEmploi>(`${this.apiUrl}/offreEmploi/${id}/`);
   }
   
 
+  
 
 }

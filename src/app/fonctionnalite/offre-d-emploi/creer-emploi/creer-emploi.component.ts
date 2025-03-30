@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OffreEmploiService } from '../../../services/offre-emploi.service';
 import { AuthService } from '../../../services/auth.service';
@@ -9,7 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-creer-emploi',
   templateUrl: './creer-emploi.component.html',
-  styleUrls: ['./creer-emploi.component.css']
+  styleUrls: ['./creer-emploi.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CreerEmploiComponent implements OnInit{
   offreForm: FormGroup;

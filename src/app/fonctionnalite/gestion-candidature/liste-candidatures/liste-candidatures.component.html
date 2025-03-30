@@ -1,1 +1,115 @@
-<p>liste-candidatures works!</p>
+
+      <!-- Page-title -->
+      <div class="page-title page-portfolio-details">
+        <div class="rellax" data-rellax-speed="5" style="transform: translate3d(0px, 0px, 0px);">
+            <img alt="" src="/images/page-title/portfolio.jpg" />
+        </div>
+        <div class="content-wrap">
+            <div class="tf-container w-1290">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="content">
+                            <p class="sub-title">
+                                Voir votre profil détaillé
+                            </p>
+                            <h1 class="title" >
+                                Les offres disponibles
+                            </h1>
+                            <div class="icon-img">
+                                <img alt="" src="/images/item/line-throw-title.png" />
+                            </div>
+                            <div class="breadcrumb">
+                                <a >Accueil</a>
+                                <div class="icon">
+                                    <i class="icon-arrow-right1"></i>
+                                </div>
+                                <a href="javascript:void(0)"> Profil</a>
+                            </div>
+                            <div class="mt-3">
+                                <a  class="tf-btn">
+                                    <span>Voir les détails</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="img-item item-2">
+            <img alt="" src="/images/item/grass.png" />
+        </div>
+    </div><!-- /.Page-title -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- HTML -->
+<div *ngFor="let candidature of candidatures; let i= index" class="candidature-container mt-5">
+    <div class="candidature-wrapper">
+      <div class="candidature-header" [attr.data-number]="i + 1" (click)="toggleContent($event)">
+        <span class="candidature-title">Offre N° {{i+1}}</span>
+        <span class="toggle-icon">+</span>
+      </div>
+      
+      <div class="candidature-content">
+        <div class="action-buttons">
+          <button class="btn-accept">Accepter</button>
+          <button class="btn-reject">Refuser</button>
+        </div>
+        
+        <div class="candidature-info">
+          <div class="info-column">
+            <div class="info-group">
+              <label>Noms du Postulant</label>
+              <p>{{candidature.nom}}</p>
+            </div>
+            <div class="info-group">
+              <label>Prénoms du Postulant</label>
+              <p>{{candidature.prenoms}}</p>
+            </div>
+            <div class="info-group">
+              <label>Mail du Postulant</label>
+              <p>{{candidature.email}}</p>
+            </div>
+          </div>
+          
+          <div class="info-column">
+            <div class="info-group">
+              <label>Contact</label>
+              <p>{{candidature.numero_telephone}}</p>
+            </div>
+            <div class="info-group">
+              <label>Adresse</label>
+              <p>{{candidature.adresse}}</p>
+            </div>
+            <div class="info-group">
+              <label>Lettre de motivation</label>
+              <p class="motivation-text">{{candidature.lettre_motivation}}</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Téléchargement du CV -->
+        <div *ngIf="candidature.cv" class="cv-download">
+          <a [href]="'http://localhost:8000/media/' + candidature.cv"
+             target="_blank"
+             class="download-btn">
+            <i class="bi bi-file-earmark-pdf-fill"></i>
+            Télécharger le CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

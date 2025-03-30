@@ -282,7 +282,26 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div class="pu-form-item">
+
+
+
+
+
+
+                            <!-- From Uiverse.io by guilhermeyohan --> 
+                                <div class="container">
+                                  <form>
+                                    <label for="user_login">Profile:</label>
+                                    <input accept=".jpg, .jpeg, .png, .gif, .pdf" class="inpdddut" name="arquivo" id="photo_de_profile" type="file" (change)="onFileSelected($event, 'photo_de_profile')">
+                                <!-- <input value="Send" type="submit" class="inpdddut"> -->
+                                  </form>
+                                </div>
+
+
+
+
+
+                                <!-- <div class="pu-form-item">
                                   <div class="pu-form-row validate-required pu-validated user_login_field">
                                     <div class="input-wrapper">
                                       <label for="user_login" class="lbl">Photo de profil<span
@@ -292,7 +311,25 @@
                                         (change)="onFileSelected($event, 'photo_de_profile')">
                                     </div>
                                   </div>
-                                </div>
+                                </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="pu-form-item">
                                   <div class="pu-form-row validate-required pu-validated user_login_field">
                                     <div class="input-wrapper">
@@ -364,19 +401,86 @@
                               <div *ngIf="errorMessage" class="alert alert-danger">
                                 {{ errorMessage }}
                               </div>
-                              <div class="pu-button-action">
+                              <!-- <div class="pu-button-action">
                                 <button type="submit" class="btn pxl-btn button pu-submit-button relative ajax-reg"
                                   [disabled]="!registerForm.valid || isLoading">
 
                                   <span class="btn-text">M'inscrire</span>
                                   <span class="btn-icon pxli-spinner pxl-invisible absolute"></span>
                                 </button>
+                              </div> -->
+                              
+
+                              <!-- From Uiverse.io by adamgiebl --> 
+                              <button type="submit" class="cssbuttons-io-button"  [disabled]="!registerForm.valid || isLoading">
+                                    M'Inscrire
+                                <div class="icon">
+                                  <svg
+                                      height="24"
+                                        width="24"
+                                      viewBox="0 0 24 24"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                  <path d="M0 0h24v24H0z" fill="none"></path>
+                                  <path
+                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                    fill="currentColor"
+                                  ></path>
+                                </svg>
                               </div>
+                            </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              
 
 
 
                               <p class="pu-link-form log-link-form">Vous avez deja un compte? <a routerLink="/login"
-                                  data-target=".pxl-login-form">Connexion</a></p>
+                                  data-target=".pxl-login-form">Connexion</a></p><br><br><br><br>
 
                               <input type="hidden" name="pu_reg" value="pu-reg">
                               <input type="hidden" name="pu-redirect-url"

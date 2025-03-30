@@ -1,111 +1,63 @@
-<div id="wrapper">
-    <!-- Preloader -->
-    <!-- /.Preloader -->
-    <!-- Top-bar -->
+<div class="login-container">
+    <div class="login-card">
+      <h2 class="login-title">Connexion</h2>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="form-group">
+          <label for="email" class="form-label">Email *</label>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email"
+            class="form-input {{ email?.invalid && (email?.dirty || email?.touched) ? 'input-error' : '' }}"
+            placeholder="bodjonadaniele@gmail.com"
+          >
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
+            <span *ngIf="email?.errors?.['required']">L'Email est requis</span>
+            <span *ngIf="email?.errors?.['email']">Veuillez entrer un email valide</span>
+          </div>
+        </div>
 
-    <!-- Welcome -->
+        <div class="form-group">
+          <label for="password" class="form-label">Mot de passe *</label>
+          <div class="password-wrapper">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              id="password" 
+              formControlName="password"
+              class="form-input {{ password?.invalid && (password?.dirty || password?.touched) ? 'input-error' : '' }}"
+              placeholder="••••••••"
+            >
+            <button 
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="password-toggle"
+            >
+              <i class="{{ showPassword ? 'icon-eye-off' : 'icon-eye' }}"></i>
+            </button>
+          </div>
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+            <span *ngIf="password?.errors?.['required']">Le mot de passe est requis</span>
+            <span *ngIf="password?.errors?.['minlength']">Le mot de passe doit contenir au moins 6 caractères</span>
+          </div>
+        </div>
 
+        <div class="forgot-password-link">
+          <a href="/forgot-password">Mot de passe oublié ?</a>
+        </div>
 
+        <button 
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="submit-button"
+        >
+          Connexion
+        </button>
 
-
-
-    <!-- Main-content -->
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="pxl-hidden-template-wrap  col-md-17 col-lg-7 justify-content-center">
-            <div class="pxl-panel-content custom_scroll">
-                <span class="pxl-close" title="Close"></span>
-                <div data-elementor-type="wp-post" data-elementor-id="10968" class="elementor elementor-10968">
-                    <section
-                        class="elementor-section elementor-top-section elementor-element elementor-element-4a8f690 elementor-section-boxed elementor-section-height-default elementor-section-height-default pxl-section-static-pos-no pxl-section-overflow-hidden-no pxl-container-margin-auto-no"
-                        data-id="4a8f690" data-element_type="section"
-                        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-
-
-                        <div class="elementor-container elementor-column-gap-default ">
-                            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a9076e5 pxl-column-element-default pxl-column-overflow-hidden-no"
-                                data-id="a9076e5" data-element_type="column">
-                                <div class="elementor-widget-wrap elementor-element-populated">
-                                    <div class="elementor-element elementor-element-1164e61 elementor-widget elementor-widget-pxl_login"
-                                        data-id="1164e61" data-element_type="widget"
-                                        data-widget_type="pxl_login.default">
-                                        <div class="elementor-widget-container">
-                                            <div class="pxl-login-wrap login-reg-form">
-                                                <div class="pxl-login-reg-form pxl-frontend-form">
-                                                    <div class="pxl-login-form active">
-                                                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                                                            <input type="hidden" id="pu-login-nonce"
-                                                                name="pu-login-nonce" value="a334b1f7bc"><input
-                                                                type="hidden" name="_wp_http_referer"
-                                                                value="/donalfarm/?s&amp;post_type=product">
-                                                            <div class="pu-form-heading">
-                                                                <h2 class="form-title">Connexion</h2>
-                                                                <!-- <p class="form-desc">Connectez-vous!</p> -->
-                                                            </div>
-                                                            
-                                                            <p class="pu-form-item pu-login-username">
-                                                                <label for="email" class="lbl">Email <span
-                                                                        class="required">*</span></label>
-                                                                    <input
-                                                                        type="email" id="email" class="form-control"
-                                                                        formControlName="email"
-                                                                        [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)"
-                                                                        value="">
-
-                                                            </p>
-                                                            <div class="error-message"
-                                                                *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-                                                                <span *ngIf="email?.errors?.['required']">L'Email est
-                                                                    requis</span>
-                                                                <span *ngIf="email?.errors?.['email']">Veuillez entrer
-                                                                    un email valide</span>
-                                                            </div>
-                                                            <p class="pu-form-item pu-login-pass hide_show_password">
-                                                                <label for="password" class="lbl">Mot de passe <span
-                                                                        class="required">*</span></label> <span
-                                                                    class="password-input-group relative password-input">
-                                                                    <input type="password" id="password"
-                                                                        class="form-control" formControlName="password"
-                                                                        [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)">
-                                                                    <a href="javaScript:void(0)"
-                                                                        class="password_preview dashicons dashicons-hidden absolute"
-                                                                        title="Show password"></a>
-                                                                    <span class="show-password-input"></span></span>
-                                                            </p>
-                                                            <div class="error-message"
-                                                                *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-                                                                <span *ngIf="password?.errors?.['required']">Le mot de
-                                                                    passe est requis</span>
-                                                                <span *ngIf="password?.errors?.['minlength']">Le mot de
-                                                                    passe doit contenir au moins 6 caractères</span>
-                                                            </div>
-                                                            <div class="text-danger text-center mb-3"
-                                                                *ngIf="errorMessage">
-                                                                {{ errorMessage }}
-                                                            </div>
-                                                            <p class="remember-wrap">
-                                                                
-                                                                <a routerLink="/register">Mot de passe oublié?</a>
-                                                                    
-                                                            </p>
-                                                            <p class="pu-button-action">
-                                                                <button
-                                                                    class="pxl-btn button ajax-login relative rounded col-md-6 col-lg-4"
-                                                                    name="login" type="submit"
-                                                                    [disabled]="loginForm.invalid">
-                                                                    <span class="btn-text">Connexion</span>
-                                                                    <span
-                                                                        class="btn-icon pxli-spinner pxl-invisible absolute"></span>
-                                                                </button>
-                                                            </p>
-
-
-                                                            <p class="pu-link-form reg-link-form">Vous n'avez pas de compte? <a
-                                                                    routerLink="/register"
-                                                                    data-target=".pxl-register-form">Inscrivez-vous</a></p>
-
-
-                                                            <input type="hidden" name="pu_login" value="pu-login">
-                                                            <input type="hidden" name="action" value="login">
-                                                            <input type="hidden" name="redirect"
-                                                                value="https://demo.7iquid.com/donalfarm/product/haagen-dazs-salted/">
-                                                        </form>
+        <div class="register-link">
+          Vous n'avez pas de compte ? 
+          <a href="/register">Inscrivez-vous</a>
+        </div>
+      </form>
+    </div>
+  </div>

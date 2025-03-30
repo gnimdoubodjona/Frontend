@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Candidature } from '../../../models/candidature';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,8 @@ import { OffreEmploiService } from '../../../services/offre-emploi.service';
 @Component({
   selector: 'app-voir-candidature',
   templateUrl: './voir-candidature.component.html',
-  styleUrl: './voir-candidature.component.css'
+  styleUrl: './voir-candidature.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class VoirCandidatureComponent implements OnInit {
   candidatures: Candidature[] = [];

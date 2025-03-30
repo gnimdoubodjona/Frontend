@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Produit } from '../../../models/produit';
 import { GestionVenteService } from '../../../services/gestion-vente.service';
 import { Categorie } from '../../../models/categorie';
@@ -10,7 +10,8 @@ import { CartService } from '../../../services/cart.service';
 @Component({
     selector: 'app-boutique-produit',
     templateUrl: './boutique-produit.component.html',
-    styleUrls: ['./boutique-produit.component.css']
+    styleUrl: './boutique-produit.component.css',
+    encapsulation: ViewEncapsulation.None,
 })
 export class BoutiqueProduitComponent implements OnInit {
     produits: Produit[] = [];
