@@ -46,7 +46,20 @@
 
 
 
-
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3>la candidature</h3>
+    <!-- <h3>{{ reponseChoisie? 'Accepter' : 'Refuser' }} la candidature</h3> -->
+    <app-reponse 
+    *ngIf="candidatureEnCours !== null"
+    modalFerme="fermerModal()" 
+    [reponse]="reponseChoisie" 
+    [candidatureId]="candidatureEnCours">
+  </app-reponse>
+   
+    <button class="btn-cancel" (click)="fermerModal()">Annuler</button>
+  </div>
+</div>
 
 
 
@@ -65,8 +78,8 @@
       
       <div class="candidature-content">
         <div class="action-buttons">
-          <button class="btn-accept">Accepter</button>
-          <button class="btn-reject">Refuser</button>
+          <button class="btn-accept" (click)="ouvrirModal(candidature.id, true)">Accepter</button>
+          <button class="btn-reject" (click)="ouvrirModal(candidature.id, false)">Refuser</button>
         </div>
         
         <div class="candidature-info">

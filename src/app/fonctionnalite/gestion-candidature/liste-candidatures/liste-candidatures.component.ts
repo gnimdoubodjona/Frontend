@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { OffreDEmploi } from '../../../models/offre-d-emploi';
 import { OffreEmploiService } from '../../../services/offre-emploi.service';
 import { AuthService } from '../../../services/auth.service';
 import { Candidature } from '../../../models/candidature';
 import { CandidaterService } from '../../../services/candidater.service';
+import { ReponseService } from '../../../services/reponse.service';
 
 @Component({
   selector: 'app-liste-candidatures',
@@ -17,9 +18,26 @@ export class ListeCandidaturesComponent implements OnInit{
   candidatures: Candidature[] = [];
   loading : boolean = false;
   error : string | null = null;
+  reponse:boolean = false;
+  @Output() reponseEvent = new EventEmitter<{ reponse: boolean; candidatureId: number }>();
+  showModal: boolean = false;
+  candidatureEnCours : number | null = null;
+  reponseChoisie : boolean = true;
 
-  constructor(private candidaterService : CandidaterService, private offreEmploiService : OffreEmploiService ){
 
+  constructor(private candidaterService : CandidaterService, private offreEmploiService : OffreEmploiService, private reponseService: ReponseService ){
+
+  }
+
+  ouvrirModal(candidatureId : number, reponse : boolean){
+    this.showModal = true;
+    this.reponseChoisie = reponse;
+    this.candidatureEnCours= candidatureId;
+  }
+
+  fermerModal(){
+    this.showModal = false;
+    this.candidatureEnCours = null;
   }
 
   loadCandidatures(offreId: number) {
@@ -63,6 +81,16 @@ export class ListeCandidaturesComponent implements OnInit{
       }
     }
   }
+
+  // reponseAccepter(candidatureId: number) {
+  //   this.reponseEvent.emit({ reponse: true, candidatureId });
+  //   this.reponseService.setReponse(true, candidatureId); // ✅ Passer l'ID ici
+  // }
+
+  // reponseRefuser(candidatureId: number) {
+  //   this.reponseEvent.emit({ reponse: false, candidatureId });
+  //   this.reponseService.setReponse(false, candidatureId); // ✅ Passer l'ID ici
+  // }
   
   
 
