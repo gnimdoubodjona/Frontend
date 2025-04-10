@@ -5,8 +5,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-recherche',
   templateUrl: './recherche.component.html',
-  styleUrls: ['./recherche.component.css'] // Correction : `styleUrls` au lieu de `styleUrl`
+  styleUrl: './recherche.component.css' // Correction : `styleUrls` au lieu de `styleUrl`
 })
+
+
 export class RechercheComponent {
   emplacement: string = '';
   disponibilite: string = '';

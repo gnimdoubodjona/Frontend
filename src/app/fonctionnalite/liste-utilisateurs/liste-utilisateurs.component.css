@@ -1,0 +1,227 @@
+/* Variables de couleurs */
+:root {
+    --primary-color: #0d401c;
+    --primary-light: #165c2a; 
+    --primary-lighter: #1e703a;
+    --primary-dark: #0a3016;
+    --accent-color: #3a9861;
+    --text-light: #f5f5f5;
+    --card-shadow: 0 10px 20px rgba(13, 64, 28, 0.1);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .content-fade-in {
+    animation: fadeIn 0.8s ease forwards;
+  }
+  
+  .animate-card {
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+  }
+  
+  /* Text color custom */
+  .text-custom-green {
+    color: var(--primary-color);
+  }
+  
+  /* Styles pour les cards utilisateurs */
+  .custom-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-color: #fff;
+  }
+  
+  .custom-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(13, 64, 28, 0.2);
+  }
+  
+  .custom-card:hover .profile-image-container {
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+  }
+  
+  .card-banner {
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-lighter));
+  }
+  
+  /* Style pour l'image de profil */
+  .profile-image-wrapper {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .profile-image-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background-color: white;
+  }
+  
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Style pour l'alerte personnalisée */
+  .custom-alert {
+    background-color: rgba(255, 236, 236, 1);
+    color: #842029;
+    border-left: 4px solid #842029;
+    border-radius: 4px;
+  }
+  
+  /* Style pour les badges */
+  .custom-badge {
+    background-color: #e8f5e9;
+    color: var(--primary-color);
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 500;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+  
+  /* Style pour les boutons */
+  .custom-btn-connect {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(13, 64, 28, 0.2);
+  }
+  
+  .custom-btn-connect:hover:not(:disabled) {
+    background-color: var(--primary-lighter);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(13, 64, 28, 0.3);
+  }
+  
+  .custom-btn-connected {
+    background-color: #6a8574;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 15px;
+    font-weight: 500;
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+  
+  /* Style pour les liens utilisateurs */
+  .user-link {
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .user-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline !important;
+  }
+  
+  /* Spinner personnalisé */
+  .spinner-grow.text-custom-green {
+    color: var(--primary-color);
+  }
+  
+  /* Card text */
+  .card-text {
+    color: #666;
+    font-size: 1em;
+  }
+
+
+  /* Augmentation de la taille des textes pour une meilleure lisibilité */
+.card-title {
+    font-size: 1.3rem; /* Augmentation de la taille du titre */
+  }
+  
+  .card-text {
+    color: #555;
+    font-size: 1.05em; /* Augmentation de la taille du texte d'email */
+    line-height: 1.5;
+  }
+  
+  /* Badge plus grand et plus lisible */
+  .custom-badge {
+    background-color: #e8f5e9;
+    color: var(--primary-color);
+    padding: 0.4em 0.75em;
+    font-size: 1em; /* Badge plus grand */
+    font-weight: 500;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+  
+  /* Bouton avec texte plus grand */
+  .custom-btn-connect, .custom-btn-connected {
+    font-size: 1em; /* Texte du bouton plus grand */
+    padding: 10px 18px; /* Légèrement plus grand pour équilibrer */
+  }
+  
+  /* En-tête principal plus grand */
+  h2.mb-4.text-custom-green {
+    font-size: 2.2em; /* Titre principal plus grand */
+  }
+  
+  /* Message de chargement plus visible */
+  .mt-3.text-custom-green.fw-light {
+    font-size: 1.2rem; /* Texte de chargement plus grand */
+  }
+
+/* Style pour le bouton de rendez-vous */
+.custom-btn-rdv {
+  background-color: #fff;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 5px rgba(13, 64, 28, 0.1);
+}
+
+.custom-btn-rdv:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(13, 64, 28, 0.2);
+}
+
+/* Ajustement du bouton Se connecter */
+.custom-btn-connect, .custom-btn-connected {
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 30px;
+}

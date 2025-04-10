@@ -1,32 +1,140 @@
 
-<p>liste-utilisateurs works!</p>
-<div *ngIf="loading" class="loading">
-    <p>Chargement de la liste des utilisateurs...</p>
-</div>
-<div *ngIf="error" class="alert alert-danger">
-    {{ error }}
-</div>
-<div *ngIf="!loading && !error">
-    <h2 class="text-2xl font-bold">Liste des utilisateurs</h2>
-    <ul class="list-disc pl-6">
-        <li *ngFor="let user of users" class="mb-3">
-            <a [routerLink]="['/app/utilisateur', user.id]" class="hover:text-blue-600">
-                {{ user.nom }} {{ user.prenoms }}
-            </a>
-            <span class="text-sm text-gray-600">
-                ({{ user.role }})
-            </span>
-            <button 
+
+    <!-- Page-title -->
+    <div class="page-title page-portfolio-details">
+      <div class="rellax" data-rellax-speed="5" style="transform: translate3d(0px, 0px, 0px);">
+          <img alt="" src="/images/page-title/portfolio.jpg" />
+      </div>
+      <div class="content-wrap">
+          <div class="tf-container w-1290">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="content">
+                          <p class="sub-title">
+                              Liste des Utilisateurs
+                          </p>
+                          <h1 class="title" >
+                              Bienvenue
+                          </h1>
+                          <div class="icon-img">
+                              <img alt="" src="/images/item/line-throw-title.png" />
+                          </div>
+                          <div class="breadcrumb">
+                              <a >Accueil</a>
+                              <div class="icon">
+                                  <i class="icon-arrow-right1"></i>
+                              </div>
+                              <a href="javascript:void(0)"> Utilisateurs</a>
+                          </div>
+                          <div class="mt-3">
+                              <a  class="tf-btn">
+                                  <span>Voir les détails</span>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="img-item item-2">
+          <img alt="" src="/images/item/grass.png" />
+      </div>
+  </div><!-- /.Page-title -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="container mt-5">
+  <!-- Spinner de chargement amélioré -->
+  <div *ngIf="loading" class="d-flex flex-column align-items-center justify-content-center my-5">
+    <div class="spinner-grow text-custom-green" style="width: 3rem; height: 3rem;" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+    <p class="mt-3 text-custom-green fw-light">Chargement de vos utilisateurs...</p>
+  </div>
+
+  <!-- Message d'erreur élégant -->
+  <div *ngIf="error" class="alert custom-alert d-flex align-items-center" role="alert">
+    <i class="bi bi-exclamation-circle me-2"></i>
+    <div>{{ error }}</div>
+  </div>
+
+  <!-- Contenu principal avec animation -->
+  <div *ngIf="!loading && !error" class="content-fade-in">
+    <h2 class="mb-4 text-custom-green fw-bold">
+      <i class="bi bi-people-fill me-2"></i>Répertoire des utilisateurs
+    </h2>
+    
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngFor="let user of users; let i = index" class="col animate-card" [style.animation-delay]="i * 0.1 + 's'">
+        <div class="card h-100 custom-card border-0">
+          <!-- Bannière supérieure -->
+          <div class="card-banner"></div>
+          
+          <!-- Corps de la carte avec photo de profil -->
+          <div class="card-body position-relative pt-5">
+              <!-- Photo de profil superposée -->
+              <div class="profile-image-wrapper">
+                <div class="profile-image-container">
+                  <img [src]="'http://localhost:8000' + user.photo_de_profile"
+                       alt="Photo de {{ user.nom }}"
+                       class="profile-image">
+                </div>
+              </div>
+            
+            <div class="text-center mb-3 mt-2">
+              <h5 class="card-title fw-bold">
+                <a [routerLink]="['/app/utilisateur', user.id]" class="text-decoration-none text-dark user-link">
+                  {{ user.nom }} {{ user.prenoms }}
+                </a>
+              </h5>
+              <span class="badge custom-badge">{{ user.role }}</span>
+            </div>
+            
+            <div class="text-center mb-3">
+              <p class="card-text">
+                <i class="bi bi-envelope-fill text-custom-green me-2"></i>
+                <span *ngIf="user.email">{{ user.email }}</span>
+                <span *ngIf="!user.email" class="text-muted fst-italic">Email non disponible</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Pied de la carte avec boutons -->
+          <div class="card-footer bg-transparent border-0 pb-4">
+            <div class="d-flex justify-content-between">
+              <!-- Bouton Se connecter -->
+              <button 
                 [disabled]="isSubscribed(user.id)"
                 [ngClass]="{
-                    'bg-blue-500 hover:bg-blue-600': !isSubscribed(user.id),
-                    'bg-gray-400 cursor-not-allowed': isSubscribed(user.id)
+                  'custom-btn-connect': !isSubscribed(user.id),
+                  'custom-btn-connected': isSubscribed(user.id)
                 }"
-                class="px-4 py-2 t rounded ml-2"
+                class="btn flex-grow-1 me-2"
                 (click)="subscribe(user.id)"
-            >
-                {{ isSubscribed(user.id) ? 'Connecté!!!' : 'Se connecter' }}
-            </button>
-        </li>
-    </ul>
+              >
+                <i [ngClass]="{
+                  'bi-person-plus-fill': !isSubscribed(user.id),
+                  'bi-check2-circle': isSubscribed(user.id)
+                }" class="bi me-1"></i>
+                {{ isSubscribed(user.id) ? 'Connecté' : 'Se connecter' }}
+              </button>
+              
+              <!-- Bouton Rendez-vous -->
+              <button class="btn custom-btn-rdv" title="Prendre rendez-vous">
+                <i class="bi bi-calendar-plus-fill"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

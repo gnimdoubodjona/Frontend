@@ -1,0 +1,15 @@
+.hello {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  padding: 20px; /* Padding inside the card */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 300px; /* Optional: Limit the card width */
+  margin: 10px auto; /* Center the card horizontally */
+  text-align: center; /* Center-align text */
+  
+  font-family: Arial, sans-serif; /* Font style */
+  font-size: 16px; /* Font size */
+  line-height: 1.5; /* Line height for readability */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}

@@ -1,4 +1,4 @@
-<div class="container mx-auto p-6">
+<!-- <div class="container mx-auto p-6">
     <h2 class="text-2xl font-bold mb-4">Recherche d'Utilisateurs</h2>
     <form (ngSubmit)="onRecherche()">
       <div class="mb-4">
@@ -68,4 +68,316 @@
     <div *ngIf="results.length === 0 && submitted" class="mt-6">
       <p class="text-gray-500">Aucun résultat trouvé.</p>
     </div>
+  </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div class="offcanvas offcanvas-top" tabindex="-1" id="canvasSearch" aria-labelledby="canvasSearchLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="canvasSearchLabel">Recherche</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      Contenu de la recherche 
+      <input type="text" class="form-control" placeholder="Rechercher...">
+    </div>
+  </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+  <div class="offcanvas offcanvas-top bg-light" tabindex="-1" id="canvasSearch" aria-labelledby="canvasSearchLabel">
+    <div class="offcanvas-header border-bottom">
+      <h3 class="offcanvas-title fw-bold text-warning" id="canvasSearchLabel">
+        <i class="bi bi-search me-2"></i>Recherche d'Utilisateurs
+      </h3>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body py-4">
+      <div class="container">
+        <!-- Formulaire principal avec vos champs existants -->
+        <form (ngSubmit)="onRecherche()">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="input-group input-group-lg shadow-sm mb-4">
+                <span class="input-group-text bg-vert text-white border-0">
+                  <i class="bi bi-geo-alt-fill"></i>
+                </span>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg border-0 py-3" 
+                  placeholder="Entrez un emplacement" 
+                  id="emplacement"
+                  [(ngModel)]="emplacement"
+                  name="emplacement"
+                  aria-label="Emplacement">
+                <button class="btn btn-primary px-4" type="submit">Rechercher</button>
+              </div>
+            </div>
+          </div>
+        
+          <!-- Section des filtres avec vos champs spécifiques -->
+          <div class="row mb-4">
+            <div class="col-12">
+              <div class="card shadow-sm">
+                <div class="card-header bg-jaune text-white">
+                  <h4 class="mb-0"><i class="bi bi-funnel-fill me-2"></i>Critères de recherche</h4>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+
+<!-- Disponibilité avec boutons radio -->
+<div class="mb-4">
+  <label class="form-label fw-bold">Disponibilité</label>
+  <div class="d-flex gap-4 mt-2">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio"
+        name="disponibilite" id="dispo-tous"
+        [(ngModel)]="disponibilite" [value]="''" checked>
+      <label class="form-check-label" for="dispo-tous">
+        <span class="badge bg-jaune">Tous</span>
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio"
+        name="disponibilite" id="dispo-disponible"
+        [(ngModel)]="disponibilite" [value]="'Disponible'">
+      <label class="form-check-label" for="dispo-disponible">
+        <span class="badge bg-success">
+          <i class="bi bi-check-circle-fill me-1"></i>Disponible
+        </span>
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio"
+        name="disponibilite" id="dispo-indisponible"
+        [(ngModel)]="disponibilite" [value]="'Indisponible'">
+      <label class="form-check-label" for="dispo-indisponible">
+        <span class="badge bg-danger">
+          <i class="bi bi-x-circle-fill me-1"></i>Indisponible
+        </span>
+      </label>
+    </div>
   </div>
+</div>
+
+                    <!-- Emplacement -->      
+                    <!-- Rôle -->
+                    <div class="col-md-6 mb-3">
+                      <label for="role" class="form-label fw-bold">Rôle</label>
+                      <select 
+                        id="role" 
+                        [(ngModel)]="role" 
+                        name="role"
+                        class="form-select form-select-lg"
+                      >
+                        <option value="">-- Sélectionnez --</option>
+                        <option value="agriculteur">Agriculteur</option>
+                        <option value="eleveur">Éleveur</option>
+                        <option value="veterinaire">Vétérinaire</option>
+                        <option value="prestataire">Prestataire</option>
+                        <option value="autre">Autre</option>
+                      </select>
+                    </div>
+                    
+                    <!-- Bouton de recherche dans le panneau des filtres (optionnel car déjà dans la barre principale) -->
+                    <div class="col-12 mt-3">
+                      <div class="d-flex justify-content-end">
+                        <button type="reset" class="btn btn-outline-secondary me-2">Réinitialiser</button>
+                        <button type="submit" class="btn btn-primary px-4">
+                          <i class="bi bi-search me-2"></i>Rechercher
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        
+        <!-- Affichage des résultats -->
+        <div class="row" *ngIf="results.length > 0">
+          <div class="col-12">
+            <div class="card shadow-sm">
+              <div class="card-header bg-light">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">Résultats de la recherche</h5>
+                  <span class="badge bg-primary">{{ results.length }} trouvés</span>
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush">
+                  <li *ngFor="let user of results" 
+                      class="list-group-item p-3 border-bottom hover-shadow" 
+                      (click)="voirProfil(user.id)"
+                      style="cursor: pointer;">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div>
+                        <h5 class="text-primary mb-1">{{ user.nom }} {{ user.prenoms }}</h5>
+                        <div class="d-flex align-items-center gap-3">
+                          <span class="badge bg-secondary">{{ user.role }}</span>
+                          <span class="text-muted small">
+                            <i class="bi bi-geo-alt me-1"></i>{{ user.emplacement }}
+                          </span>
+                          <span class="badge" 
+                                [ngClass]="{
+                                  'bg-success': user.disponibilite === 'Disponible', 
+                                  'bg-danger': user.disponibilite === 'Indisponible'
+                                }">
+                            <i [ngClass]="{
+                                 'bi bi-check-circle-fill me-1': user.disponibilite === 'Disponible',
+                                 'bi bi-x-circle-fill me-1': user.disponibilite === 'Indisponible'
+                               }"></i>
+                            {{ user.disponibilite }}
+                          </span>
+                        </div>
+                      </div>
+                      <button class="btn btn-sm btn-outline-primary rounded-circle" 
+                              (click)="$event.stopPropagation(); voirProfil(user.id)">
+                        <i class="bi bi-arrow-right"></i>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Message si aucun résultat -->
+        <div class="row mt-4" *ngIf="results.length === 0 && submitted">
+          <div class="col-12">
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+              <i class="bi bi-info-circle-fill me-2 fs-4"></i>
+              <div>
+                Aucun utilisateur ne correspond à vos critères de recherche. Essayez de modifier vos filtres.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <style>
+    .btn-primary {
+      background-color: #0d401c;
+      border-color: #0d401c;
+    }
+
+    .bg-vert{
+      background-color: #0d401c;
+    }
+
+    .bg-jaune{
+      background-color: #f8c32c;
+    }
+      
+    
+    .hover-shadow:hover {
+      background-color: rgba(13, 110, 253, 0.05);
+      transition: background-color 0.2s ease;
+    }
+   
+    .offcanvas-top {
+      height: auto;
+      max-height: 85vh;
+    }
+   
+    .role-selector {
+      padding: 8px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+   
+    .role-selector:hover {
+      background-color: rgba(13, 110, 253, 0.05);
+    }
+   
+    .role-selector.selected {
+      background-color: rgba(13, 110, 253, 0.1);
+      border-left: 3px solid var(--bs-primary);
+      padding-left: 12px;
+    }
+   
+    .form-check-input:checked {
+      background-color: var(--bs-primary);
+      border-color: var(--bs-primary);
+    }
+  </style>
+  

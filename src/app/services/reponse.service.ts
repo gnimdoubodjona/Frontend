@@ -10,6 +10,10 @@ export class ReponseService {
   private reponseSubject = new BehaviorSubject<{reponse:boolean, candidatureId: number | null}>({reponse:false, candidatureId:null});
   reponse$= this.reponseSubject.asObservable();
 
+  //envoyer si une reponse est bien envoyée au component bodyyyyy
+  private reponseEnvoyeeSource = new BehaviorSubject<boolean>(false);
+  reponseEnvoyee$ = this.reponseEnvoyeeSource.asObservable();
+
 
   // constructor(private http: HttpClient) { }
   constructor(private http: HttpClient) { }
@@ -27,6 +31,17 @@ export class ReponseService {
     };
     return this.http.post('http://localhost:8000/api/reponse/', data);
   }
+
+  notifierReponseEnvoyee() {
+    console.log('ReponseService: envoyerReponse called, emitting true');
+    
+    this.reponseEnvoyeeSource.next(true);
+    //incrémentons le compteur de reponse
+  }
   
+  resetReponseEnvoyee() {
+    
+    this.reponseEnvoyeeSource.next(false);
+  }
 
 }

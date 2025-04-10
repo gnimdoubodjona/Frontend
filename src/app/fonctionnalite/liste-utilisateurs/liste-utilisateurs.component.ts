@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ListeUtilisateursService } from '../../services/liste-utilisateurs.service';
 import { Router } from '@angular/router';
 import { Utilisateur } from '../../models/utilisateur';
@@ -6,13 +6,18 @@ import { Utilisateur } from '../../models/utilisateur';
 @Component({
   selector: 'app-liste-utilisateurs',
   templateUrl: './liste-utilisateurs.component.html',
-  styleUrls: ['./liste-utilisateurs.component.css']
+  styleUrl: './liste-utilisateurs.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
+
 export class ListeUtilisateursComponent implements OnInit {
   users: Utilisateur[] = [];
   loading = true;
   error: string | null = null;
   subscribedUsers: Set<number> = new Set();
+  user: Utilisateur | null = null;
+  
+ 
 
   constructor(private listeUtilisateursService: ListeUtilisateursService, private router: Router) { }
 
@@ -21,10 +26,19 @@ export class ListeUtilisateursComponent implements OnInit {
     this.loadConnectionStates();
   }
   
+//méthode pour recupérer la photo de profil de l'utilisateur
+getUserPhoto(userId: number): string {
+  const user = this.users.find(user => user.id === userId);
+  // return user?.photo_de_profile || 'ras'; // Retourne la photo ou un chemin par défaut
+  
+  return this.user?.photo_de_profile || 'indisponible';
+}
+
   loadUsers(): void {
     this.loading = true;
     this.listeUtilisateursService.getAllUsers().subscribe({
       next: (response: any) => {
+        console.log('Données récupérées depuis le service:', response); 
         this.users = response.users;
         this.loading = false;
       },

@@ -6,6 +6,7 @@ import { Utilisateur } from '../models/utilisateur';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ListeUtilisateursService {
   private baseUrl = 'http://127.0.0.1:8000';
 

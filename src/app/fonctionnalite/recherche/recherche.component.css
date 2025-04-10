@@ -1,0 +1,11 @@
+
+
+  .offcanvas-top {
+    height: auto;
+    max-height: 85vh;
+  }
+
+  .hover-shadow:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+    transition: background-color 0.2s ease;
+  }

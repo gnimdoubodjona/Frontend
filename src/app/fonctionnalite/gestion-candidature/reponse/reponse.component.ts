@@ -40,6 +40,7 @@ export class ReponseComponent implements OnInit{
     this.reponseService.setReponseAvecMotif(this.reponse, this.candidatureId, motif)
       .subscribe(() => {
         alert('Réponse envoyée avec succès');
+        this.reponseService.notifierReponseEnvoyee(); // Notifie que la réponse a été envoyée
         this.modalFerme.emit(); // Ferme le modal
       });
   }
