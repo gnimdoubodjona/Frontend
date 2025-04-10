@@ -1,6 +1,18 @@
-<form [formGroup]="reponseForm" (ngSubmit)="onSubmit()">
-  <label for="motifs">Motif</label>
-  <textarea formControlName="motifs" id="motifs" placeholder="Expliquez votre réponse..."></textarea>
-
-  <button type="submit" [disabled]="reponseForm.invalid">Envoyer</button>
+<form [formGroup]="reponseForm" (ngSubmit)="onSubmit()" class="response-form">
+  <div class="form-group">
+    <label for="motifs" class="form-label">Motif</label>
+    <textarea 
+      formControlName="motifs" 
+      id="motifs" 
+      placeholder="Expliquez votre réponse..." 
+      class="form-textarea"
+      rows="5"></textarea>
+  </div>
+  
+  <button 
+    type="submit" 
+    [disabled]="reponseForm.invalid" 
+    class="submit-button">
+    Envoyer
+  </button>
 </form>
