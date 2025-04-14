@@ -44,4 +44,8 @@ export class ReponseService {
     this.reponseEnvoyeeSource.next(false);
   }
 
+  getMesReponses():Observable<any>{
+    return this.http.get<any[]>(`${this.apiUrl}/reponse/mes-reponses/`);
+  }
+
 }

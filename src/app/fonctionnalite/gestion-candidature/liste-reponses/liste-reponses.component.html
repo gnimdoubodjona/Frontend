@@ -1,0 +1,85 @@
+<div class="container my-5">
+    <h2 class="text-center text-primary mb-4 fw-bold">Mes réponses reçues</h2>
+    
+    <div *ngIf="reponses.length > 0; else aucune">
+      <div *ngFor="let reponse of reponses" class="card mb-4 shadow-sm border-start border-4" 
+           [ngClass]="reponse.reponse ? 'border-success' : 'border-danger'">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="card-title fw-bold mb-0">
+              <i class="bi bi-briefcase me-2"></i>{{ reponse.candidature_id.offre.titre }}
+            </h5>
+            <span class="badge rounded-pill px-3 py-2 fs-6"
+                  [ngClass]="reponse.reponse ? 'bg-success' : 'bg-danger'">
+              <i class="bi" [ngClass]="reponse.reponse ? 'bi-check-circle-fill me-1' : 'bi-x-circle-fill me-1'"></i>
+              {{ reponse.reponse ? 'Acceptée' : 'Refusée' }}
+            </span>
+          </div>
+          
+          <hr class="my-3">
+          
+          <div class="card-text mb-3">
+            <div class="mb-2 fw-bold text-secondary"><i class="bi bi-chat-left-text me-2"></i>Motifs :</div>
+            <div class="ps-3">{{ reponse.motifs }}</div>
+          </div>
+          
+          <div class="d-flex align-items-center mt-4">
+            <div class="avatar bg-light text-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+              <i class="bi bi-person-fill"></i>
+            </div>
+            <div>
+              <p class="text-muted small mb-0">Candidat</p>
+              <p class="fw-bold mb-0">{{ reponse.candidature_id.nom }} {{ reponse.candidature_id.prenoms }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <ng-template #aucune>
+      <div class="card shadow-sm p-5 text-center">
+        <i class="bi bi-inbox text-muted display-1"></i>
+        <p class="text-center text-muted mt-3">Aucune réponse reçue pour le moment.</p>
+        <button class="btn btn-outline-primary mt-2 mx-auto" style="width: fit-content;">
+          <i class="bi bi-arrow-repeat me-2"></i>Actualiser
+        </button>
+      </div>
+    </ng-template>
+  </div>
+  
+  <style>
+  .card {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+  }
+  
+  .avatar {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .badge {
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+  
+  h2.text-primary {
+    position: relative;
+    padding-bottom: 15px;
+  }
+  
+  h2.text-primary:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #ffffff, var(--bs-primary), #ffffff);
+  }
+  </style>

@@ -19,6 +19,7 @@ import { ListerEmploiComponent } from './fonctionnalite/offre-d-emploi/lister-em
 import { ListeOffreComponent } from './fonctionnalite/offre-d-emploi/liste-offre/liste-offre.component';
 import { VoirCandidatureComponent } from './fonctionnalite/gestion-candidature/voir-candidature/voir-candidature.component';
 import { ListeCandidaturesComponent } from './fonctionnalite/gestion-candidature/liste-candidatures/liste-candidatures.component';
+import { ListeReponsesComponent } from './fonctionnalite/gestion-candidature/liste-reponses/liste-reponses.component';
 //import { PostulerComponent } from './fonctionnalite/gestion-candidature/postuler/postuler.component';
 
 const routes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
         path: 'voir-candidature/:id', 
         component: VoirCandidatureComponent 
       },
+      {path: 'liste-reponses', component: ListeReponsesComponent},
       
       
     ]
