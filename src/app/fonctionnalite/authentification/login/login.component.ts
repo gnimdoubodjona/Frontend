@@ -36,7 +36,7 @@ showPassword: any;
     this.authService.currentUser$.subscribe(user => {
       this.currentUserSubject$.next(user);
       if (user) {
-        this.router.navigate(['/app/accueil']);
+        // this.router.navigate(['/app/accueil']);
       }
     });
   }

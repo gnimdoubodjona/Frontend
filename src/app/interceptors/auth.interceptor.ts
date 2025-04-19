@@ -13,7 +13,9 @@ export class AuthInterceptor implements HttpInterceptor {
   private publicRoutes = [
     '/api/categories/',
     '/api/auth/login',
-    '/api/auth/register'
+    '/api/auth/register',
+    'api/auth/roles',
+    'api/auth/disponibilite'
   ];
 
   constructor(private authService: AuthService) {}

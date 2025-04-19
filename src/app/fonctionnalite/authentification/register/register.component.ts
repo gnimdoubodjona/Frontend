@@ -71,6 +71,7 @@ showConfirmPassword: any;
       console.log('Changement de rôle:', role);
     });
   }
+  
 
   ngOnInit() {
     // Charger les rôles depuis le backend
