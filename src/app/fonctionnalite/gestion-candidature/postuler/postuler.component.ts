@@ -50,10 +50,12 @@ export class PostulerComponent implements OnInit {
             this.toastr.warning('Vous avez déjà postulé à cette offre');
             this.fermer.emit();
           } else {
-            this.postulerForm.patchValue({ 
+            if(this.offreId){
+              this.postulerForm.patchValue({ 
               offre_id: this.offreId, 
               candidat: this.authService.getCurrentUserId() 
             });
+            }else{console.log("L'ID de l'offre est null ou undefined");}
           }
         },
         error => {
@@ -93,12 +95,20 @@ export class PostulerComponent implements OnInit {
   }
   
   onSubmit() {
+    const offreIdValue = this.postulerForm.get('offre_id')?.value;
+    console.log('Valeur de l\'offre_id:', offreIdValue);
+
     if (this.hasAlreadyApplied) {
       this.toastr.warning('Vous avez déjà postulé à cette offre');
       return;
     } 
     if (this.postulerForm.valid) {
       const formData = new FormData();
+
+      if (!offreIdValue) {
+          this.toastr.error('Erreur : L\'offre sélectionnée est invalide.');
+          return;
+      } 
       
       // Ajout des champs texte
       formData.append('offre', this.postulerForm.get('offre_id')?.value);
