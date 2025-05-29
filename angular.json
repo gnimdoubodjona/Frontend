@@ -49,8 +49,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "10MB",
+                  "maximumError": "13MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -99,7 +99,9 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+  "src/styles.css",
+  "src/assets/css/bootstrap.css",
+  "src/assets/css/magnific-popup.min.css"
             ],
             "scripts": []
           }
