@@ -40,7 +40,7 @@ export class CandidaterService {
       }
     ).pipe(
       map(response => {
-        console.log('Réponse de vérification:', response);
+        console.log('Réponse de vérification:', response); 
         return response.exists;
       }),
       catchError(error => {

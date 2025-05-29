@@ -20,6 +20,7 @@ import { ListeOffreComponent } from './fonctionnalite/offre-d-emploi/liste-offre
 import { VoirCandidatureComponent } from './fonctionnalite/gestion-candidature/voir-candidature/voir-candidature.component';
 import { ListeCandidaturesComponent } from './fonctionnalite/gestion-candidature/liste-candidatures/liste-candidatures.component';
 import { ListeReponsesComponent } from './fonctionnalite/gestion-candidature/liste-reponses/liste-reponses.component';
+import { AuthGuard } from './core/guards/auth.guard';
 //import { PostulerComponent } from './fonctionnalite/gestion-candidature/postuler/postuler.component';
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   {
     path: 'app',
     component: MainLayoutComponent,
+    canActivate: [AuthGuard], // AuthGuard peut être ajouté ici si nécessaire
     children: [
       { path: 'utilisateur/:id', component: ProfilComponent },
       { path: 'utilisateur/:id/detail', component: DetailProfilComponent },

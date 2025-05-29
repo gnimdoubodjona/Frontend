@@ -15,17 +15,32 @@ export class AuthService {
   public token$ = this.tokenSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    //this.initializeAuth();
-   }
+    const storedUser = localStorage.getItem('user');
+    const storedToken = localStorage.getItem('token');
 
-
-   //recupérer le token dans le localstorage
-   getToken(): string | null {
-    const token = this.tokenSubject.value || localStorage.getItem('token');
-    if (token && !this.tokenSubject.value) {
-      this.tokenSubject.next(token);
+    if (storedUser) {
+      this.currentUserSubject.next(JSON.parse(storedUser));
     }
-    return token;
+
+    if (storedToken) {
+      this.tokenSubject.next(storedToken);
+    }
+  }
+
+
+
+  //recupérer le token dans le localstorage
+  getToken(): string | null {
+    // const token = this.tokenSubject.value || localStorage.getItem('token');
+    // if (token && !this.tokenSubject.value) {
+    //   this.tokenSubject.next(token);
+    // }
+    // return token;
+    return this.tokenSubject.value;
+  }
+
+  getCurrentUser(): Observable<Utilisateur | null> {
+    return this.currentUserSubject.asObservable();
   }
 
   getCurrentUserId(): number {
@@ -53,7 +68,7 @@ export class AuthService {
       email: credentials.email,
       password: credentials.password
     };
-  
+
     return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login/`, body).pipe(
       tap(response => {
         this.currentUserSubject.next(response.user);
@@ -120,7 +135,7 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     //return !!this.currentUserSubject.value && !!this.tokenSubject.value;
-    return !!this.getToken();
+    return !!this.tokenSubject.value;
 
   }
 }
