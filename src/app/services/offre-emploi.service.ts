@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OffreDEmploi } from '../models/offre-d-emploi';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +44,11 @@ export class OffreEmploiService {
 
   getOffres(): Observable<OffreDEmploi[]> {
     return this.http.get<OffreDEmploi[]>(`${this.apiUrl}/offreEmploi/`);
+  }
+
+  //vérifier si l'utlisateur à déjà créer une offre
+  a_creer_une_offre(): Observable<boolean> {
+    return this.http.get<{exists: boolean}>(`${this.apiUrl}/offreEmploi/a_creer_une_offre/`).pipe(map(res => res.exists));
   }
 
   getOffresByUser(): Observable<OffreDEmploi[]> {

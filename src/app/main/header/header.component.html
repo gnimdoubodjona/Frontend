@@ -296,7 +296,7 @@
 
                                             <li>
                                                 <a [routerLink]="['/app/offreEmploi']">
-                                                    <span>OffreEmploi</span>
+                                                    <span>Créer Offre</span>
                                                 </a>
                                             </li>
 
@@ -306,12 +306,13 @@
                                                 </a>
                                             </li>
 
-                                            <li>
-                                                <a [routerLink]="['/app/liste-candidatures']">
-                                                    <span>Liste Candidatures</span>
+                                            <!-- <li *ngIf="candidater_offres">
+                                                <a [routerLink]="['/app/liste-candidatures']">    
+                                                    <span>Candidature reçues</span>
                                                 </a>
-                                            </li>
+                                            </li> -->
 
+                                            <!-- <li *ngIf = "!a_creer_une_offre"> -->
                                             <li>
                                                 <a [routerLink]=" ['/app/liste-offre']">
                                                     <span> Mes offres </span>

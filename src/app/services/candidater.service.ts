@@ -83,4 +83,15 @@ export class CandidaterService {
       })
     );
   }
+
+  //appeler la route de vérification de candidature d'un user
+  candidater_offres(): Observable<boolean> {
+    return this.http.get<{exists: boolean}>(`${this.apiUrl}/candidature/candidater_offres/`).pipe(
+      map(response => response.exists),
+      catchError(error => {
+        console.error('Erreur lors de la vérification de candidature:', error);
+        return of(false);
+      })
+    );
+  }
 }

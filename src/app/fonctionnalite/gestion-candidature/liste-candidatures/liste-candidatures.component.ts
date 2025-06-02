@@ -82,17 +82,4 @@ export class ListeCandidaturesComponent implements OnInit{
     }
   }
 
-  // reponseAccepter(candidatureId: number) {
-  //   this.reponseEvent.emit({ reponse: true, candidatureId });
-  //   this.reponseService.setReponse(true, candidatureId); // ✅ Passer l'ID ici
-  // }
-
-  // reponseRefuser(candidatureId: number) {
-  //   this.reponseEvent.emit({ reponse: false, candidatureId });
-  //   this.reponseService.setReponse(false, candidatureId); // ✅ Passer l'ID ici
-  // }
-  
-  
-
-
 }
