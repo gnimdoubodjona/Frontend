@@ -111,7 +111,9 @@ export class PostulerComponent implements OnInit {
       } 
       
       // Ajout des champs texte
-      formData.append('offre', this.postulerForm.get('offre_id')?.value);
+      
+      formData.append('offre_id', this.postulerForm.get('offre_id')?.value);
+
       formData.append('candidat', this.authService.getCurrentUserId().toString());
       formData.append('nom', this.postulerForm.get('nom')?.value);
       formData.append('prenoms', this.postulerForm.get('prenoms')?.value);
