@@ -18,34 +18,7 @@ export class BodyComponent implements OnInit{
   ngOnInit(): void {
     console.log('BodyComponent: ngOnInit called, subscribing to reponseEnvoyee$');
     
-    this.reponseSub = this.reponseService.reponseEnvoyee$.subscribe(() => {
-      const swalInstance = Swal.fire({
-        title: 'Messages!',
-        text: 'Vous avez reçu une reponse',
-        icon: 'info',
-        confirmButtonText: 'OK',
-        customClass: {
-          popup: 'custom-swal-popup',
-          title: 'custom-swal-title',
-          confirmButton: 'custom-swal-confirm-button'
-        },
-        allowOutsideClick: false, // Empêche la fermeture en cliquant à l'extérieur
-      });
-  
-      // Fermer automatiquement après 10 secondes si l'utilisateur n'a pas cliqué sur "OK"
-      const timeout = setTimeout(() => {
-        if (Swal.isVisible()) { // Vérifie si le modal est toujours visible
-          console.log('BodyComponent: SweetAlert closed automatically after 10 seconds');
-          Swal.close(); // Ferme le modal
-        }
-      }, 10000); // 10 secondes
-  
-      // Si l'utilisateur clique sur "OK", annule le timeout
-      swalInstance.then(() => {
-        console.log('BodyComponent: SweetAlert closed by user');
-        clearTimeout(timeout); // Annule le timeout
-      });
-    });
+    
   }
 
   ngOnDestroy(): void {

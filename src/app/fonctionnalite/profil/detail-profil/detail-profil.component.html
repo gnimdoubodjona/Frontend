@@ -1,149 +1,218 @@
-<!-- Section profil -->
-<div class="profil-utilisateur">
-    <div *ngIf="loading" class="loading">
-        <p>Chargement des informations...</p>
-    </div>
 
-    <div *ngIf="error" class="alert alert-danger">
-        {{ error }}
-    </div>
-    
-    <div *ngIf="utilisateur && !loading">
-        <!-- En-tête du profil avec photo -->
-        <div class="profile-header">
-            <div class="photo-profil" *ngIf="utilisateur.photo_de_profile">
-                <img [src]="getPhotoUrl()" alt="Photo de profil">
-            </div>
-            <div class="profile-info">
-                <h1>{{ utilisateur.prenoms }} {{ utilisateur.nom }}</h1>
-                <div class="info-item">
-                    <strong>Email :</strong>
+
+
+
+
+
+
+
+
+<div *ngIf="utilisateur">
+    <div class="row justify-content-center align-items-start mt-8 mb-5">
+        <!-- Colonne gauche - Informations principales -->
+        <div class="col-lg-4 col-md-6 text-center mb-4">
+            <div class="bg-light p-4 rounded-3 shadow-sm h-100">
+                <img [src]="getPhotoUrl()" alt="Photo de profil" class="card-img-top rounded-circle mb-4"
+                    style="width: 200px; height: 200px; object-fit: cover;">
+                
+                <h2 class="mb-4 text-pri fw-bold">{{ utilisateur.prenoms }} {{ utilisateur.nom }}</h2>
+
+                <div class="mb-3 fs-5">
+                    <i class="bi bi-person-badge-fill me-2 text-success"></i>
+                    <span class="fw-semibold">{{ utilisateur.role | titlecase }}</span>
+                </div>
+                
+                <div class="mb-3 fs-6">
+                    <i class="bi bi-envelope-fill me-2 text-pri"></i>
                     <span>{{ utilisateur.email }}</span>
                 </div>
-                <div class="info-item">
-                    <strong>Rôle :</strong>
-                    <span>{{ utilisateur.role | titlecase }}</span>
-                </div>
-                <div class="info-item">
-                    <strong>Emplacement :</strong>
+
+                <div class="mb-4 fs-6" *ngIf="utilisateur.emplacement">
+                    <i class="bi bi-geo-alt-fill me-2 text-danger"></i>
                     <span>{{ utilisateur.emplacement }}</span>
                 </div>
+
+                <button class="btn btn-lg btn-success p-3 fw-semibold">
+                    <i class="bi bi-pencil-square me-2"></i>
+                    Modifier Profil
+                </button>
             </div>
         </div>
 
-        <!-- Informations générales -->
-        <div class="profile-section">
-            <h2>Informations générales</h2>
-            <div class="info-item">
-                <strong>Disponibilité :</strong>
-                <span>{{ hasValue(utilisateur.disponibilite) ? utilisateur.disponibilite : 'Non renseignée' }}</span>
+        <!-- Colonne droite - Détails du profil -->
+        <div class="col-lg-8 col-md-6">
+            <!-- Section d'introduction -->
+            <div class="mb-5">
+                <h1 class="display-4 text-pri fw-bold mb-3">Bonjour !</h1>
+                <h2 class="display-6 text-secondary mb-4">Qui suis-je ?</h2>
+                <p class="fs-5 text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </div>
-            <div class="info-item" *ngIf="utilisateur.bio">
-                <strong>Bio :</strong>
-                <span>{{ utilisateur.bio }}</span>
-            </div>
-            <div class="info-item">
-                <strong>Numéro de téléphone :</strong>
-                <span>{{ hasValue(utilisateur.numero_telephone) ? utilisateur.numero_telephone : 'Non renseigné' }}</span>
-            </div>
-        </div>
-        
-        <!-- Champs spécifiques pour les agriculteurs -->
-        <div class="profile-section" *ngIf="utilisateur.role === 'agriculteur'">
-            <h2>Informations Agriculteur</h2>
-            <div class="info-item">
-                <strong>Types de cultures :</strong>
-                <span>{{ utilisateur.type_cultures && utilisateur.type_cultures.length ? utilisateur.type_cultures.join(', ') : 'Non renseignés' }}</span>
-            </div>
-            <div class="info-item">
-                <strong>Surface exploitée :</strong>
-                <span>{{ utilisateur.surface_exploitee ? utilisateur.surface_exploitee + ' hectares' : 'Non renseignée' }}</span>
-            </div>
-            <div class="info-item">
-                <strong>Certification bio :</strong>
-                <span>{{ utilisateur.certification_bio ? 'Oui' : 'Non' }}</span>
-            </div>
-        </div>
 
-        <!-- Champs spécifiques pour les éleveurs -->
-        <div class="profile-section" *ngIf="utilisateur.role === 'eleveur'">
-            <h2>Informations Éleveur</h2>
-            <div class="info-item">
-                <strong>Types d'animaux :</strong>
-                <span>{{ utilisateur.type_animaux && utilisateur.type_animaux.length ? utilisateur.type_animaux.join(', ') : 'Non renseignés' }}</span>
+            
+            <!-- Informations générales -->
+            <div class="profile-section mb-5">
+                <h3 class="text-pri fw-bold mb-4">
+                    <i class="bi bi-info-circle-fill me-2"></i>Informations générales
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-success">
+                                <i class="bi bi-clock me-2"></i>Disponibilité :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ hasValue(utilisateur.disponibilite) ? utilisateur.disponibilite : 'Non renseignée' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-pri">
+                                <i class="bi bi-telephone-fill me-2"></i>Téléphone :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ hasValue(utilisateur.numero_telephone) ? utilisateur.numero_telephone : 'Non renseigné' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3" *ngIf="utilisateur.bio">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-info">
+                                <i class="bi bi-person-lines-fill me-2"></i>Bio :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.bio }}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="info-item">
-                <strong>Nombre d'animaux :</strong>
-                <span>{{ utilisateur.nombre_animaux || 'Non renseigné' }}</span>
-            </div>
-            <div class="info-item">
-                <strong>Infrastructure disponible :</strong>
-                <span>{{ utilisateur.infrastructure_disponible || 'Non renseignée' }}</span>
-            </div>
-        </div>
 
-        <!-- Champs spécifiques pour les prestataires -->
-        <div class="profile-section" *ngIf="utilisateur.role === 'prestataire'">
-            <h2>Informations Prestataire</h2>
-            <div class="info-item">
-                <strong>Spécialités :</strong>
-                <span>{{ utilisateur.specialites && utilisateur.specialites.length ? utilisateur.specialites.join(', ') : 'Non renseignées' }}</span>
+            <!-- Champs spécifiques pour les agriculteurs -->
+            <div class="profile-section mb-5" *ngIf="utilisateur.role === 'agriculteur'">
+                <h3 class="text-success fw-bold mb-4">
+                    <i class="bi bi-tree-fill me-2"></i>Informations Agriculteur
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-success">
+                                <i class="bi bi-flower2 me-2"></i>Types de cultures :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.type_cultures && utilisateur.type_cultures.length ? utilisateur.type_cultures.join(', ') : 'Non renseignés' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-warning">
+                                <i class="bi bi-rulers me-2"></i>Surface exploitée :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.surface_exploitee ? utilisateur.surface_exploitee + ' hectares' : 'Non renseignée' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-pri">
+                                <i class="bi bi-award-fill me-2"></i>Certification bio :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.certification_bio ? 'Oui' : 'Non' }}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="info-item">
-                <strong>Zone d'intervention :</strong>
-                <span>{{ utilisateur.zone_intervention || 'Non renseignée' }}</span>
-            </div>
-            <div class="info-item">
-                <strong>Tarif horaire :</strong>
-                <span>{{ utilisateur.tarif_horaire ? utilisateur.tarif_horaire + ' €/h' : 'Non renseigné' }}</span>
-            </div>
-        </div>
 
-        <!-- Champs spécifiques pour les vétérinaires -->
-        <div class="profile-section" *ngIf="utilisateur.role === 'veterinaire'">
-            <h2>Informations Vétérinaire</h2>
-            <div class="info-item">
-                <strong>Diplôme :</strong>
-                <span>{{ utilisateur.diplome_veterinaire || 'Non renseigné' }}</span>
+            <!-- Champs spécifiques pour les éleveurs -->
+            <div class="profile-section mb-5" *ngIf="utilisateur.role === 'eleveur'">
+                <h3 class="text-warning fw-bold mb-4">
+                    <i class="bi bi-heart-fill me-2"></i>Informations Éleveur
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-warning">
+                                <i class="bi bi-heart me-2"></i>Types d'animaux :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.type_animaux && utilisateur.type_animaux.length ? utilisateur.type_animaux.join(', ') : 'Non renseignés' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-pri">
+                                <i class="bi bi-123 me-2"></i>Nombre d'animaux :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.nombre_animaux || 'Non renseigné' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-info">
+                                <i class="bi bi-building me-2"></i>Infrastructure disponible :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.infrastructure_disponible || 'Non renseignée' }}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="info-item">
-                <strong>Années d'expérience :</strong>
-                <span>{{ utilisateur.annees_experience || 'Non renseigné' }}</span>
+
+            <!-- Champs spécifiques pour les prestataires -->
+            <div class="profile-section mb-5" *ngIf="utilisateur.role === 'prestataire'">
+                <h3 class="text-info fw-bold mb-4">
+                    <i class="bi bi-tools me-2"></i>Informations Prestataire
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-info">
+                                <i class="bi bi-star-fill me-2"></i>Spécialités :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.specialites && utilisateur.specialites.length ? utilisateur.specialites.join(', ') : 'Non renseignées' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-pri">
+                                <i class="bi bi-geo-alt me-2"></i>Zone d'intervention :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.zone_intervention || 'Non renseignée' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-success">
+                                <i class="bi bi-currency-euro me-2"></i>Tarif horaire :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.tarif_horaire ? utilisateur.tarif_horaire + ' €/h' : 'Non renseigné' }}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="info-item">
-                <strong>Zones de consultation :</strong>
-                <span>{{ utilisateur.zones_de_consultation || 'Non renseignées' }}</span>
+
+            <!-- Champs spécifiques pour les vétérinaires -->
+            <div class="profile-section mb-5" *ngIf="utilisateur.role === 'veterinaire'">
+                <h3 class="text-danger fw-bold mb-4">
+                    <i class="bi bi-heart-pulse-fill me-2"></i>Informations Vétérinaire
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-danger">
+                                <i class="bi bi-mortarboard-fill me-2"></i>Diplôme :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.diplome_veterinaire || 'Non renseigné' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-warning">
+                                <i class="bi bi-calendar-check me-2"></i>Années d'expérience :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.annees_experience || 'Non renseigné' }}</div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="bg-light p-3 rounded-3">
+                            <strong class="text-info">
+                                <i class="bi bi-map me-2"></i>Zones de consultation :
+                            </strong>
+                            <div class="mt-2 fs-6">{{ utilisateur.zones_de_consultation || 'Non renseignées' }}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Page-title
-<div class="page-title page-portfolio-details" *ngIf="utilisateur">
-    <!-- <div class="content-wrap">
-        <div class="tf-container w-1290">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="content">
-                        <h1 class="title">
-                          {{utilisateur.nom}} {{ utilisateur.prenoms }}
-                        </h1>
-                        <div class="breadcrumb">
-                            <a [routerLink]="['/']">Accueil</a>
-                            <div class="icon">
-                                <i class="icon-arrow-right1"></i>
-                            </div>
-                            <a [routerLink]="['/app/profil']">Profil</a>
-                            <div class="icon">
-                                <i class="icon-arrow-right1"></i>
-                            </div>
-                            <span>Détail Profil</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div> 
-
-
-    </div> -->
