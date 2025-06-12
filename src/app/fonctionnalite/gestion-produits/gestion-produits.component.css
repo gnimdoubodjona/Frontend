@@ -10,6 +10,20 @@
     cursor: pointer;
 }
 
+.bg-primar{
+    background-color: #0d401c;
+    color: white !important;
+}
+
+.btn-primar{
+    background-color: #0d401c;
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
 .btn-add-product:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);

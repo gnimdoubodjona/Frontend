@@ -1,18 +1,50 @@
-<form [formGroup]="reponseForm" (ngSubmit)="onSubmit()" class="response-form">
-  <div class="form-group">
-    <label for="motifs" class="form-label">Motif</label>
-    <textarea 
-      formControlName="motifs" 
-      id="motifs" 
-      placeholder="Expliquez votre réponse..." 
-      class="form-textarea"
-      rows="5"></textarea>
+<!-- Template du composant app-reponse -->
+<form [formGroup]="reponseForm" (ngSubmit)="onSubmit()" class="response-form fs-4">
+  
+  <!-- Champ motif avec Bootstrap -->
+  <div class="mb-4">
+    <label for="motifs" class="form-label fw-bold text-dark">
+      <i class="fas fa-comment-alt me-2 text-primary"></i>
+      Motif de votre réponse
+    </label>
+    <div class="form-floating">
+      <textarea
+        formControlName="motifs"
+        id="motifs"
+        placeholder="Expliquez votre réponse en détail..."
+        class="form-control border-2"
+        style="height: 120px; resize: vertical; padding-top: 3.5rem;" 
+        rows="5"></textarea>
+      <label for="motifs" class="text-muted">
+        <i class="fas fa-edit me-1"></i>
+        Tapez votre message ici...
+      </label>
+    </div>
+    
+    <!-- Compteur de caractères (optionnel) -->
+    <div class="form-text text-end mt-2">
+      <small class="text-muted">
+        <i class="fas fa-info-circle me-1"></i>
+        Soyez précis et professionnel dans votre réponse
+      </small>
+    </div>
+  </div>
+
+  <!-- Bouton d'envoi -->
+  <div class="d-grid gap-2">
+    <button
+      type="submit"
+      [disabled]="reponseForm.invalid"
+      class="btn btn-primary btn-lg rounded-pill py-3 fw-bold">
+      <i class="fas fa-paper-plane me-2"></i>
+      Envoyer la réponse
+    </button>
   </div>
   
-  <button 
-    type="submit" 
-    [disabled]="reponseForm.invalid" 
-    class="submit-button">
-    Envoyer
-  </button>
+  <!-- Message de validation (optionnel) -->
+  <div *ngIf="reponseForm.get('motifs')?.invalid && reponseForm.get('motifs')?.touched" 
+       class="alert alert-warning mt-3 border-0 rounded-3" >
+    <i class="fas fa-exclamation-triangle me-2"></i>
+    Veuillez saisir un motif pour votre réponse.
+  </div>
 </form>

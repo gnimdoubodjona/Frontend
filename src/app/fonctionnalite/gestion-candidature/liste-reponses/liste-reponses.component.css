@@ -1,0 +1,43 @@
+.hover-shadow {
+  transition: all 0.3s ease;
+}
+
+.hover-shadow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.badge {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.text-primary {
+  color: #0d6efd !important;
+}
+
+.empty-state {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card-footer {
+  border-top: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+.lh-base {
+  line-height: 1.5;
+}

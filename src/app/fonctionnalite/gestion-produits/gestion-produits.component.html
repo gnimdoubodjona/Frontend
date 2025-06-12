@@ -10,15 +10,15 @@
                     <div class="col-lg-12">
                         <div class="content">
                             <p class="sub-title">
-                                Voir votre profil détaillé
+                                Ajouter les produits que vous souhaitez vendre
                             </p>
                             <h1 class="title" >
-                                Les offres disponibles
+                                Creer un produit
                             </h1>
                             <div class="icon-img">
                                 <img alt="" src="/images/item/line-throw-title.png" />
                             </div>
-                            <div class="breadcrumb">
+                            <!-- <div class="breadcrumb">
                                 <a >Accueil</a>
                                 <div class="icon">
                                     <i class="icon-arrow-right1"></i>
@@ -29,7 +29,7 @@
                                 <a  class="tf-btn">
                                     <span>Voir les détails</span>
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -77,106 +77,129 @@
     
     
     
-    <!-- Page principale -->
-    <div class="container-fluid py-5 bg-light">
-        <div class="row justify-content-center">
-            <!-- Bouton d'ajout avec animation hover -->
-            <div class="col-md-4 text-center mb-4">
-                <button class="btn-add-product shadow-sm" (click)="openModal()">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-    
-            <!-- Liste des produits -->
-            <div class="col-md-8">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <app-liste-produits></app-liste-produits>
-                    </div>
+ <!-- Page principale -->
+<div class="container-fluid py-4 bg-light min-vh-100">
+    <div class="row justify-content-center">
+        <!-- Bouton d'ajout -->
+        <div class="col-lg-3 col-md-4 text-center mb-4">
+            <button class="btn btn-success btn-lg px-4 py-3 rounded-pill shadow" (click)="openModal()">
+                <i class="fas fa-plus me-2"></i>Ajouter un produit
+            </button>
+        </div>
+
+        <!-- Liste des produits -->
+        <div class="col-lg-9 col-md-8">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h5 class="mb-0 fw-bold text-dark">
+                        <i class="fas fa-box text-primary me-2"></i>
+                        Liste des produits
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <app-liste-produits></app-liste-produits>
                 </div>
             </div>
         </div>
     </div>
-    
-    <!-- Modal amélioré -->
-    <div class="modal fade" id="produitModal" tabindex="-1" aria-labelledby="produitModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-primary text-white py-3">
-                    <h5 class="modal-title fs-4" id="produitModalLabel">
-                        <i class="fas fa-box-open me-2"></i>Ajouter un produit
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" (click)="closeModal()"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <form [formGroup]="produitForm" (ngSubmit)="onSubmit()" class="needs-validation">
-                        <!-- Nom du produit -->
-                        <div class="form-floating mb-4">
-                            <input type="text" class="form-control form-control-lg" id="nom_produit" formControlName="nom_produit" placeholder="Nom du produit">
-                            <label for="nom_produit">Nom du produit</label>
-                        </div>
-    
-                        <!-- Description -->
-                        <div class="form-floating mb-4">
-                            <textarea class="form-control form-control-lg" id="description" formControlName="description" placeholder="Description" style="height: 120px"></textarea>
-                            <label for="description">Description</label>
-                        </div>
-    
-                        <div class="row mb-4">
-                            <!-- Prix -->
-                            <div class="col-md-6">
-                                <div class="form-floating">
+</div>
+
+<!-- Modal amélioré -->
+<div class="modal fade" id="produitModal" tabindex="-1" aria-labelledby="produitModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header bg-primar text-white py-4 border-bottom-0">
+                <h4 class="modal-title text-white fw-bold" id="produitModalLabel">
+                    <i class="fas fa-box-open me-3"></i>Ajouter un produit
+                </h4>
+                <button type="button" class="btn-close btn-close-white" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body p-5 bg-light">
+                <form [formGroup]="produitForm" (ngSubmit)="onSubmit()" class="needs-validation fs-4">
+                    
+                    <div class="row g-4">
+                        <!-- Colonne gauche -->
+                        <div class="col-md-6">
+                            <!-- Nom du produit -->
+                            <div class="form-floating mb-4">
+                                <input type="text" class="form-control form-control-lg border-2" id="nom_produit" formControlName="nom_produit" placeholder="Nom du produit">
+                                <label for="nom_produit"><i class="fas fa-tag me-2"></i>Nom du produit</label>
+                            </div>
+
+                            <!-- Prix et Quantité sur la même ligne -->
+                            <div class="row mb-4">
+                                <div class="col-6">
                                     <div class="input-group input-group-lg">
-                                        <input type="number" class="form-control" id="prix" formControlName="prix" min="0" step="0.01" placeholder="Prix">
-                                        <!-- <span class="input-group-text bg-light px-4">XOF</span> -->
-                                        <span class="input-group-text">FCFA<span *ngIf="selectedCategoryUnit"> / {{selectedCategoryUnit}}</span></span>
+                                        <input type="number" class="form-control border-2" id="prix" formControlName="prix" min="0" step="0.01" placeholder="Prix">
+                                        <span class="input-group-text bg-primary text-white fw-bold">
+                                            FCFA<span *ngIf="selectedCategoryUnit"> / {{selectedCategoryUnit}}</span>
+                                        </span>
+                                    </div>
+                                    <small class="text-muted ms-2">Prix unitaire</small>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control form-control-lg border-2" id="quantite" formControlName="quantite" min="1" placeholder="Quantité">
+                                        <label for="quantite">
+                                            <i class="fas fa-cubes me-2"></i>Quantité <span *ngIf="selectedCategoryUnit">/ {{selectedCategoryUnit}}</span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-    
-                            <!-- Quantité -->
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="number" class="form-control form-control-lg" id="quantite" formControlName="quantite" min="1" placeholder="Quantité">
-                                    <!-- <span class="input-group-text" *ngIf="selectedCategoryUnit">{{selectedCategoryUnit}}</span> -->
-                                    <label for="quantite">Quantité / <span *ngIf="selectedCategoryUnit">{{selectedCategoryUnit}}</span></label>
-                                </div> 
+
+                            <!-- Catégorie -->
+                            <div class="form-floating mb-4">
+                                <select class="form-select form-select-lg border-2" id="categorie" formControlName="categorie">
+                                    <option value="">Sélectionner une catégorie</option>
+                                    <option *ngFor="let cat of categories" [value]="cat.id">{{cat.nom_categorie}}</option>
+                                </select>
+                                <label for="categorie"><i class="fas fa-list me-2"></i>Catégorie</label>
                             </div>
                         </div>
-    
-                        <!-- Catégorie -->
-                        <div class="form-floating mb-4">
-                            <select class="form-select form-select-lg" id="categorie" formControlName="categorie">
-                                <option value="">Sélectionner une catégorie</option>
-                                <option *ngFor="let cat of categories" [value]="cat.id">{{cat.nom_categorie}}</option>
-                            </select>
-                            <label for="categorie">Catégorie</label>
+
+                        <!-- Colonne droite -->
+                        <div class="col-md-6">
+                            <!-- Description -->
+                            <div class="form-floating mb-4">
+                                <textarea class="form-control form-control-lg border-2 m-6" id="description" formControlName="description" placeholder="Description"  style="height: 150px; padding-top: 3.5rem;"></textarea>
+                                <label for="description"><i class="fas fa-align-left me-2 "></i>Description</label>
+                            </div>
+
+                            <!-- Upload de photo -->
+                            <div class="mb-4">
+                                <label for="photo" class="form-label fw-bold mb-3">
+                                    <i class="fas fa-camera me-2"></i>Photo du produit
+                                </label>
+                                <label for="photo" class="d-block">
+                                    <div class="border border-3 border-dashed rounded-3 p-5 text-center bg-white position-relative" style="cursor: pointer; transition: all 0.3s;">
+                                        <i class="fas fa-cloud-upload-alt text-primary mb-3" style="font-size: 3rem;"></i>
+                                        <h6 class="mb-2">Glissez votre image ici</h6>
+                                        <p class="mb-0 text-muted">ou cliquez pour sélectionner</p>
+                                        <input type="file" class="form-control d-none" id="photo" formControlName="photo" accept="image/*">
+                                    </div>
+                                </label>
+                            </div>
                         </div>
-    
-                        <!-- Upload de photo -->
-                        <div class="mb-4">
-                            <label for="photo" class="form-label d-block">
-                                <div class="upload-zone p-5 text-center border rounded bg-light">
-                                    <i class="fas fa-cloud-upload-alt fs-2 mb-3"></i>
-                                    <p class="mb-0 fs-5">Glissez votre image ici ou cliquez pour sélectionner</p>
-                                    <input type="file" class="form-control d-none" id="photo" formControlName="photo" accept="image/*">
-                                </div>
-                            </label>
+                    </div>
+
+                    <!-- Bouton de soumission -->
+                    <div class="row mt-5">
+                        <div class="col-12 text-center">
+                            <button type="submit" 
+                                    class="btn btn-primar btn-lg px-5 py-3 rounded-pill shadow-sm fw-bold" 
+                                    [disabled]="!produitForm.valid">
+                                <i class="fas fa-save me-3"></i>Créer le produit
+                            </button>
                         </div>
-    
-                        <!-- Bouton de soumission -->
-                        <button type="submit" class="btn btn-primary btn-lg w-100 py-3 shadow-sm" [disabled]="!produitForm.valid">
-                            <i class="fas fa-save me-2"></i>Créer le produit
-                        </button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
 
 
 
-
-
+    

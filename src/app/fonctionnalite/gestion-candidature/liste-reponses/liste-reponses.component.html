@@ -1,47 +1,188 @@
-<div class="container my-5">
-  <h2 class="text-center text-primary mb-4 fw-bold">Mes réponses reçues</h2>
+      <!-- Page-title -->
+      <div class="page-title page-portfolio-details">
+        <div class="rellax" data-rellax-speed="5" style="transform: translate3d(0px, 0px, 0px);">
+            <img alt="" src="/images/page-title/portfolio.jpg" />
+        </div>
+        <div class="content-wrap">
+            <div class="tf-container w-1290">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="content">
+                            <p class="sub-title">
+                                Reponses relatives aux candidatures
+                            </p>
+                            <h1 class="title" >
+                                Reponses reçues
+                            </h1>
+                            <div class="icon-img">
+                                <img alt="" src="/images/item/line-throw-title.png" />
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="img-item item-2">
+            <img alt="" src="/images/item/grass.png" />
+        </div>
+    </div><!-- /.Page-title -->
 
-  <div *ngIf="reponses.length > 0; else aucune">
-    <div *ngFor="let reponse of reponses" 
-         class="card mb-4 shadow-sm border-start border-4"
-         [ngClass]="reponse.reponse ? 'border-success' : 'border-danger'">
 
-      <div class="card-body p-4">
-        <!-- Titre de l'offre -->
-        <h5 class="card-title fw-bold mb-3">
-          <i class="bi bi-briefcase me-2"></i>
-          <!-- Titre : {{ reponse.candidature_id?.offre?.titre }}  -->
-          <!-- Titre :{{ reponse.candidature_details?.offre?.titre }} -->
-          Titre : {{ reponse.candidature_id_details?.offre?.titre }}
 
-        </h5>
 
-        <!-- Badge état de la réponse -->
-        <span class="badge rounded-pill px-3 py-2 fs-6 mb-3"
-              [ngClass]="reponse.reponse ? 'bg-success' : 'bg-danger'">
-          <i class="bi" [ngClass]="reponse.reponse ? 'bi-check-circle-fill me-1' : 'bi-x-circle-fill me-1'"></i>
-          {{ reponse.reponse ? 'Acceptée' : 'Refusée' }}
-        </span>
 
-        <!-- Motif -->
-        <div class="mt-3">
-          <h6 class="fw-semibold text-secondary mb-1">
-            <i class="bi bi-chat-left-text me-2"></i>Motif :
-          </h6>
-          <p class="mb-0 ps-3 text-dark">{{ reponse.motifs }}</p>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid px-4 py-5 bg-light min-vh-100">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8">
+      <!-- En-tête avec design moderne -->
+      <div class="text-center mb-5">
+        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm mb-3" style="width: 80px; height: 80px;">
+          <i class="bi bi-envelope-check text-success" style="font-size: 2rem;"></i>
+        </div>
+        <h1 class="display-6 fw-bold text-dark mb-2">Mes Réponses Reçues</h1>
+        <p class="text-muted lead">Suivez l'état de vos candidatures</p>
+        <hr class="w-25 mx-auto border-success border-3 opacity-75">
+      </div>
+
+      <!-- Contenu principal -->
+      <div *ngIf="reponses.length > 0; else aucune">
+        <div *ngFor="let reponse of reponses" 
+             class="card mb-4 shadow-sm border-0 overflow-hidden position-relative"
+             style="border-radius: 15px;">
+          
+          <!-- Barre de statut colorée -->
+          <div class="position-absolute top-0 start-0 w-100 h-2"
+               [ngClass]="reponse.reponse ? 'bg-success' : 'bg-danger'"></div>
+          
+          <div class="card-body p-4 pt-5">
+            <!-- En-tête de la carte -->
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <div class="flex-grow-1">
+                <h4 class="card-title fw-bold mb-2 text-dark d-flex align-items-center">
+                  <i class="bi bi-briefcase-fill me-3 text-muted"></i>
+                  {{ reponse.candidature_id_details?.offre?.titre }}
+                </h4>
+              </div>
+              
+              <!-- Badge de statut amélioré -->
+              <div class="ms-3">
+                <span class="badge rounded-pill px-4 py-2 fs-6 fw-semibold shadow-sm"
+                      [ngClass]="reponse.reponse ? 'bg-success text-white' : 'bg-danger text-white'">
+                  <i class="bi me-2" 
+                     [ngClass]="reponse.reponse ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
+                  {{ reponse.reponse ? 'Candidature Acceptée' : 'Candidature Refusée' }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Section motif avec design amélioré -->
+            <div class="mt-4">
+              <div class="row">
+                <div class="col-12">
+                  <div class="bg-light rounded-3 p-4 border-start border-4"
+                       [ngClass]="reponse.reponse ? 'border-success' : 'border-danger'">
+                    <h6 class="fw-bold text-dark mb-3 d-flex align-items-center">
+                      <i class="bi bi-chat-left-quote-fill me-2 text-muted"></i>
+                      Motif de la décision
+                    </h6>
+                    <p class="mb-0 text-dark lh-lg ps-3" 
+                       style="font-size: 1.05rem; border-left: 3px solid #dee2e6; padding-left: 1rem;">
+                      {{ reponse.motifs }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pied de carte avec informations supplémentaires -->
+            <div class="mt-4 pt-3 border-top">
+              <div class="d-flex justify-content-between align-items-center text-muted">
+                <small class="d-flex align-items-center">
+                  <i class="bi bi-calendar3 me-2"></i>
+                  Réponse reçue
+                </small>
+                <small class="d-flex align-items-center">
+                  <i class="bi bi-building me-2"></i>
+                  Candidature
+                </small>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Template aucune réponse avec design moderne -->
+      <ng-template #aucune>
+        <div class="text-center py-5">
+          <div class="card border-0 shadow-sm bg-white rounded-4 p-5 mx-auto" style="max-width: 500px;">
+            <!-- Illustration vide -->
+            <div class="mb-4">
+              <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle mx-auto mb-3" 
+                   style="width: 120px; height: 120px;">
+                <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
+              </div>
+            </div>
+            
+            <!-- Texte informatif -->
+            <h5 class="fw-bold text-dark mb-3">Aucune réponse reçue</h5>
+            <p class="text-muted mb-4 lh-lg">
+              Vous n'avez pas encore reçu de réponse à vos candidatures. 
+              Les employeurs prennent généralement quelques jours pour examiner les candidatures.
+            </p>
+            
+            <!-- Bouton d'actualisation stylisé -->
+            <button class="btn btn-outline-success btn-lg rounded-pill px-4 py-2 fw-semibold shadow-sm" 
+                    (click)="ngOnInit()">
+              <i class="bi bi-arrow-clockwise me-2"></i>
+              Actualiser les réponses
+            </button>
+            
+            <!-- Conseil -->
+            <div class="mt-4 p-3 bg-light rounded-3">
+              <small class="text-muted d-flex align-items-center justify-content-center">
+                <i class="bi bi-lightbulb me-2"></i>
+                Conseil : Vérifiez régulièrement cette page pour ne manquer aucune réponse
+              </small>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
-
-  <ng-template #aucune>
-    <div class="card shadow-sm p-5 text-center">
-      <i class="bi bi-inbox text-muted display-1"></i>
-      <p class="text-muted mt-3">Aucune réponse reçue pour le moment.</p>
-      <button class="btn btn-outline-primary mt-2 mx-auto" (click)="ngOnInit()">
-        <i class="bi bi-arrow-repeat me-2"></i>Actualiser
-      </button>
-    </div>
-  </ng-template>
 </div>
