@@ -26,12 +26,17 @@ export class ListeUtilisateursComponent implements OnInit {
     this.loadConnectionStates();
   }
   
-//méthode pour recupérer la photo de profil de l'utilisateur
+// //méthode pour recupérer la photo de profil de l'utilisateur
+// getUserPhoto(userId: number): string {
+//   const user = this.users.find(user => user.id === userId);
+//   // return user?.photo_de_profile || 'ras'; // Retourne la photo ou un chemin par défaut
+  
+//   return this.user?.photo_de_profile || 'indisponible';
+// }
+
 getUserPhoto(userId: number): string {
   const user = this.users.find(user => user.id === userId);
-  // return user?.photo_de_profile || 'ras'; // Retourne la photo ou un chemin par défaut
-  
-  return this.user?.photo_de_profile || 'indisponible';
+  return user?.photo_de_profile || 'indisponible';
 }
 
   loadUsers(): void {

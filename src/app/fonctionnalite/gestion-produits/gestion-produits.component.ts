@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { GestionVenteService } from '../../services/gestion-vente.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-gestion-produits',
@@ -16,7 +17,7 @@ export class GestionProduitsComponent implements OnInit{
   isAuthenticated = false;
   selectedCategoryUnit: string = '';
 
-  constructor(private fb: FormBuilder, private gestionVenteService: GestionVenteService, private authService: AuthService, private router: Router){
+  constructor(private fb: FormBuilder, private gestionVenteService: GestionVenteService, private authService: AuthService, private router: Router, private toastr: ToastrService) {
     this.produitForm = this.fb.group({
       nom_produit: ['', Validators.required],
       description: ['', Validators.required],
@@ -57,6 +58,8 @@ export class GestionProduitsComponent implements OnInit{
     // Vérifier l'état de connexion
     this.authService.currentUser$.subscribe(user => {
       console.log('État de connexion:', !!user);
+      console.log('User reçu:', user); // 🔍 Debug
+      console.log('isAuthenticated:', !!user); // 🔍 Debug
       this.isAuthenticated = !!user;
       
       // if (!this.isAuthenticated) {
@@ -113,12 +116,15 @@ export class GestionProduitsComponent implements OnInit{
         (response) => {
           console.log('Produit créé avec succès', response);
           // Redirection après création réussie
-          this.router.navigate(['/mes-produits']);
+          //this.router.navigate(['/mes-produits']);
+          this.toastr.success('Produit créé avec succès');
+          this.closeModal(); // Fermer le modal après la création
         },
         (error) => {
           console.error('Erreur lors de la création du produit', error);
           if (error.status === 401) {
             console.error('Erreur d\'authentification - redirection vers login');
+            this.toastr.error('Veuillez vous connecter pour créer un produit');
             this.router.navigate(['/login']);
           }
         }
