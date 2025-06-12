@@ -59,10 +59,10 @@ export class GestionProduitsComponent implements OnInit{
       console.log('État de connexion:', !!user);
       this.isAuthenticated = !!user;
       
-      if (!this.isAuthenticated) {
-        console.log('Utilisateur non authentifié, redirection vers la page de connexion');
-        this.router.navigate(['/login']);
-      }
+      // if (!this.isAuthenticated) {
+      //   console.log('Utilisateur non authentifié, redirection vers la page de connexion');
+      //   this.router.navigate(['/login']);
+      // }
     });
   }
 
