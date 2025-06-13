@@ -62,10 +62,10 @@ export class GestionProduitsComponent implements OnInit{
       console.log('isAuthenticated:', !!user); // 🔍 Debug
       this.isAuthenticated = !!user;
       
-      // if (!this.isAuthenticated) {
-      //   console.log('Utilisateur non authentifié, redirection vers la page de connexion');
-      //   this.router.navigate(['/login']);
-      // }
+      if (!this.isAuthenticated) {
+        console.log('Utilisateur non authentifié, redirection vers la page de connexion');
+        this.router.navigate(['/login']);
+      }
     });
   }
 
@@ -118,7 +118,8 @@ export class GestionProduitsComponent implements OnInit{
           // Redirection après création réussie
           //this.router.navigate(['/mes-produits']);
           this.toastr.success('Produit créé avec succès');
-          this.closeModal(); // Fermer le modal après la création
+          //this.closeModal(); // Fermer le modal après la création
+          this.router.navigate(['/app/boutiqueProduit']); // Redirection vers la boutique
         },
         (error) => {
           console.error('Erreur lors de la création du produit', error);
